@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
   28:Generated_Source\PSoC5/UART_DEBUG_INT.c ****     * Function Name: UART_DEBUG_RXISR
   29:Generated_Source\PSoC5/UART_DEBUG_INT.c ****     ********************************************************************************
   30:Generated_Source\PSoC5/UART_DEBUG_INT.c ****     *
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 2
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 2
 
 
   31:Generated_Source\PSoC5/UART_DEBUG_INT.c ****     * Summary:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
   79:Generated_Source\PSoC5/UART_DEBUG_INT.c ****         int_en = EA;
   80:Generated_Source\PSoC5/UART_DEBUG_INT.c ****         CyGlobalIntEnable;
   81:Generated_Source\PSoC5/UART_DEBUG_INT.c ****     #endif /* (CY_PSOC3) */
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 3
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 3
 
 
   82:Generated_Source\PSoC5/UART_DEBUG_INT.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
   55 0022 174B     		ldr	r3, .L7+8
   56 0024 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
   57 0026 C9B2     		uxtb	r1, r1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 4
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 4
 
 
   58              	.LVL2:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
   76              	.L4:
  151:Generated_Source\PSoC5/UART_DEBUG_INT.c ****                     }
  152:Generated_Source\PSoC5/UART_DEBUG_INT.c ****                     /* Set next pointer. */
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 5
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 5
 
 
  153:Generated_Source\PSoC5/UART_DEBUG_INT.c ****                     UART_DEBUG_rxBufferWrite++;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  108              		.loc 1 175 0
  109 0070 002A     		cmp	r2, #0
  110 0072 C5D1     		bne	.L6
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 6
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 6
 
 
  176:Generated_Source\PSoC5/UART_DEBUG_INT.c **** 
@@ -345,20 +345,20 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  138 000c 99000000 		.4byte	.LASF25
  139 0010 0C       		.byte	0xc
  140 0011 0E000000 		.4byte	.LASF26
- 141 0015 08020000 		.4byte	.LASF27
+ 141 0015 56010000 		.4byte	.LASF27
  142 0019 00000000 		.4byte	.Ldebug_ranges0+0
  143 001d 00000000 		.4byte	0
  144 0021 00000000 		.4byte	.Ldebug_line0
  145 0025 02       		.uleb128 0x2
  146 0026 01       		.byte	0x1
  147 0027 06       		.byte	0x6
- 148 0028 A6010000 		.4byte	.LASF0
+ 148 0028 E1010000 		.4byte	.LASF0
  149 002c 02       		.uleb128 0x2
  150 002d 01       		.byte	0x1
  151 002e 08       		.byte	0x8
- 152 002f 5C010000 		.4byte	.LASF1
+ 152 002f 97010000 		.4byte	.LASF1
  153 0033 02       		.uleb128 0x2
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 7
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 7
 
 
  154 0034 02       		.byte	0x2
@@ -367,11 +367,11 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  157 003a 02       		.uleb128 0x2
  158 003b 02       		.byte	0x2
  159 003c 07       		.byte	0x7
- 160 003d 93010000 		.4byte	.LASF3
+ 160 003d CE010000 		.4byte	.LASF3
  161 0041 02       		.uleb128 0x2
  162 0042 04       		.byte	0x4
  163 0043 05       		.byte	0x5
- 164 0044 83010000 		.4byte	.LASF4
+ 164 0044 BE010000 		.4byte	.LASF4
  165 0048 02       		.uleb128 0x2
  166 0049 04       		.byte	0x4
  167 004a 07       		.byte	0x7
@@ -400,15 +400,15 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  190 0077 02       		.uleb128 0x2
  191 0078 04       		.byte	0x4
  192 0079 04       		.byte	0x4
- 193 007a 56010000 		.4byte	.LASF9
+ 193 007a 91010000 		.4byte	.LASF9
  194 007e 02       		.uleb128 0x2
  195 007f 08       		.byte	0x8
  196 0080 04       		.byte	0x4
- 197 0081 8C010000 		.4byte	.LASF10
+ 197 0081 C7010000 		.4byte	.LASF10
  198 0085 02       		.uleb128 0x2
  199 0086 01       		.byte	0x1
  200 0087 08       		.byte	0x8
- 201 0088 6A010000 		.4byte	.LASF11
+ 201 0088 A5010000 		.4byte	.LASF11
  202 008c 04       		.uleb128 0x4
  203 008d 4D020000 		.4byte	.LASF13
  204 0091 02       		.byte	0x2
@@ -418,15 +418,15 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  208 0099 6B000000 		.4byte	0x6b
  209 009d 02       		.uleb128 0x2
  210 009e 08       		.byte	0x8
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 8
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 8
 
 
  211 009f 04       		.byte	0x4
- 212 00a0 B2010000 		.4byte	.LASF14
+ 212 00a0 ED010000 		.4byte	.LASF14
  213 00a4 02       		.uleb128 0x2
  214 00a5 04       		.byte	0x4
  215 00a6 07       		.byte	0x7
- 216 00a7 FF010000 		.4byte	.LASF15
+ 216 00a7 3A020000 		.4byte	.LASF15
  217 00ab 06       		.uleb128 0x6
  218 00ac 6C000000 		.4byte	.LASF28
  219 00b0 01       		.byte	0x1
@@ -443,7 +443,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  230 00c7 6B000000 		.4byte	0x6b
  231 00cb 00000000 		.4byte	.LLST0
  232 00cf 07       		.uleb128 0x7
- 233 00d0 F4010000 		.4byte	.LASF17
+ 233 00d0 2F020000 		.4byte	.LASF17
  234 00d4 01       		.byte	0x1
  235 00d5 3E       		.byte	0x3e
  236 00d6 6B000000 		.4byte	0x6b
@@ -468,17 +468,17 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  255 0108 07       		.byte	0x7
  256 0109 00       		.byte	0
  257 010a 08       		.uleb128 0x8
- 258 010b 6F010000 		.4byte	.LASF20
+ 258 010b AA010000 		.4byte	.LASF20
  259 010f 03       		.byte	0x3
  260 0110 3E01     		.2byte	0x13e
  261 0112 16010000 		.4byte	0x116
  262 0116 05       		.uleb128 0x5
  263 0117 FA000000 		.4byte	0xfa
  264 011b 08       		.uleb128 0x8
- 265 011c BE010000 		.4byte	.LASF21
+ 265 011c F9010000 		.4byte	.LASF21
  266 0120 03       		.byte	0x3
  267 0121 3F01     		.2byte	0x13f
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 9
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 9
 
 
  268 0123 98000000 		.4byte	0x98
@@ -488,7 +488,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  272 012d 4001     		.2byte	0x140
  273 012f 98000000 		.4byte	0x98
  274 0133 08       		.uleb128 0x8
- 275 0134 D6010000 		.4byte	.LASF23
+ 275 0134 11020000 		.4byte	.LASF23
  276 0138 03       		.byte	0x3
  277 0139 4101     		.2byte	0x141
  278 013b 98000000 		.4byte	0x98
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  322 0023 3E       		.uleb128 0x3e
  323 0024 0B       		.uleb128 0xb
  324 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 10
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 10
 
 
  325 0026 08       		.uleb128 0x8
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  379 005d 0B       		.uleb128 0xb
  380 005e 3B       		.uleb128 0x3b
  381 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 11
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 11
 
 
  382 0060 49       		.uleb128 0x49
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  436 001a 00000000 		.4byte	0
  437              	.LLST1:
  438 001e 06000000 		.4byte	.LVL0
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 12
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 12
 
 
  439 0022 1C000000 		.4byte	.LVL1
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  478      53746174 
  479              	.LASF8:
  480 004d 756E7369 		.ascii	"unsigned int\000"
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 13
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 13
 
 
  480      676E6564 
@@ -773,79 +773,79 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 1
  496      6720756E 
  496      7369676E 
  496      65642069 
- 497              	.LASF9:
- 498 0156 666C6F61 		.ascii	"float\000"
- 498      7400
- 499              	.LASF1:
- 500 015c 756E7369 		.ascii	"unsigned char\000"
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 14
+ 497              	.LASF27:
+ 498 0156 433A5C44 		.ascii	"C:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
+ 498      726F7062 
+ 498      6F785C50 
+ 498      75626C69 
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 14
 
 
- 500      676E6564 
- 500      20636861 
- 500      7200
- 501              	.LASF11:
- 502 016a 63686172 		.ascii	"char\000"
- 502      00
- 503              	.LASF20:
- 504 016f 55415254 		.ascii	"UART_DEBUG_rxBuffer\000"
- 504      5F444542 
- 504      55475F72 
- 504      78427566 
- 504      66657200 
- 505              	.LASF4:
- 506 0183 6C6F6E67 		.ascii	"long int\000"
- 506      20696E74 
- 506      00
- 507              	.LASF10:
- 508 018c 646F7562 		.ascii	"double\000"
- 508      6C6500
- 509              	.LASF3:
- 510 0193 73686F72 		.ascii	"short unsigned int\000"
- 510      7420756E 
- 510      7369676E 
- 510      65642069 
- 510      6E7400
- 511              	.LASF0:
- 512 01a6 7369676E 		.ascii	"signed char\000"
- 512      65642063 
- 512      68617200 
- 513              	.LASF14:
- 514 01b2 6C6F6E67 		.ascii	"long double\000"
- 514      20646F75 
- 514      626C6500 
- 515              	.LASF21:
- 516 01be 55415254 		.ascii	"UART_DEBUG_rxBufferRead\000"
- 516      5F444542 
- 516      55475F72 
- 516      78427566 
- 516      66657252 
- 517              	.LASF23:
- 518 01d6 55415254 		.ascii	"UART_DEBUG_rxBufferLoopDetect\000"
- 518      5F444542 
- 518      55475F72 
- 518      78427566 
- 518      6665724C 
- 519              	.LASF17:
- 520 01f4 72656164 		.ascii	"readStatus\000"
- 520      53746174 
- 520      757300
- 521              	.LASF15:
- 522 01ff 73697A65 		.ascii	"sizetype\000"
- 522      74797065 
- 522      00
- 523              	.LASF27:
- 524 0208 443A5C44 		.ascii	"D:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
- 524      726F7062 
- 524      6F785C50 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqkeyfT.s 			page 15
+ 498      635C5053 
+ 499 0184 4C6F6767 		.ascii	"Logger.cydsn\000"
+ 499      65722E63 
+ 499      7964736E 
+ 499      00
+ 500              	.LASF9:
+ 501 0191 666C6F61 		.ascii	"float\000"
+ 501      7400
+ 502              	.LASF1:
+ 503 0197 756E7369 		.ascii	"unsigned char\000"
+ 503      676E6564 
+ 503      20636861 
+ 503      7200
+ 504              	.LASF11:
+ 505 01a5 63686172 		.ascii	"char\000"
+ 505      00
+ 506              	.LASF20:
+ 507 01aa 55415254 		.ascii	"UART_DEBUG_rxBuffer\000"
+ 507      5F444542 
+ 507      55475F72 
+ 507      78427566 
+ 507      66657200 
+ 508              	.LASF4:
+ 509 01be 6C6F6E67 		.ascii	"long int\000"
+ 509      20696E74 
+ 509      00
+ 510              	.LASF10:
+ 511 01c7 646F7562 		.ascii	"double\000"
+ 511      6C6500
+ 512              	.LASF3:
+ 513 01ce 73686F72 		.ascii	"short unsigned int\000"
+ 513      7420756E 
+ 513      7369676E 
+ 513      65642069 
+ 513      6E7400
+ 514              	.LASF0:
+ 515 01e1 7369676E 		.ascii	"signed char\000"
+ 515      65642063 
+ 515      68617200 
+ 516              	.LASF14:
+ 517 01ed 6C6F6E67 		.ascii	"long double\000"
+ 517      20646F75 
+ 517      626C6500 
+ 518              	.LASF21:
+ 519 01f9 55415254 		.ascii	"UART_DEBUG_rxBufferRead\000"
+ 519      5F444542 
+ 519      55475F72 
+ 519      78427566 
+ 519      66657252 
+ 520              	.LASF23:
+ 521 0211 55415254 		.ascii	"UART_DEBUG_rxBufferLoopDetect\000"
+ 521      5F444542 
+ 521      55475F72 
+ 521      78427566 
+ 521      6665724C 
+ 522              	.LASF17:
+ 523 022f 72656164 		.ascii	"readStatus\000"
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cctqN6WK.s 			page 15
 
 
- 524      75626C69 
- 524      635C5053 
- 525 0236 4C6F6767 		.ascii	"Logger.cydsn\000"
- 525      65722E63 
- 525      7964736E 
+ 523      53746174 
+ 523      757300
+ 524              	.LASF15:
+ 525 023a 73697A65 		.ascii	"sizetype\000"
+ 525      74797065 
  525      00
  526              	.LASF2:
  527 0243 73686F72 		.ascii	"short int\000"

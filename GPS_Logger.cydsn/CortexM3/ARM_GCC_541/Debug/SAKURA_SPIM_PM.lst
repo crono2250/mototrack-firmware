@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
   28:Generated_Source\PSoC5/SAKURA_SPIM_PM.c **** * Function Name: SAKURA_SPIM_SaveConfig
   29:Generated_Source\PSoC5/SAKURA_SPIM_PM.c **** ********************************************************************************
   30:Generated_Source\PSoC5/SAKURA_SPIM_PM.c **** *
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 2
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 2
 
 
   31:Generated_Source\PSoC5/SAKURA_SPIM_PM.c **** * Summary:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
   50 0000 7047     		bx	lr
   51              		.cfi_endproc
   52              	.LFE1:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 3
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 3
 
 
   53              		.size	SAKURA_SPIM_RestoreConfig, .-SAKURA_SPIM_RestoreConfig
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
   77              		.loc 1 92 0
   78 000e FFF7FEFF 		bl	SAKURA_SPIM_Stop
   79              	.LVL0:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 4
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 4
 
 
   80 0012 08BD     		pop	{r3, pc}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  101 0000 08B5     		push	{r3, lr}
  102              		.cfi_def_cfa_offset 8
  103              		.cfi_offset 3, -8
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 5
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 5
 
 
  104              		.cfi_offset 14, -4
@@ -298,14 +298,14 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  139 0004 0400     		.2byte	0x4
  140 0006 00000000 		.4byte	.Ldebug_abbrev0
  141 000a 04       		.byte	0x4
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 6
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 6
 
 
  142 000b 01       		.uleb128 0x1
- 143 000c CE000000 		.4byte	.LASF26
+ 143 000c 93000000 		.4byte	.LASF26
  144 0010 0C       		.byte	0xc
  145 0011 2D000000 		.4byte	.LASF27
- 146 0015 68000000 		.4byte	.LASF28
+ 146 0015 95010000 		.4byte	.LASF28
  147 0019 00000000 		.4byte	.Ldebug_ranges0+0
  148 001d 00000000 		.4byte	0
  149 0021 00000000 		.4byte	.Ldebug_line0
@@ -316,7 +316,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  154 002c 02       		.uleb128 0x2
  155 002d 01       		.byte	0x1
  156 002e 08       		.byte	0x8
- 157 002f 8C010000 		.4byte	.LASF1
+ 157 002f 51010000 		.4byte	.LASF1
  158 0033 02       		.uleb128 0x2
  159 0034 02       		.byte	0x2
  160 0035 05       		.byte	0x5
@@ -332,7 +332,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  170 0048 02       		.uleb128 0x2
  171 0049 04       		.byte	0x4
  172 004a 07       		.byte	0x7
- 173 004b 61010000 		.4byte	.LASF5
+ 173 004b 26010000 		.4byte	.LASF5
  174 004f 02       		.uleb128 0x2
  175 0050 08       		.byte	0x8
  176 0051 05       		.byte	0x5
@@ -340,7 +340,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  178 0056 02       		.uleb128 0x2
  179 0057 08       		.byte	0x8
  180 0058 07       		.byte	0x7
- 181 0059 B9010000 		.4byte	.LASF7
+ 181 0059 7E010000 		.4byte	.LASF7
  182 005d 03       		.uleb128 0x3
  183 005e 04       		.byte	0x4
  184 005f 05       		.byte	0x5
@@ -348,29 +348,29 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  186 0064 02       		.uleb128 0x2
  187 0065 04       		.byte	0x4
  188 0066 07       		.byte	0x7
- 189 0067 AC010000 		.4byte	.LASF8
+ 189 0067 71010000 		.4byte	.LASF8
  190 006b 04       		.uleb128 0x4
- 191 006c 73010000 		.4byte	.LASF12
+ 191 006c 38010000 		.4byte	.LASF12
  192 0070 02       		.byte	0x2
  193 0071 E401     		.2byte	0x1e4
  194 0073 2C000000 		.4byte	0x2c
  195 0077 02       		.uleb128 0x2
  196 0078 04       		.byte	0x4
  197 0079 04       		.byte	0x4
- 198 007a B6000000 		.4byte	.LASF9
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 7
+ 198 007a 7B000000 		.4byte	.LASF9
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 7
 
 
  199 007e 02       		.uleb128 0x2
  200 007f 08       		.byte	0x8
  201 0080 04       		.byte	0x4
- 202 0081 9A010000 		.4byte	.LASF10
+ 202 0081 5F010000 		.4byte	.LASF10
  203 0085 02       		.uleb128 0x2
  204 0086 01       		.byte	0x1
  205 0087 08       		.byte	0x8
  206 0088 1B020000 		.4byte	.LASF11
  207 008c 04       		.uleb128 0x4
- 208 008d 5C010000 		.4byte	.LASF13
+ 208 008d 21010000 		.4byte	.LASF13
  209 0091 02       		.byte	0x2
  210 0092 8E02     		.2byte	0x28e
  211 0094 98000000 		.4byte	0x98
@@ -396,7 +396,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  231 00ba 6B000000 		.4byte	0x6b
  232 00be 00       		.byte	0
  233 00bf 07       		.uleb128 0x7
- 234 00c0 A1010000 		.4byte	.LASF17
+ 234 00c0 66010000 		.4byte	.LASF17
  235 00c4 03       		.byte	0x3
  236 00c5 43       		.byte	0x43
  237 00c6 6B000000 		.4byte	0x6b
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  253 00e8 09       		.uleb128 0x9
  254 00e9 EA010000 		.4byte	.LASF20
  255 00ed 01       		.byte	0x1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 8
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 8
 
 
  256 00ee 3D       		.byte	0x3d
@@ -427,7 +427,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  259 00f7 01       		.uleb128 0x1
  260 00f8 9C       		.byte	0x9c
  261 00f9 0A       		.uleb128 0xa
- 262 00fa BC000000 		.4byte	.LASF21
+ 262 00fa 81000000 		.4byte	.LASF21
  263 00fe 01       		.byte	0x1
  264 00ff 57       		.byte	0x57
  265 0100 00000000 		.4byte	.LFB2
@@ -440,7 +440,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  272 0113 51010000 		.4byte	0x151
  273 0117 00       		.byte	0
  274 0118 0A       		.uleb128 0xa
- 275 0119 79010000 		.4byte	.LASF22
+ 275 0119 3E010000 		.4byte	.LASF22
  276 011d 01       		.byte	0x1
  277 011e 7C       		.byte	0x7c
  278 011f 00000000 		.4byte	.LFB3
@@ -456,7 +456,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  288 013b 67010000 		.4byte	0x167
  289 013f 00       		.byte	0
  290 0140 0C       		.uleb128 0xc
- 291 0141 A3000000 		.4byte	.LASF29
+ 291 0141 68000000 		.4byte	.LASF29
  292 0145 01       		.byte	0x1
  293 0146 14       		.byte	0x14
  294 0147 CC000000 		.4byte	0xcc
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  310 016c 57020000 		.4byte	.LASF25
  311 0170 03       		.byte	0x3
  312 0171 4C       		.byte	0x4c
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 9
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 9
 
 
  313 0172 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  367 0033 13       		.uleb128 0x13
  368 0034 00       		.byte	0
  369 0035 00       		.byte	0
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 10
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 10
 
 
  370 0036 05       		.uleb128 0x5
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  424 006c 0E       		.uleb128 0xe
  425 006d 3A       		.uleb128 0x3a
  426 006e 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 11
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 11
 
 
  427 006f 3B       		.uleb128 0x3b
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  481 00a9 0B       		.uleb128 0xb
  482 00aa 3B       		.uleb128 0x3b
  483 00ab 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 12
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 12
 
 
  484 00ac 49       		.uleb128 0x49
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  538              		.section	.debug_line,"",%progbits
  539              	.Ldebug_line0:
  540 0000 A8000000 		.section	.debug_str,"MS",%progbits,1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 13
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 13
 
 
  540      02005C00 
@@ -749,96 +749,96 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 1
  548      7369676E 
  548      65642069 
  548      6E7400
- 549              	.LASF28:
- 550 0068 443A5C44 		.ascii	"D:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
- 550      726F7062 
- 550      6F785C50 
- 550      75626C69 
- 550      635C5053 
- 551 0096 4C6F6767 		.ascii	"Logger.cydsn\000"
- 551      65722E63 
- 551      7964736E 
- 551      00
- 552              	.LASF29:
- 553 00a3 53414B55 		.ascii	"SAKURA_SPIM_backup\000"
- 553      52415F53 
- 553      50494D5F 
- 553      6261636B 
- 553      757000
- 554              	.LASF9:
- 555 00b6 666C6F61 		.ascii	"float\000"
- 555      7400
- 556              	.LASF21:
- 557 00bc 53414B55 		.ascii	"SAKURA_SPIM_Sleep\000"
- 557      52415F53 
- 557      50494D5F 
- 557      536C6565 
- 557      7000
- 558              	.LASF26:
- 559 00ce 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 559      43313120 
- 559      352E342E 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 14
+ 549              	.LASF29:
+ 550 0068 53414B55 		.ascii	"SAKURA_SPIM_backup\000"
+ 550      52415F53 
+ 550      50494D5F 
+ 550      6261636B 
+ 550      757000
+ 551              	.LASF9:
+ 552 007b 666C6F61 		.ascii	"float\000"
+ 552      7400
+ 553              	.LASF21:
+ 554 0081 53414B55 		.ascii	"SAKURA_SPIM_Sleep\000"
+ 554      52415F53 
+ 554      50494D5F 
+ 554      536C6565 
+ 554      7000
+ 555              	.LASF26:
+ 556 0093 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 556      43313120 
+ 556      352E342E 
+ 556      31203230 
+ 556      31363036 
+ 557 00c6 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 557      20726576 
+ 557      6973696F 
+ 557      6E203233 
+ 557      37373135 
+ 558 00f9 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 558      66756E63 
+ 558      74696F6E 
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 14
 
 
- 559      31203230 
- 559      31363036 
- 560 0101 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 560      20726576 
- 560      6973696F 
- 560      6E203233 
- 560      37373135 
- 561 0134 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 561      66756E63 
- 561      74696F6E 
- 561      2D736563 
- 561      74696F6E 
- 562              	.LASF13:
- 563 015c 72656738 		.ascii	"reg8\000"
- 563      00
- 564              	.LASF5:
- 565 0161 6C6F6E67 		.ascii	"long unsigned int\000"
- 565      20756E73 
- 565      69676E65 
- 565      6420696E 
- 565      7400
- 566              	.LASF12:
- 567 0173 75696E74 		.ascii	"uint8\000"
- 567      3800
- 568              	.LASF22:
- 569 0179 53414B55 		.ascii	"SAKURA_SPIM_Wakeup\000"
- 569      52415F53 
- 569      50494D5F 
- 569      57616B65 
- 569      757000
- 570              	.LASF1:
- 571 018c 756E7369 		.ascii	"unsigned char\000"
- 571      676E6564 
- 571      20636861 
- 571      7200
- 572              	.LASF10:
- 573 019a 646F7562 		.ascii	"double\000"
- 573      6C6500
- 574              	.LASF17:
- 575 01a1 636E7472 		.ascii	"cntrPeriod\000"
- 575      50657269 
- 575      6F6400
- 576              	.LASF8:
- 577 01ac 756E7369 		.ascii	"unsigned int\000"
- 577      676E6564 
- 577      20696E74 
- 577      00
- 578              	.LASF7:
- 579 01b9 6C6F6E67 		.ascii	"long long unsigned int\000"
- 579      206C6F6E 
- 579      6720756E 
- 579      7369676E 
- 579      65642069 
+ 558      2D736563 
+ 558      74696F6E 
+ 559              	.LASF13:
+ 560 0121 72656738 		.ascii	"reg8\000"
+ 560      00
+ 561              	.LASF5:
+ 562 0126 6C6F6E67 		.ascii	"long unsigned int\000"
+ 562      20756E73 
+ 562      69676E65 
+ 562      6420696E 
+ 562      7400
+ 563              	.LASF12:
+ 564 0138 75696E74 		.ascii	"uint8\000"
+ 564      3800
+ 565              	.LASF22:
+ 566 013e 53414B55 		.ascii	"SAKURA_SPIM_Wakeup\000"
+ 566      52415F53 
+ 566      50494D5F 
+ 566      57616B65 
+ 566      757000
+ 567              	.LASF1:
+ 568 0151 756E7369 		.ascii	"unsigned char\000"
+ 568      676E6564 
+ 568      20636861 
+ 568      7200
+ 569              	.LASF10:
+ 570 015f 646F7562 		.ascii	"double\000"
+ 570      6C6500
+ 571              	.LASF17:
+ 572 0166 636E7472 		.ascii	"cntrPeriod\000"
+ 572      50657269 
+ 572      6F6400
+ 573              	.LASF8:
+ 574 0171 756E7369 		.ascii	"unsigned int\000"
+ 574      676E6564 
+ 574      20696E74 
+ 574      00
+ 575              	.LASF7:
+ 576 017e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 576      206C6F6E 
+ 576      6720756E 
+ 576      7369676E 
+ 576      65642069 
+ 577              	.LASF28:
+ 578 0195 433A5C44 		.ascii	"C:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
+ 578      726F7062 
+ 578      6F785C50 
+ 578      75626C69 
+ 578      635C5053 
+ 579 01c3 4C6F6767 		.ascii	"Logger.cydsn\000"
+ 579      65722E63 
+ 579      7964736E 
+ 579      00
  580              	.LASF18:
  581 01d0 53414B55 		.ascii	"SAKURA_SPIM_BACKUP_STRUCT\000"
  581      52415F53 
  581      50494D5F 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccO4Jt83.s 			page 15
+ARM GAS  C:\Users\crono\AppData\Local\Temp\cckxmw1h.s 			page 15
 
 
  581      4241434B 

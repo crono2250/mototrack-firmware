@@ -44,8 +44,9 @@
 
 #define INDENT_SPACES "  "
 
-#define TimerValue_WORK 588
-#define TimerValue_Sleep    529200
+#define TimerValue_WORK 588             // 1分
+#define TimerValue_Sleep    529200    // 15分
+//#define TimerValue_Sleep    176400      // 5分
 
 //----------------------------------------------------------------
 // 変数定義
@@ -105,7 +106,7 @@ WORD acc_files, acc_dirs;
 	unsigned int w1, write_bytes;
 	unsigned long p2;
 uint32_t	TickTimer1Hz	=	0;
-uint32_t    TickValue   =   0;
+uint32_t    TickValue   =   TimerValue_WORK;
 
 uint8	PERI_SPIM_READBUF[16] = {0x00};			// TCデータ受信バッファ
 uint8	PERI_SPIM_SENDBUF[16] = {0x00};
@@ -148,8 +149,9 @@ CY_ISR(isr_Tick_Timer_isr) {
 //			}
 //		}
 	}
-    
-    if(TickTimer1Hz == TickValue)  // 1秒
+
+    ACC_Sleep_FUNC();
+    if(TickTimer1Hz >= TickValue)  // 1秒
     {
         TickTimer1Hz = 0;
         if(sakura_io_INIT_DONE==1)
@@ -344,7 +346,6 @@ xprintf("UnixTime:%ld\n", time);
 
     for(;;)
     {
-        ACC_Sleep_FUNC();
 //#ifdef	_DEBUG
 //		xprintf("DataSize = %u\n",SCI_DATASIZE);	// データ数出力
 //#endif
@@ -999,17 +1000,20 @@ void SAKURA_IO_DataSend(void)
     uint8_t queued;
 
     
-    if(TickTimer1Hz == TimerValue_Sleep)    //スリープモード時は起こして、送信して、寝かす。
+    if(TickValue == TimerValue_Sleep)    //スリープモード時は起こして、送信して、寝かす。
     {
         SAKURA_ACTIVE();    //sakura.io モデムON
         CyDelay(2000);
         while((getConnectionStatus() & 0x80) != 0x80){}
+        xputs("Sakura_IO:WakeUp_15min\n");
+
     } else
     {
-        if(SakuraIO_WAKE_IN_Read() == 0x0)  // スリープモード
-        SAKURA_ACTIVE();
-        CyDelay(2000);
-        while((getConnectionStatus() & 0x80) != 0x80){}
+//        if(SakuraIO_WAKE_OUT_Read() == 0x0)  // スリープモード
+//          {
+            SAKURA_ACTIVE();
+            while((getConnectionStatus() & 0x80) != 0x80){}
+//        }
     }
 
     if(gsa_frame.fix_type != 1)     // GPS未Fixの時は送信しない
@@ -1019,20 +1023,26 @@ void SAKURA_IO_DataSend(void)
         enqueueTx_f(1,minmea_tocoord(&gll_frame.longitude));
         enqueueTx_f(2,minmea_tocoord(&gll_frame.latitude));
         enqueueTx_ui32(3,gsa_frame.fix_type);
-        Time = getUnixtime() / 1000;
+        
+        do
+        {
+            Time = getUnixtime() / 1000;
+        } while (Time == 0);
         enqueueTx_ui32(4,Time);
         send();
         xprintf("SakuraIO_DataSend : %02d:%02d:%02d\n", gll_frame.time.hours+9, gll_frame.time.minutes, gll_frame.time.seconds);
     }
 
-    if(TickTimer1Hz == TimerValue_Sleep)    //スリープモード設定の場合
+    if(TickValue == TimerValue_Sleep)    //スリープモード設定の場合
     {
         do
         {
             getTxQueueLength(&avail, &queued);
+            xprintf("Sakura_Queue = %d\n", queued);
         } while(queued != 0);
         CyDelay(200);
         SAKURA_IDLE();
+        xputs("Sakura_IO:Sleep\n");
     }
     
 	return;

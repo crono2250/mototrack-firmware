@@ -1,7 +1,7 @@
-D:\Dropbox\Public\PSoC_Creator\GPS_Logger\GPS_Logger.cydsn\GPS_Logger.cyprj|f954ed4e-d889-4985-b053-83ab4c40e8b2
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|6e4bb684-b384-46dd-aa09-55bda219105c
-C:\Users\cronos\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|f3e1ad35-7038-4899-9239-e8e671331946
-C:\Users\cronos\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|1903700d-93a7-45c6-a6c7-8eddab27234d
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|8baa8b62-1de5-4948-a7f3-f6d0677afc54
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|2de27564-cf4c-40cf-92d6-eb9e160cf9d4
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|1427aef6-5075-4cd0-bb25-710dc47b6f0b
+C:\Dropbox\Public\PSoC_Creator\GPS_Logger\GPS_Logger.cydsn\GPS_Logger.cyprj|ccb88f8d-8afe-4639-b2a9-bed225f97e10
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|7961e067-f9b6-4d05-8090-bab805095d00
+C:\Users\crono\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|d987f4b4-ef1f-4df1-a6f2-071018217c32
+C:\Users\crono\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|9f72e0e7-0f5a-4a31-a5c4-e63bd73c68a8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|114e0fae-4d7e-40c9-9883-2895cdb61d95
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|cd826566-72c4-4478-976d-41998e8e51e4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|fa2cbb87-ee8a-45bc-b2b0-b7a64816fb1e

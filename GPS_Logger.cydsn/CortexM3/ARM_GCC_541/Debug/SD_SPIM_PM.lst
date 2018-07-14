@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
   28:Generated_Source\PSoC5/SD_SPIM_PM.c **** * Function Name: SD_SPIM_SaveConfig
   29:Generated_Source\PSoC5/SD_SPIM_PM.c **** ********************************************************************************
   30:Generated_Source\PSoC5/SD_SPIM_PM.c **** *
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 2
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 2
 
 
   31:Generated_Source\PSoC5/SD_SPIM_PM.c **** * Summary:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
   50 0000 7047     		bx	lr
   51              		.cfi_endproc
   52              	.LFE1:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 3
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 3
 
 
   53              		.size	SD_SPIM_RestoreConfig, .-SD_SPIM_RestoreConfig
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
   77              		.loc 1 92 0
   78 000e FFF7FEFF 		bl	SD_SPIM_Stop
   79              	.LVL0:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 4
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 4
 
 
   80 0012 08BD     		pop	{r3, pc}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  101 0000 08B5     		push	{r3, lr}
  102              		.cfi_def_cfa_offset 8
  103              		.cfi_offset 3, -8
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 5
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 5
 
 
  104              		.cfi_offset 14, -4
@@ -298,14 +298,14 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  139 0004 0400     		.2byte	0x4
  140 0006 00000000 		.4byte	.Ldebug_abbrev0
  141 000a 04       		.byte	0x4
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 6
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 6
 
 
  142 000b 01       		.uleb128 0x1
- 143 000c 95000000 		.4byte	.LASF26
+ 143 000c 67000000 		.4byte	.LASF26
  144 0010 0C       		.byte	0xc
- 145 0011 5C010000 		.4byte	.LASF27
- 146 0015 34000000 		.4byte	.LASF28
+ 145 0011 2E010000 		.4byte	.LASF27
+ 146 0015 85010000 		.4byte	.LASF28
  147 0019 00000000 		.4byte	.Ldebug_ranges0+0
  148 001d 00000000 		.4byte	0
  149 0021 00000000 		.4byte	.Ldebug_line0
@@ -316,7 +316,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  154 002c 02       		.uleb128 0x2
  155 002d 01       		.byte	0x1
  156 002e 08       		.byte	0x8
- 157 002f 87000000 		.4byte	.LASF1
+ 157 002f 59000000 		.4byte	.LASF1
  158 0033 02       		.uleb128 0x2
  159 0034 02       		.byte	0x2
  160 0035 05       		.byte	0x5
@@ -332,7 +332,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  170 0048 02       		.uleb128 0x2
  171 0049 04       		.byte	0x4
  172 004a 07       		.byte	0x7
- 173 004b 32010000 		.4byte	.LASF5
+ 173 004b 04010000 		.4byte	.LASF5
  174 004f 02       		.uleb128 0x2
  175 0050 08       		.byte	0x8
  176 0051 05       		.byte	0x5
@@ -340,7 +340,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  178 0056 02       		.uleb128 0x2
  179 0057 08       		.byte	0x8
  180 0058 07       		.byte	0x7
- 181 0059 9C010000 		.4byte	.LASF7
+ 181 0059 6E010000 		.4byte	.LASF7
  182 005d 03       		.uleb128 0x3
  183 005e 04       		.byte	0x4
  184 005f 05       		.byte	0x5
@@ -348,23 +348,23 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  186 0064 02       		.uleb128 0x2
  187 0065 04       		.byte	0x4
  188 0066 07       		.byte	0x7
- 189 0067 8F010000 		.4byte	.LASF8
+ 189 0067 61010000 		.4byte	.LASF8
  190 006b 04       		.uleb128 0x4
- 191 006c 44010000 		.4byte	.LASF12
+ 191 006c 16010000 		.4byte	.LASF12
  192 0070 02       		.byte	0x2
  193 0071 E401     		.2byte	0x1e4
  194 0073 2C000000 		.4byte	0x2c
  195 0077 02       		.uleb128 0x2
  196 0078 04       		.byte	0x4
  197 0079 04       		.byte	0x4
- 198 007a 81000000 		.4byte	.LASF9
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 7
+ 198 007a 53000000 		.4byte	.LASF9
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 7
 
 
  199 007e 02       		.uleb128 0x2
  200 007f 08       		.byte	0x8
  201 0080 04       		.byte	0x4
- 202 0081 4A010000 		.4byte	.LASF10
+ 202 0081 1C010000 		.4byte	.LASF10
  203 0085 02       		.uleb128 0x2
  204 0086 01       		.byte	0x1
  205 0087 08       		.byte	0x8
@@ -396,7 +396,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  231 00ba 6B000000 		.4byte	0x6b
  232 00be 00       		.byte	0
  233 00bf 07       		.uleb128 0x7
- 234 00c0 51010000 		.4byte	.LASF17
+ 234 00c0 23010000 		.4byte	.LASF17
  235 00c4 03       		.byte	0x3
  236 00c5 43       		.byte	0x43
  237 00c6 6B000000 		.4byte	0x6b
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  253 00e8 09       		.uleb128 0x9
  254 00e9 01020000 		.4byte	.LASF20
  255 00ed 01       		.byte	0x1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 8
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 8
 
 
  256 00ee 3D       		.byte	0x3d
@@ -440,7 +440,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  272 0113 51010000 		.4byte	0x151
  273 0117 00       		.byte	0
  274 0118 0A       		.uleb128 0xa
- 275 0119 80010000 		.4byte	.LASF22
+ 275 0119 52010000 		.4byte	.LASF22
  276 011d 01       		.byte	0x1
  277 011e 7C       		.byte	0x7c
  278 011f 00000000 		.4byte	.LFB3
@@ -456,7 +456,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  288 013b 67010000 		.4byte	0x167
  289 013f 00       		.byte	0
  290 0140 0C       		.uleb128 0xc
- 291 0141 23010000 		.4byte	.LASF29
+ 291 0141 F5000000 		.4byte	.LASF29
  292 0145 01       		.byte	0x1
  293 0146 14       		.byte	0x14
  294 0147 CC000000 		.4byte	0xcc
@@ -464,13 +464,13 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  296 014c 03       		.byte	0x3
  297 014d 00000000 		.4byte	SD_SPIM_backup
  298 0151 0D       		.uleb128 0xd
- 299 0152 B3010000 		.4byte	.LASF23
- 300 0156 B3010000 		.4byte	.LASF23
+ 299 0152 34000000 		.4byte	.LASF23
+ 300 0156 34000000 		.4byte	.LASF23
  301 015a 03       		.byte	0x3
  302 015b 4E       		.byte	0x4e
  303 015c 0D       		.uleb128 0xd
- 304 015d 6F000000 		.4byte	.LASF24
- 305 0161 6F000000 		.4byte	.LASF24
+ 304 015d 41000000 		.4byte	.LASF24
+ 305 0161 41000000 		.4byte	.LASF24
  306 0165 03       		.byte	0x3
  307 0166 66       		.byte	0x66
  308 0167 0D       		.uleb128 0xd
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  310 016c 44020000 		.4byte	.LASF25
  311 0170 03       		.byte	0x3
  312 0171 4C       		.byte	0x4c
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 9
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 9
 
 
  313 0172 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  367 0033 13       		.uleb128 0x13
  368 0034 00       		.byte	0
  369 0035 00       		.byte	0
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 10
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 10
 
 
  370 0036 05       		.uleb128 0x5
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  424 006c 0E       		.uleb128 0xe
  425 006d 3A       		.uleb128 0x3a
  426 006e 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 11
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 11
 
 
  427 006f 3B       		.uleb128 0x3b
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  481 00a9 0B       		.uleb128 0xb
  482 00aa 3B       		.uleb128 0x3b
  483 00ab 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 12
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 12
 
 
  484 00ac 49       		.uleb128 0x49
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  538              		.section	.debug_line,"",%progbits
  539              	.Ldebug_line0:
  540 0000 A0000000 		.section	.debug_str,"MS",%progbits,1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 13
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 13
 
 
  540      02005400 
@@ -742,103 +742,103 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 1
  546      7369676E 
  546      65642069 
  546      6E7400
- 547              	.LASF28:
- 548 0034 443A5C44 		.ascii	"D:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
- 548      726F7062 
- 548      6F785C50 
- 548      75626C69 
- 548      635C5053 
- 549 0062 4C6F6767 		.ascii	"Logger.cydsn\000"
- 549      65722E63 
- 549      7964736E 
- 549      00
- 550              	.LASF24:
- 551 006f 53445F53 		.ascii	"SD_SPIM_ClearFIFO\000"
- 551      50494D5F 
- 551      436C6561 
- 551      72464946 
- 551      4F00
- 552              	.LASF9:
- 553 0081 666C6F61 		.ascii	"float\000"
- 553      7400
- 554              	.LASF1:
- 555 0087 756E7369 		.ascii	"unsigned char\000"
- 555      676E6564 
- 555      20636861 
- 555      7200
- 556              	.LASF26:
- 557 0095 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 557      43313120 
- 557      352E342E 
- 557      31203230 
- 557      31363036 
- 558 00c8 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 558      20726576 
- 558      6973696F 
- 558      6E203233 
- 558      37373135 
- 559 00fb 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 14
+ 547              	.LASF23:
+ 548 0034 53445F53 		.ascii	"SD_SPIM_Stop\000"
+ 548      50494D5F 
+ 548      53746F70 
+ 548      00
+ 549              	.LASF24:
+ 550 0041 53445F53 		.ascii	"SD_SPIM_ClearFIFO\000"
+ 550      50494D5F 
+ 550      436C6561 
+ 550      72464946 
+ 550      4F00
+ 551              	.LASF9:
+ 552 0053 666C6F61 		.ascii	"float\000"
+ 552      7400
+ 553              	.LASF1:
+ 554 0059 756E7369 		.ascii	"unsigned char\000"
+ 554      676E6564 
+ 554      20636861 
+ 554      7200
+ 555              	.LASF26:
+ 556 0067 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 556      43313120 
+ 556      352E342E 
+ 556      31203230 
+ 556      31363036 
+ 557 009a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 557      20726576 
+ 557      6973696F 
+ 557      6E203233 
+ 557      37373135 
+ 558 00cd 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 558      66756E63 
+ 558      74696F6E 
+ 558      2D736563 
+ 558      74696F6E 
+ 559              	.LASF29:
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 14
 
 
- 559      66756E63 
- 559      74696F6E 
- 559      2D736563 
- 559      74696F6E 
- 560              	.LASF29:
- 561 0123 53445F53 		.ascii	"SD_SPIM_backup\000"
- 561      50494D5F 
- 561      6261636B 
- 561      757000
- 562              	.LASF5:
- 563 0132 6C6F6E67 		.ascii	"long unsigned int\000"
- 563      20756E73 
- 563      69676E65 
- 563      6420696E 
- 563      7400
- 564              	.LASF12:
- 565 0144 75696E74 		.ascii	"uint8\000"
- 565      3800
- 566              	.LASF10:
- 567 014a 646F7562 		.ascii	"double\000"
- 567      6C6500
- 568              	.LASF17:
- 569 0151 636E7472 		.ascii	"cntrPeriod\000"
- 569      50657269 
- 569      6F6400
- 570              	.LASF27:
- 571 015c 47656E65 		.ascii	"Generated_Source\\PSoC5\\SD_SPIM_PM.c\000"
- 571      72617465 
- 571      645F536F 
- 571      75726365 
- 571      5C50536F 
- 572              	.LASF22:
- 573 0180 53445F53 		.ascii	"SD_SPIM_Wakeup\000"
- 573      50494D5F 
- 573      57616B65 
- 573      757000
- 574              	.LASF8:
- 575 018f 756E7369 		.ascii	"unsigned int\000"
- 575      676E6564 
- 575      20696E74 
- 575      00
- 576              	.LASF7:
- 577 019c 6C6F6E67 		.ascii	"long long unsigned int\000"
- 577      206C6F6E 
- 577      6720756E 
- 577      7369676E 
- 577      65642069 
- 578              	.LASF23:
- 579 01b3 53445F53 		.ascii	"SD_SPIM_Stop\000"
- 579      50494D5F 
- 579      53746F70 
+ 560 00f5 53445F53 		.ascii	"SD_SPIM_backup\000"
+ 560      50494D5F 
+ 560      6261636B 
+ 560      757000
+ 561              	.LASF5:
+ 562 0104 6C6F6E67 		.ascii	"long unsigned int\000"
+ 562      20756E73 
+ 562      69676E65 
+ 562      6420696E 
+ 562      7400
+ 563              	.LASF12:
+ 564 0116 75696E74 		.ascii	"uint8\000"
+ 564      3800
+ 565              	.LASF10:
+ 566 011c 646F7562 		.ascii	"double\000"
+ 566      6C6500
+ 567              	.LASF17:
+ 568 0123 636E7472 		.ascii	"cntrPeriod\000"
+ 568      50657269 
+ 568      6F6400
+ 569              	.LASF27:
+ 570 012e 47656E65 		.ascii	"Generated_Source\\PSoC5\\SD_SPIM_PM.c\000"
+ 570      72617465 
+ 570      645F536F 
+ 570      75726365 
+ 570      5C50536F 
+ 571              	.LASF22:
+ 572 0152 53445F53 		.ascii	"SD_SPIM_Wakeup\000"
+ 572      50494D5F 
+ 572      57616B65 
+ 572      757000
+ 573              	.LASF8:
+ 574 0161 756E7369 		.ascii	"unsigned int\000"
+ 574      676E6564 
+ 574      20696E74 
+ 574      00
+ 575              	.LASF7:
+ 576 016e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 576      206C6F6E 
+ 576      6720756E 
+ 576      7369676E 
+ 576      65642069 
+ 577              	.LASF28:
+ 578 0185 433A5C44 		.ascii	"C:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
+ 578      726F7062 
+ 578      6F785C50 
+ 578      75626C69 
+ 578      635C5053 
+ 579 01b3 4C6F6767 		.ascii	"Logger.cydsn\000"
+ 579      65722E63 
+ 579      7964736E 
  579      00
  580              	.LASF18:
  581 01c0 53445F53 		.ascii	"SD_SPIM_BACKUP_STRUCT\000"
  581      50494D5F 
  581      4241434B 
  581      55505F53 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccu37Rgl.s 			page 15
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccLONf5h.s 			page 15
 
 
  581      54525543 

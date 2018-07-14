@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
   28:Generated_Source\PSoC5/ACC_Sleep.c **** *
   29:Generated_Source\PSoC5/ACC_Sleep.c **** * \brief Writes the value to the physical port (data output register), masking
   30:Generated_Source\PSoC5/ACC_Sleep.c **** *  and shifting the bits appropriately. 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 2
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 2
 
 
   31:Generated_Source\PSoC5/ACC_Sleep.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
   52              		.section	.text.ACC_Sleep_SetDriveMode,"ax",%progbits
   53              		.align	2
   54              		.global	ACC_Sleep_SetDriveMode
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 3
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 3
 
 
   55              		.thumb
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
   77              	.L5:
   78 0014 00500040 		.word	1073762304
   79              		.cfi_endproc
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 4
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 4
 
 
   80              	.LFE1:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  110              		.global	ACC_Sleep_ReadDataReg
  111              		.thumb
  112              		.thumb_func
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 5
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 5
 
 
  113              		.type	ACC_Sleep_ReadDataReg, %function
@@ -298,15 +298,15 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  139 0000 1B010000 		.4byte	0x11b
  140 0004 0400     		.2byte	0x4
  141 0006 00000000 		.4byte	.Ldebug_abbrev0
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 6
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 6
 
 
  142 000a 04       		.byte	0x4
  143 000b 01       		.uleb128 0x1
- 144 000c 9A000000 		.4byte	.LASF20
+ 144 000c 5F000000 		.4byte	.LASF20
  145 0010 0C       		.byte	0xc
- 146 0011 69000000 		.4byte	.LASF21
- 147 0015 28000000 		.4byte	.LASF22
+ 146 0011 2E000000 		.4byte	.LASF21
+ 147 0015 51010000 		.4byte	.LASF22
  148 0019 00000000 		.4byte	.Ldebug_ranges0+0
  149 001d 00000000 		.4byte	0
  150 0021 00000000 		.4byte	.Ldebug_line0
@@ -317,7 +317,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  155 002c 02       		.uleb128 0x2
  156 002d 01       		.byte	0x1
  157 002e 08       		.byte	0x8
- 158 002f 8C000000 		.4byte	.LASF1
+ 158 002f 51000000 		.4byte	.LASF1
  159 0033 02       		.uleb128 0x2
  160 0034 02       		.byte	0x2
  161 0035 05       		.byte	0x5
@@ -325,7 +325,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  163 003a 02       		.uleb128 0x2
  164 003b 02       		.byte	0x2
  165 003c 07       		.byte	0x7
- 166 003d 3F010000 		.4byte	.LASF3
+ 166 003d 04010000 		.4byte	.LASF3
  167 0041 02       		.uleb128 0x2
  168 0042 04       		.byte	0x4
  169 0043 05       		.byte	0x5
@@ -333,7 +333,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  171 0048 02       		.uleb128 0x2
  172 0049 04       		.byte	0x4
  173 004a 07       		.byte	0x7
- 174 004b 2D010000 		.4byte	.LASF5
+ 174 004b F2000000 		.4byte	.LASF5
  175 004f 02       		.uleb128 0x2
  176 0050 08       		.byte	0x8
  177 0051 05       		.byte	0x5
@@ -341,7 +341,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  179 0056 02       		.uleb128 0x2
  180 0057 08       		.byte	0x8
  181 0058 07       		.byte	0x7
- 182 0059 75010000 		.4byte	.LASF7
+ 182 0059 3A010000 		.4byte	.LASF7
  183 005d 03       		.uleb128 0x3
  184 005e 04       		.byte	0x4
  185 005f 05       		.byte	0x5
@@ -349,7 +349,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  187 0064 02       		.uleb128 0x2
  188 0065 04       		.byte	0x4
  189 0066 07       		.byte	0x7
- 190 0067 59010000 		.4byte	.LASF8
+ 190 0067 1E010000 		.4byte	.LASF8
  191 006b 04       		.uleb128 0x4
  192 006c BE010000 		.4byte	.LASF12
  193 0070 02       		.byte	0x2
@@ -358,20 +358,20 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  196 0077 02       		.uleb128 0x2
  197 0078 04       		.byte	0x4
  198 0079 04       		.byte	0x4
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 7
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 7
 
 
- 199 007a 63000000 		.4byte	.LASF9
+ 199 007a 28000000 		.4byte	.LASF9
  200 007e 02       		.uleb128 0x2
  201 007f 08       		.byte	0x8
  202 0080 04       		.byte	0x4
- 203 0081 52010000 		.4byte	.LASF10
+ 203 0081 17010000 		.4byte	.LASF10
  204 0085 02       		.uleb128 0x2
  205 0086 01       		.byte	0x1
  206 0087 08       		.byte	0x8
  207 0088 AF010000 		.4byte	.LASF11
  208 008c 04       		.uleb128 0x4
- 209 008d 28010000 		.4byte	.LASF13
+ 209 008d ED000000 		.4byte	.LASF13
  210 0091 02       		.byte	0x2
  211 0092 8E02     		.2byte	0x28e
  212 0094 98000000 		.4byte	0x98
@@ -417,8 +417,8 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  252 00ef 21000000 		.4byte	.LLST1
  253 00f3 00       		.byte	0
  254 00f4 09       		.uleb128 0x9
- 255 00f5 66010000 		.4byte	.LASF18
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 8
+ 255 00f5 2B010000 		.4byte	.LASF18
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 8
 
 
  256 00f9 01       		.byte	0x1
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  310 0023 3E       		.uleb128 0x3e
  311 0024 0B       		.uleb128 0xb
  312 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 9
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 9
 
 
  313 0026 08       		.uleb128 0x8
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  367 005d 0B       		.uleb128 0xb
  368 005e 3B       		.uleb128 0x3b
  369 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 10
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 10
 
 
  370 0060 49       		.uleb128 0x49
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  424 000b 0C000000 		.4byte	.LVL2
  425 000f 18000000 		.4byte	.LFE0
  426 0013 0400     		.2byte	0x4
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 11
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 11
 
 
  427 0015 F3       		.byte	0xf3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  479      00000201 
  479      FB0E0D00 
  479      01010101 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 12
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 12
 
 
  480              	.LASF15:
@@ -674,83 +674,83 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  485 001d 73746174 		.ascii	"staticBits\000"
  485      69634269 
  485      747300
- 486              	.LASF22:
- 487 0028 443A5C44 		.ascii	"D:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
- 487      726F7062 
- 487      6F785C50 
- 487      75626C69 
- 487      635C5053 
- 488 0056 4C6F6767 		.ascii	"Logger.cydsn\000"
- 488      65722E63 
- 488      7964736E 
- 488      00
- 489              	.LASF9:
- 490 0063 666C6F61 		.ascii	"float\000"
- 490      7400
- 491              	.LASF21:
- 492 0069 47656E65 		.ascii	"Generated_Source\\PSoC5\\ACC_Sleep.c\000"
- 492      72617465 
- 492      645F536F 
- 492      75726365 
- 492      5C50536F 
- 493              	.LASF1:
- 494 008c 756E7369 		.ascii	"unsigned char\000"
- 494      676E6564 
- 494      20636861 
- 494      7200
- 495              	.LASF20:
- 496 009a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 496      43313120 
- 496      352E342E 
- 496      31203230 
- 496      31363036 
- 497 00cd 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 497      20726576 
- 497      6973696F 
- 497      6E203233 
- 497      37373135 
- 498 0100 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 498      66756E63 
- 498      74696F6E 
- 498      2D736563 
- 498      74696F6E 
- 499              	.LASF13:
- 500 0128 72656738 		.ascii	"reg8\000"
- 500      00
- 501              	.LASF5:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 13
+ 486              	.LASF9:
+ 487 0028 666C6F61 		.ascii	"float\000"
+ 487      7400
+ 488              	.LASF21:
+ 489 002e 47656E65 		.ascii	"Generated_Source\\PSoC5\\ACC_Sleep.c\000"
+ 489      72617465 
+ 489      645F536F 
+ 489      75726365 
+ 489      5C50536F 
+ 490              	.LASF1:
+ 491 0051 756E7369 		.ascii	"unsigned char\000"
+ 491      676E6564 
+ 491      20636861 
+ 491      7200
+ 492              	.LASF20:
+ 493 005f 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 493      43313120 
+ 493      352E342E 
+ 493      31203230 
+ 493      31363036 
+ 494 0092 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 494      20726576 
+ 494      6973696F 
+ 494      6E203233 
+ 494      37373135 
+ 495 00c5 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 495      66756E63 
+ 495      74696F6E 
+ 495      2D736563 
+ 495      74696F6E 
+ 496              	.LASF13:
+ 497 00ed 72656738 		.ascii	"reg8\000"
+ 497      00
+ 498              	.LASF5:
+ 499 00f2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 499      20756E73 
+ 499      69676E65 
+ 499      6420696E 
+ 499      7400
+ 500              	.LASF3:
+ 501 0104 73686F72 		.ascii	"short unsigned int\000"
+ 501      7420756E 
+ 501      7369676E 
+ 501      65642069 
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 13
 
 
- 502 012d 6C6F6E67 		.ascii	"long unsigned int\000"
- 502      20756E73 
- 502      69676E65 
- 502      6420696E 
- 502      7400
- 503              	.LASF3:
- 504 013f 73686F72 		.ascii	"short unsigned int\000"
- 504      7420756E 
- 504      7369676E 
- 504      65642069 
- 504      6E7400
- 505              	.LASF10:
- 506 0152 646F7562 		.ascii	"double\000"
- 506      6C6500
- 507              	.LASF8:
- 508 0159 756E7369 		.ascii	"unsigned int\000"
- 508      676E6564 
- 508      20696E74 
- 508      00
- 509              	.LASF18:
- 510 0166 4143435F 		.ascii	"ACC_Sleep_Read\000"
- 510      536C6565 
- 510      705F5265 
- 510      616400
- 511              	.LASF7:
- 512 0175 6C6F6E67 		.ascii	"long long unsigned int\000"
- 512      206C6F6E 
- 512      6720756E 
- 512      7369676E 
- 512      65642069 
+ 501      6E7400
+ 502              	.LASF10:
+ 503 0117 646F7562 		.ascii	"double\000"
+ 503      6C6500
+ 504              	.LASF8:
+ 505 011e 756E7369 		.ascii	"unsigned int\000"
+ 505      676E6564 
+ 505      20696E74 
+ 505      00
+ 506              	.LASF18:
+ 507 012b 4143435F 		.ascii	"ACC_Sleep_Read\000"
+ 507      536C6565 
+ 507      705F5265 
+ 507      616400
+ 508              	.LASF7:
+ 509 013a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 509      206C6F6E 
+ 509      6720756E 
+ 509      7369676E 
+ 509      65642069 
+ 510              	.LASF22:
+ 511 0151 433A5C44 		.ascii	"C:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
+ 511      726F7062 
+ 511      6F785C50 
+ 511      75626C69 
+ 511      635C5053 
+ 512 017f 4C6F6767 		.ascii	"Logger.cydsn\000"
+ 512      65722E63 
+ 512      7964736E 
+ 512      00
  513              	.LASF17:
  514 018c 6D6F6465 		.ascii	"mode\000"
  514      00
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 1
  526 01c4 4143435F 		.ascii	"ACC_Sleep_ReadDataReg\000"
  526      536C6565 
  526      705F5265 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cczsqBZL.s 			page 14
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccHwkEwI.s 			page 14
 
 
  526      61644461 

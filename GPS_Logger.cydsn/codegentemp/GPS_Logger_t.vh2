@@ -1,5 +1,5 @@
--- Project:   D:\Dropbox\Public\PSoC_Creator\GPS_Logger\GPS_Logger.cydsn\GPS_Logger.cyprj
--- Generated: 07/11/2018 01:22:19
+-- Project:   C:\Dropbox\Public\PSoC_Creator\GPS_Logger\GPS_Logger.cydsn\GPS_Logger.cyprj
+-- Generated: 07/14/2018 19:03:11
 -- PSoC Creator  4.2
 
 ENTITY GPS_Logger IS

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
   28:Generated_Source\PSoC5/SAKURA_SPIM.c ****     volatile uint8 SAKURA_SPIM_rxBuffer[SAKURA_SPIM_RX_BUFFER_SIZE];
   29:Generated_Source\PSoC5/SAKURA_SPIM.c ****     volatile uint8 SAKURA_SPIM_rxBufferFull;
   30:Generated_Source\PSoC5/SAKURA_SPIM.c ****     volatile uint8 SAKURA_SPIM_rxBufferRead;
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 2
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 2
 
 
   31:Generated_Source\PSoC5/SAKURA_SPIM.c ****     volatile uint8 SAKURA_SPIM_rxBufferWrite;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
   85:Generated_Source\PSoC5/SAKURA_SPIM.c ****     #if(SAKURA_SPIM_RX_SOFTWARE_BUF_ENABLED)
   86:Generated_Source\PSoC5/SAKURA_SPIM.c ****         SAKURA_SPIM_rxBufferFull  = 0u;
   87:Generated_Source\PSoC5/SAKURA_SPIM.c ****         SAKURA_SPIM_rxBufferRead  = 0u;
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 3
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 3
 
 
   88:Generated_Source\PSoC5/SAKURA_SPIM.c ****         SAKURA_SPIM_rxBufferWrite = 0u;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  126:Generated_Source\PSoC5/SAKURA_SPIM.c ****     SAKURA_SPIM_TX_STATUS_ACTL_REG  |= SAKURA_SPIM_INT_ENABLE;
   44              		.loc 1 126 0
   45 0010 013A     		subs	r2, r2, #1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 4
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 4
 
 
   46 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  151:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
  152:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Global variables:
  153:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  SAKURA_SPIM_initVar - used to check initial configuration, modified on
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 5
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 5
 
 
  154:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  first function call.
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  197:Generated_Source\PSoC5/SAKURA_SPIM.c ****     SAKURA_SPIM_TX_STATUS_ACTL_REG &= ((uint8) ~SAKURA_SPIM_INT_ENABLE);
   87              		.loc 1 197 0
   88 0006 084A     		ldr	r2, .L7
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 6
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 6
 
 
   89 0008 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  222:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
  223:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Theory:
  224:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  Enable the internal Tx interrupt output -or- the interrupt component itself.
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 7
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 7
 
 
  225:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  144              		.size	SAKURA_SPIM_EnableRxInt, .-SAKURA_SPIM_EnableRxInt
  145 0002 00BF     		.section	.text.SAKURA_SPIM_DisableTxInt,"ax",%progbits
  146              		.align	2
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 8
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 8
 
 
  147              		.global	SAKURA_SPIM_DisableTxInt
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  285:Generated_Source\PSoC5/SAKURA_SPIM.c **** /*******************************************************************************
  286:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Function Name: SAKURA_SPIM_DisableRxInt
  287:Generated_Source\PSoC5/SAKURA_SPIM.c **** ********************************************************************************
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 9
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 9
 
 
  288:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  325:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  Enables the output of specific status bits to the interrupt controller.
  326:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
  327:Generated_Source\PSoC5/SAKURA_SPIM.c **** *******************************************************************************/
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 10
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 10
 
 
  328:Generated_Source\PSoC5/SAKURA_SPIM.c **** void SAKURA_SPIM_SetTxInterruptMode(uint8 intSrc) 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  215              		@ frame_needed = 0, uses_anonymous_args = 0
  216              		@ link register save eliminated.
  217              	.LVL7:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 11
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 11
 
 
  354:Generated_Source\PSoC5/SAKURA_SPIM.c ****     SAKURA_SPIM_RX_STATUS_MASK_REG  = intSrc;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  238              		.cfi_startproc
  239              		@ args = 0, pretend = 0, frame = 0
  240              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 12
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 12
 
 
  241              		@ link register save eliminated.
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  420:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  Contents of the Rx status register.
  421:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
  422:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Global variables:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 13
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 13
 
 
  423:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  SAKURA_SPIM_swStatusRx - used to store in software Rx status register,
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  282              		.align	2
  283              		.global	SAKURA_SPIM_WriteTxData
  284              		.thumb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 14
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 14
 
 
  285              		.thumb_func
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  501:Generated_Source\PSoC5/SAKURA_SPIM.c ****         /* Block if TX buffer is FULL: don't overwrite */
  502:Generated_Source\PSoC5/SAKURA_SPIM.c ****         do
  503:Generated_Source\PSoC5/SAKURA_SPIM.c ****         {
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 15
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 15
 
 
  504:Generated_Source\PSoC5/SAKURA_SPIM.c ****             tmpTxBufferRead = SAKURA_SPIM_txBufferRead;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  296              		.loc 1 557 0 discriminator 1
  297 0000 034B     		ldr	r3, .L27
  298 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 16
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 16
 
 
  299 0004 13F0040F 		tst	r3, #4
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  590:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Theory:
  591:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  Allows the user to read a byte of data received.
  592:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 17
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 17
 
 
  593:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Side Effects:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  638:Generated_Source\PSoC5/SAKURA_SPIM.c **** }
  330              		.loc 1 638 0
  331 0004 7047     		bx	lr
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 18
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 18
 
 
  332              	.L31:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  673:Generated_Source\PSoC5/SAKURA_SPIM.c ****         SAKURA_SPIM_DisableRxInt();
  674:Generated_Source\PSoC5/SAKURA_SPIM.c **** 
  675:Generated_Source\PSoC5/SAKURA_SPIM.c ****         if(SAKURA_SPIM_rxBufferRead == SAKURA_SPIM_rxBufferWrite)
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 19
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 19
 
 
  676:Generated_Source\PSoC5/SAKURA_SPIM.c ****         {
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  703:Generated_Source\PSoC5/SAKURA_SPIM.c **** ********************************************************************************
  704:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
  705:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Summary:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 20
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 20
 
 
  706:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  Returns the number of bytes/words of data currently held in the TX buffer.
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  386 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  387 0004 DBB2     		uxtb	r3, r3
  388              	.LVL13:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 21
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 21
 
 
  753:Generated_Source\PSoC5/SAKURA_SPIM.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  772:Generated_Source\PSoC5/SAKURA_SPIM.c **** 
  773:Generated_Source\PSoC5/SAKURA_SPIM.c **** /*******************************************************************************
  774:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Function Name: SAKURA_SPIM_ClearRxBuffer
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 22
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 22
 
 
  775:Generated_Source\PSoC5/SAKURA_SPIM.c **** ********************************************************************************
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  439 000e F8D1     		bne	.L45
  812:Generated_Source\PSoC5/SAKURA_SPIM.c ****     }
  813:Generated_Source\PSoC5/SAKURA_SPIM.c **** 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 23
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 23
 
 
  814:Generated_Source\PSoC5/SAKURA_SPIM.c ****     #if(SAKURA_SPIM_RX_SOFTWARE_BUF_ENABLED)
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  850:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  read and writing will resume at address 0 overwriting any data that may have
  851:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  remained in the RAM.
  852:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 24
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 24
 
 
  853:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Side Effects:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  489              		.section	.text.SAKURA_SPIM_PutArray,"ax",%progbits
  490              		.align	2
  491              		.global	SAKURA_SPIM_PutArray
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 25
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 25
 
 
  492              		.thumb
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  925:Generated_Source\PSoC5/SAKURA_SPIM.c ****     *
  926:Generated_Source\PSoC5/SAKURA_SPIM.c ****     * Return:
  927:Generated_Source\PSoC5/SAKURA_SPIM.c ****     *  None.
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 26
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 26
 
 
  928:Generated_Source\PSoC5/SAKURA_SPIM.c ****     *
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  511              		.loc 1 967 0
  512 0006 0025     		movs	r5, #0
  968:Generated_Source\PSoC5/SAKURA_SPIM.c **** 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 27
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 27
 
 
  969:Generated_Source\PSoC5/SAKURA_SPIM.c ****     while(byteCount > 0u)
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  987:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
  988:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Return:
  989:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  None.
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 28
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 28
 
 
  990:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
 1011:Generated_Source\PSoC5/SAKURA_SPIM.c ****         /* Clear TX FIFO for 2nd Datapath */
 1012:Generated_Source\PSoC5/SAKURA_SPIM.c ****         SAKURA_SPIM_AUX_CONTROL_DP1_REG |= ((uint8)  SAKURA_SPIM_TX_FIFO_CLR);
 1013:Generated_Source\PSoC5/SAKURA_SPIM.c ****         SAKURA_SPIM_AUX_CONTROL_DP1_REG &= ((uint8) ~SAKURA_SPIM_TX_FIFO_CLR);
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 29
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 29
 
 
 1014:Generated_Source\PSoC5/SAKURA_SPIM.c ****     #endif /* (SAKURA_SPIM_USE_SECOND_DATAPATH) */
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  102:Generated_Source\PSoC5/SAKURA_SPIM.c **** }
  626              		.loc 1 102 0
  627 001a 02F20112 		addw	r2, r2, #257
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 30
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 30
 
 
  628 001e 1370     		strb	r3, [r2]
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  677              		.section	.text.SAKURA_SPIM_EnableInt,"ax",%progbits
  678              		.align	2
  679              		.global	SAKURA_SPIM_EnableInt
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 31
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 31
 
 
  680              		.thumb
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
 1048:Generated_Source\PSoC5/SAKURA_SPIM.c **** /*******************************************************************************
 1049:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Function Name: SAKURA_SPIM_DisableInt
 1050:Generated_Source\PSoC5/SAKURA_SPIM.c **** ********************************************************************************
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 32
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 32
 
 
 1051:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
 1088:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
 1089:Generated_Source\PSoC5/SAKURA_SPIM.c **** *******************************************************************************/
 1090:Generated_Source\PSoC5/SAKURA_SPIM.c **** void SAKURA_SPIM_SetInterruptMode(uint8 intSrc) 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 33
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 33
 
 
 1091:Generated_Source\PSoC5/SAKURA_SPIM.c **** {
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
 1116:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  and flow control.
 1117:Generated_Source\PSoC5/SAKURA_SPIM.c **** *
 1118:Generated_Source\PSoC5/SAKURA_SPIM.c **** * Side Effects:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 34
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 34
 
 
 1119:Generated_Source\PSoC5/SAKURA_SPIM.c **** *  Clear status register of the component.
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  769 0010 66650040 		.word	1073767782
  770 0014 65640040 		.word	1073767525
  771              		.cfi_endproc
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 35
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 35
 
 
  772              	.LFE23:
@@ -2064,10 +2064,10 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  792 0006 00000000 		.4byte	.Ldebug_abbrev0
  793 000a 04       		.byte	0x4
  794 000b 01       		.uleb128 0x1
- 795 000c E9000000 		.4byte	.LASF56
+ 795 000c AE000000 		.4byte	.LASF56
  796 0010 0C       		.byte	0xc
  797 0011 43030000 		.4byte	.LASF57
- 798 0015 70000000 		.4byte	.LASF58
+ 798 0015 B3020000 		.4byte	.LASF58
  799 0019 00000000 		.4byte	.Ldebug_ranges0+0
  800 001d 00000000 		.4byte	0
  801 0021 00000000 		.4byte	.Ldebug_line0
@@ -2078,7 +2078,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  806 002c 02       		.uleb128 0x2
  807 002d 01       		.byte	0x1
  808 002e 08       		.byte	0x8
- 809 002f F9010000 		.4byte	.LASF1
+ 809 002f BE010000 		.4byte	.LASF1
  810 0033 02       		.uleb128 0x2
  811 0034 02       		.byte	0x2
  812 0035 05       		.byte	0x5
@@ -2094,18 +2094,18 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  822 0048 02       		.uleb128 0x2
  823 0049 04       		.byte	0x4
  824 004a 07       		.byte	0x7
- 825 004b 93010000 		.4byte	.LASF5
+ 825 004b 58010000 		.4byte	.LASF5
  826 004f 02       		.uleb128 0x2
  827 0050 08       		.byte	0x8
  828 0051 05       		.byte	0x5
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 36
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 36
 
 
  829 0052 68030000 		.4byte	.LASF6
  830 0056 02       		.uleb128 0x2
  831 0057 08       		.byte	0x8
  832 0058 07       		.byte	0x7
- 833 0059 CD000000 		.4byte	.LASF7
+ 833 0059 92000000 		.4byte	.LASF7
  834 005d 03       		.uleb128 0x3
  835 005e 04       		.byte	0x4
  836 005f 05       		.byte	0x5
@@ -2113,26 +2113,26 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  838 0064 02       		.uleb128 0x2
  839 0065 04       		.byte	0x4
  840 0066 07       		.byte	0x7
- 841 0067 CB020000 		.4byte	.LASF8
+ 841 0067 90020000 		.4byte	.LASF8
  842 006b 04       		.uleb128 0x4
- 843 006c A5010000 		.4byte	.LASF12
+ 843 006c 6A010000 		.4byte	.LASF12
  844 0070 02       		.byte	0x2
  845 0071 E401     		.2byte	0x1e4
  846 0073 2C000000 		.4byte	0x2c
  847 0077 02       		.uleb128 0x2
  848 0078 04       		.byte	0x4
  849 0079 04       		.byte	0x4
- 850 007a C7000000 		.4byte	.LASF9
+ 850 007a 8C000000 		.4byte	.LASF9
  851 007e 02       		.uleb128 0x2
  852 007f 08       		.byte	0x8
  853 0080 04       		.byte	0x4
- 854 0081 1F020000 		.4byte	.LASF10
+ 854 0081 E4010000 		.4byte	.LASF10
  855 0085 02       		.uleb128 0x2
  856 0086 01       		.byte	0x1
  857 0087 08       		.byte	0x8
  858 0088 1C000000 		.4byte	.LASF11
  859 008c 04       		.uleb128 0x4
- 860 008d 77010000 		.4byte	.LASF13
+ 860 008d 3C010000 		.4byte	.LASF13
  861 0091 02       		.byte	0x2
  862 0092 8E02     		.2byte	0x28e
  863 0094 98000000 		.4byte	0x98
@@ -2156,9 +2156,9 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  881 00bb 9C       		.byte	0x9c
  882 00bc EB000000 		.4byte	0xeb
  883 00c0 07       		.uleb128 0x7
- 884 00c1 CF010000 		.4byte	.LASF18
+ 884 00c1 94010000 		.4byte	.LASF18
  885 00c5 01       		.byte	0x1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 37
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 37
 
 
  886 00c6 7A       		.byte	0x7a
@@ -2184,7 +2184,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  906 00fb 9C       		.byte	0x9c
  907 00fc 2B010000 		.4byte	0x12b
  908 0100 07       		.uleb128 0x7
- 909 0101 CF010000 		.4byte	.LASF18
+ 909 0101 94010000 		.4byte	.LASF18
  910 0105 01       		.byte	0x1
  911 0106 C2       		.byte	0xc2
  912 0107 6B000000 		.4byte	0x6b
@@ -2216,9 +2216,9 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  938 014b 01       		.uleb128 0x1
  939 014c 9C       		.byte	0x9c
  940 014d 0A       		.uleb128 0xa
- 941 014e E0010000 		.4byte	.LASF21
+ 941 014e A5010000 		.4byte	.LASF21
  942 0152 01       		.byte	0x1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 38
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 38
 
 
  943 0153 1501     		.2byte	0x115
@@ -2244,7 +2244,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  963 0182 9C       		.byte	0x9c
  964 0183 96010000 		.4byte	0x196
  965 0187 0C       		.uleb128 0xc
- 966 0188 26020000 		.4byte	.LASF25
+ 966 0188 EB010000 		.4byte	.LASF25
  967 018c 01       		.byte	0x1
  968 018d 4801     		.2byte	0x148
  969 018f 6B000000 		.4byte	0x6b
@@ -2261,7 +2261,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  980 01a7 9C       		.byte	0x9c
  981 01a8 BB010000 		.4byte	0x1bb
  982 01ac 0C       		.uleb128 0xc
- 983 01ad 26020000 		.4byte	.LASF25
+ 983 01ad EB010000 		.4byte	.LASF25
  984 01b1 01       		.byte	0x1
  985 01b2 6001     		.2byte	0x160
  986 01b4 6B000000 		.4byte	0x6b
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  997 01cf 01       		.uleb128 0x1
  998 01d0 9C       		.byte	0x9c
  999 01d1 E4010000 		.4byte	0x1e4
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 39
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 39
 
 
  1000 01d5 0E       		.uleb128 0xe
@@ -2290,7 +2290,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1006 01e2 50       		.byte	0x50
  1007 01e3 00       		.byte	0
  1008 01e4 0D       		.uleb128 0xd
- 1009 01e5 5E020000 		.4byte	.LASF28
+ 1009 01e5 23020000 		.4byte	.LASF28
  1010 01e9 01       		.byte	0x1
  1011 01ea B501     		.2byte	0x1b5
  1012 01ec 6B000000 		.4byte	0x6b
@@ -2308,7 +2308,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1024 020b 50       		.byte	0x50
  1025 020c 00       		.byte	0
  1026 020d 0B       		.uleb128 0xb
- 1027 020e 07020000 		.4byte	.LASF29
+ 1027 020e CC010000 		.4byte	.LASF29
  1028 0212 01       		.byte	0x1
  1029 0213 EE01     		.2byte	0x1ee
  1030 0215 00000000 		.4byte	.LFB12
@@ -2335,10 +2335,10 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1051 0247 9C       		.byte	0x9c
  1052 0248 5B020000 		.4byte	0x25b
  1053 024c 0E       		.uleb128 0xe
- 1054 024d C0000000 		.4byte	.LASF32
+ 1054 024d 85000000 		.4byte	.LASF32
  1055 0251 01       		.byte	0x1
  1056 0252 5C02     		.2byte	0x25c
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 40
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 40
 
 
  1057 0254 6B000000 		.4byte	0x6b
@@ -2356,7 +2356,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1069 0270 9C       		.byte	0x9c
  1070 0271 84020000 		.4byte	0x284
  1071 0275 0E       		.uleb128 0xe
- 1072 0276 E4000000 		.4byte	.LASF34
+ 1072 0276 A9000000 		.4byte	.LASF34
  1073 027a 01       		.byte	0x1
  1074 027b 9C02     		.2byte	0x29c
  1075 027d 6B000000 		.4byte	0x6b
@@ -2374,7 +2374,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1087 0299 9C       		.byte	0x9c
  1088 029a AF020000 		.4byte	0x2af
  1089 029e 0F       		.uleb128 0xf
- 1090 029f E4000000 		.4byte	.LASF34
+ 1090 029f A9000000 		.4byte	.LASF34
  1091 02a3 01       		.byte	0x1
  1092 02a4 D902     		.2byte	0x2d9
  1093 02a6 6B000000 		.4byte	0x6b
@@ -2389,7 +2389,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1102 02bf 01       		.uleb128 0x1
  1103 02c0 9C       		.byte	0x9c
  1104 02c1 0B       		.uleb128 0xb
- 1105 02c2 44020000 		.4byte	.LASF37
+ 1105 02c2 09020000 		.4byte	.LASF37
  1106 02c6 01       		.byte	0x1
  1107 02c7 5D03     		.2byte	0x35d
  1108 02c9 00000000 		.4byte	.LFB17
@@ -2398,10 +2398,10 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1111 02d2 9C       		.byte	0x9c
  1112 02d3 FA020000 		.4byte	0x2fa
  1113 02d7 0F       		.uleb128 0xf
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 41
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 41
 
 
- 1114 02d8 CF010000 		.4byte	.LASF18
+ 1114 02d8 94010000 		.4byte	.LASF18
  1115 02dc 01       		.byte	0x1
  1116 02dd 5F03     		.2byte	0x35f
  1117 02df 6B000000 		.4byte	0x6b
@@ -2414,7 +2414,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1124 02f5 99040000 		.4byte	0x499
  1125 02f9 00       		.byte	0
  1126 02fa 0B       		.uleb128 0xb
- 1127 02fb AB000000 		.4byte	.LASF38
+ 1127 02fb 70000000 		.4byte	.LASF38
  1128 02ff 01       		.byte	0x1
  1129 0300 C203     		.2byte	0x3c2
  1130 0302 00000000 		.4byte	.LFB18
@@ -2429,7 +2429,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1139 0318 4A030000 		.4byte	0x34a
  1140 031c 57000000 		.4byte	.LLST4
  1141 0320 10       		.uleb128 0x10
- 1142 0321 C5010000 		.4byte	.LASF40
+ 1142 0321 8A010000 		.4byte	.LASF40
  1143 0325 01       		.byte	0x1
  1144 0326 C203     		.2byte	0x3c2
  1145 0328 6B000000 		.4byte	0x6b
@@ -2458,11 +2458,11 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1168 0365 01       		.uleb128 0x1
  1169 0366 9C       		.byte	0x9c
  1170 0367 8E030000 		.4byte	0x38e
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 42
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 42
 
 
  1171 036b 0F       		.uleb128 0xf
- 1172 036c CF010000 		.4byte	.LASF18
+ 1172 036c 94010000 		.4byte	.LASF18
  1173 0370 01       		.byte	0x1
  1174 0371 E503     		.2byte	0x3e5
  1175 0373 6B000000 		.4byte	0x6b
@@ -2494,7 +2494,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1201 03ba E4010000 		.4byte	0x1e4
  1202 03be 00       		.byte	0
  1203 03bf 06       		.uleb128 0x6
- 1204 03c0 77020000 		.4byte	.LASF44
+ 1204 03c0 3C020000 		.4byte	.LASF44
  1205 03c4 01       		.byte	0x1
  1206 03c5 A3       		.byte	0xa3
  1207 03c6 00000000 		.4byte	.LFB2
@@ -2518,10 +2518,10 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1225 03f7 01       		.uleb128 0x1
  1226 03f8 9C       		.byte	0x9c
  1227 03f9 0A       		.uleb128 0xa
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 43
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 43
 
 
- 1228 03fa 7C010000 		.4byte	.LASF46
+ 1228 03fa 41010000 		.4byte	.LASF46
  1229 03fe 01       		.byte	0x1
  1230 03ff 2904     		.2byte	0x429
  1231 0401 00000000 		.4byte	.LFB21
@@ -2538,7 +2538,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1242 041c 9C       		.byte	0x9c
  1243 041d 30040000 		.4byte	0x430
  1244 0421 0C       		.uleb128 0xc
- 1245 0422 26020000 		.4byte	.LASF25
+ 1245 0422 EB010000 		.4byte	.LASF25
  1246 0426 01       		.byte	0x1
  1247 0427 4204     		.2byte	0x442
  1248 0429 6B000000 		.4byte	0x6b
@@ -2546,7 +2546,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1250 042e 50       		.byte	0x50
  1251 042f 00       		.byte	0
  1252 0430 0D       		.uleb128 0xd
- 1253 0431 2D020000 		.4byte	.LASF48
+ 1253 0431 F2010000 		.4byte	.LASF48
  1254 0435 01       		.byte	0x1
  1255 0436 6504     		.2byte	0x465
  1256 0438 6B000000 		.4byte	0x6b
@@ -2563,7 +2563,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1267 0456 DB000000 		.4byte	.LLST8
  1268 045a 00       		.byte	0
  1269 045b 13       		.uleb128 0x13
- 1270 045c 89020000 		.4byte	.LASF49
+ 1270 045c 4E020000 		.4byte	.LASF49
  1271 0460 01       		.byte	0x1
  1272 0461 22       		.byte	0x22
  1273 0462 6B000000 		.4byte	0x6b
@@ -2571,14 +2571,14 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1275 0467 03       		.byte	0x3
  1276 0468 00000000 		.4byte	SAKURA_SPIM_initVar
  1277 046c 13       		.uleb128 0x13
- 1278 046d 9D020000 		.4byte	.LASF50
+ 1278 046d 62020000 		.4byte	.LASF50
  1279 0471 01       		.byte	0x1
  1280 0472 24       		.byte	0x24
  1281 0473 98000000 		.4byte	0x98
  1282 0477 05       		.uleb128 0x5
  1283 0478 03       		.byte	0x3
  1284 0479 00000000 		.4byte	SAKURA_SPIM_swStatusTx
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 44
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 44
 
 
  1285 047d 13       		.uleb128 0x13
@@ -2590,13 +2590,13 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1291 0489 03       		.byte	0x3
  1292 048a 00000000 		.4byte	SAKURA_SPIM_swStatusRx
  1293 048e 14       		.uleb128 0x14
- 1294 048f B4020000 		.4byte	.LASF52
- 1295 0493 B4020000 		.4byte	.LASF52
+ 1294 048f 79020000 		.4byte	.LASF52
+ 1295 0493 79020000 		.4byte	.LASF52
  1296 0497 03       		.byte	0x3
  1297 0498 7D       		.byte	0x7d
  1298 0499 14       		.uleb128 0x14
- 1299 049a D8020000 		.4byte	.LASF53
- 1300 049e D8020000 		.4byte	.LASF53
+ 1299 049a 9D020000 		.4byte	.LASF53
+ 1300 049e 9D020000 		.4byte	.LASF53
  1301 04a2 03       		.byte	0x3
  1302 04a3 7E       		.byte	0x7e
  1303 04a4 14       		.uleb128 0x14
@@ -2605,8 +2605,8 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1306 04ad 04       		.byte	0x4
  1307 04ae 27       		.byte	0x27
  1308 04af 14       		.uleb128 0x14
- 1309 04b0 AB010000 		.4byte	.LASF55
- 1310 04b4 AB010000 		.4byte	.LASF55
+ 1309 04b0 70010000 		.4byte	.LASF55
+ 1310 04b4 70010000 		.4byte	.LASF55
  1311 04b8 04       		.byte	0x4
  1312 04b9 28       		.byte	0x28
  1313 04ba 00       		.byte	0
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1339 0017 0B       		.uleb128 0xb
  1340 0018 3E       		.uleb128 0x3e
  1341 0019 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 45
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 45
 
 
  1342 001a 03       		.uleb128 0x3
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1396 0050 9742     		.uleb128 0x2117
  1397 0052 19       		.uleb128 0x19
  1398 0053 01       		.uleb128 0x1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 46
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 46
 
 
  1399 0054 13       		.uleb128 0x13
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1453 008d 19       		.uleb128 0x19
  1454 008e 03       		.uleb128 0x3
  1455 008f 0E       		.uleb128 0xe
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 47
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 47
 
 
  1456 0090 3A       		.uleb128 0x3a
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1510 00c8 00       		.byte	0
  1511 00c9 00       		.byte	0
  1512 00ca 0D       		.uleb128 0xd
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 48
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 48
 
 
  1513 00cb 2E       		.uleb128 0x2e
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1567 0102 00       		.byte	0
  1568 0103 00       		.byte	0
  1569 0104 10       		.uleb128 0x10
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 49
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 49
 
 
  1570 0105 05       		.uleb128 0x5
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1624 013b 6E       		.uleb128 0x6e
  1625 013c 0E       		.uleb128 0xe
  1626 013d 03       		.uleb128 0x3
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 50
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 50
 
 
  1627 013e 0E       		.uleb128 0xe
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1681 0075 00000000 		.4byte	.LVL17
  1682 0079 0A000000 		.4byte	.LVL19
  1683 007d 0100     		.2byte	0x1
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 51
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 51
 
 
  1684 007f 51       		.byte	0x51
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1738 000a 04       		.byte	0x4
  1739 000b 00       		.byte	0
  1740 000c 0000     		.2byte	0
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 52
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 52
 
 
  1741 000e 0000     		.2byte	0
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1795 0004 34000000 		.4byte	.LFE1
  1796 0008 00000000 		.4byte	.LFB3
  1797 000c 2C000000 		.4byte	.LFE3
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 53
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 53
 
 
  1798 0010 00000000 		.4byte	.LFB4
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1848 0000 53414B55 		.ascii	"SAKURA_SPIM_GetRxBufferSize\000"
  1848      52415F53 
  1848      50494D5F 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 54
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 54
 
 
  1848      47657452 
@@ -3207,172 +3207,172 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1858      50494D5F 
  1858      53657452 
  1858      78496E74 
- 1859              	.LASF58:
- 1860 0070 443A5C44 		.ascii	"D:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
- 1860      726F7062 
- 1860      6F785C50 
- 1860      75626C69 
- 1860      635C5053 
- 1861 009e 4C6F6767 		.ascii	"Logger.cydsn\000"
- 1861      65722E63 
- 1861      7964736E 
- 1861      00
- 1862              	.LASF38:
- 1863 00ab 53414B55 		.ascii	"SAKURA_SPIM_PutArray\000"
- 1863      52415F53 
- 1863      50494D5F 
- 1863      50757441 
- 1863      72726179 
- 1864              	.LASF32:
- 1865 00c0 72784461 		.ascii	"rxData\000"
- 1865      746100
- 1866              	.LASF9:
- 1867 00c7 666C6F61 		.ascii	"float\000"
- 1867      7400
- 1868              	.LASF7:
- 1869 00cd 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1869      206C6F6E 
- 1869      6720756E 
- 1869      7369676E 
- 1869      65642069 
- 1870              	.LASF34:
- 1871 00e4 73697A65 		.ascii	"size\000"
- 1871      00
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 55
+ 1859              	.LASF38:
+ 1860 0070 53414B55 		.ascii	"SAKURA_SPIM_PutArray\000"
+ 1860      52415F53 
+ 1860      50494D5F 
+ 1860      50757441 
+ 1860      72726179 
+ 1861              	.LASF32:
+ 1862 0085 72784461 		.ascii	"rxData\000"
+ 1862      746100
+ 1863              	.LASF9:
+ 1864 008c 666C6F61 		.ascii	"float\000"
+ 1864      7400
+ 1865              	.LASF7:
+ 1866 0092 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1866      206C6F6E 
+ 1866      6720756E 
+ 1866      7369676E 
+ 1866      65642069 
+ 1867              	.LASF34:
+ 1868 00a9 73697A65 		.ascii	"size\000"
+ 1868      00
+ 1869              	.LASF56:
+ 1870 00ae 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1870      43313120 
+ 1870      352E342E 
+ 1870      31203230 
+ 1870      31363036 
+ 1871 00e1 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1871      20726576 
+ 1871      6973696F 
+ 1871      6E203233 
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 55
 
 
- 1872              	.LASF56:
- 1873 00e9 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1873      43313120 
- 1873      352E342E 
- 1873      31203230 
- 1873      31363036 
- 1874 011c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1874      20726576 
- 1874      6973696F 
- 1874      6E203233 
- 1874      37373135 
- 1875 014f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1875      66756E63 
- 1875      74696F6E 
- 1875      2D736563 
- 1875      74696F6E 
- 1876              	.LASF13:
- 1877 0177 72656738 		.ascii	"reg8\000"
- 1877      00
- 1878              	.LASF46:
- 1879 017c 53414B55 		.ascii	"SAKURA_SPIM_DisableInt\000"
- 1879      52415F53 
- 1879      50494D5F 
- 1879      44697361 
- 1879      626C6549 
- 1880              	.LASF5:
- 1881 0193 6C6F6E67 		.ascii	"long unsigned int\000"
- 1881      20756E73 
- 1881      69676E65 
- 1881      6420696E 
- 1881      7400
- 1882              	.LASF12:
- 1883 01a5 75696E74 		.ascii	"uint8\000"
- 1883      3800
- 1884              	.LASF55:
- 1885 01ab 53414B55 		.ascii	"SAKURA_SPIM_IntClock_Stop\000"
- 1885      52415F53 
- 1885      50494D5F 
- 1885      496E7443 
- 1885      6C6F636B 
- 1886              	.LASF40:
- 1887 01c5 62797465 		.ascii	"byteCount\000"
- 1887      436F756E 
- 1887      7400
- 1888              	.LASF18:
- 1889 01cf 656E6162 		.ascii	"enableInterrupts\000"
- 1889      6C65496E 
- 1889      74657272 
- 1889      75707473 
- 1889      00
- 1890              	.LASF21:
- 1891 01e0 53414B55 		.ascii	"SAKURA_SPIM_DisableTxInt\000"
- 1891      52415F53 
- 1891      50494D5F 
- 1891      44697361 
- 1891      626C6554 
- 1892              	.LASF1:
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 56
+ 1871      37373135 
+ 1872 0114 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1872      66756E63 
+ 1872      74696F6E 
+ 1872      2D736563 
+ 1872      74696F6E 
+ 1873              	.LASF13:
+ 1874 013c 72656738 		.ascii	"reg8\000"
+ 1874      00
+ 1875              	.LASF46:
+ 1876 0141 53414B55 		.ascii	"SAKURA_SPIM_DisableInt\000"
+ 1876      52415F53 
+ 1876      50494D5F 
+ 1876      44697361 
+ 1876      626C6549 
+ 1877              	.LASF5:
+ 1878 0158 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1878      20756E73 
+ 1878      69676E65 
+ 1878      6420696E 
+ 1878      7400
+ 1879              	.LASF12:
+ 1880 016a 75696E74 		.ascii	"uint8\000"
+ 1880      3800
+ 1881              	.LASF55:
+ 1882 0170 53414B55 		.ascii	"SAKURA_SPIM_IntClock_Stop\000"
+ 1882      52415F53 
+ 1882      50494D5F 
+ 1882      496E7443 
+ 1882      6C6F636B 
+ 1883              	.LASF40:
+ 1884 018a 62797465 		.ascii	"byteCount\000"
+ 1884      436F756E 
+ 1884      7400
+ 1885              	.LASF18:
+ 1886 0194 656E6162 		.ascii	"enableInterrupts\000"
+ 1886      6C65496E 
+ 1886      74657272 
+ 1886      75707473 
+ 1886      00
+ 1887              	.LASF21:
+ 1888 01a5 53414B55 		.ascii	"SAKURA_SPIM_DisableTxInt\000"
+ 1888      52415F53 
+ 1888      50494D5F 
+ 1888      44697361 
+ 1888      626C6554 
+ 1889              	.LASF1:
+ 1890 01be 756E7369 		.ascii	"unsigned char\000"
+ 1890      676E6564 
+ 1890      20636861 
+ 1890      7200
+ 1891              	.LASF29:
+ 1892 01cc 53414B55 		.ascii	"SAKURA_SPIM_WriteTxData\000"
+ 1892      52415F53 
+ 1892      50494D5F 
+ 1892      57726974 
+ 1892      65547844 
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 56
 
 
- 1893 01f9 756E7369 		.ascii	"unsigned char\000"
- 1893      676E6564 
- 1893      20636861 
- 1893      7200
- 1894              	.LASF29:
- 1895 0207 53414B55 		.ascii	"SAKURA_SPIM_WriteTxData\000"
- 1895      52415F53 
- 1895      50494D5F 
- 1895      57726974 
- 1895      65547844 
- 1896              	.LASF10:
- 1897 021f 646F7562 		.ascii	"double\000"
- 1897      6C6500
- 1898              	.LASF25:
- 1899 0226 696E7453 		.ascii	"intSrc\000"
- 1899      726300
- 1900              	.LASF48:
- 1901 022d 53414B55 		.ascii	"SAKURA_SPIM_ReadStatus\000"
- 1901      52415F53 
- 1901      50494D5F 
- 1901      52656164 
- 1901      53746174 
- 1902              	.LASF37:
- 1903 0244 53414B55 		.ascii	"SAKURA_SPIM_ClearTxBuffer\000"
- 1903      52415F53 
- 1903      50494D5F 
- 1903      436C6561 
- 1903      72547842 
- 1904              	.LASF28:
- 1905 025e 53414B55 		.ascii	"SAKURA_SPIM_ReadRxStatus\000"
- 1905      52415F53 
- 1905      50494D5F 
- 1905      52656164 
- 1905      52785374 
- 1906              	.LASF44:
- 1907 0277 53414B55 		.ascii	"SAKURA_SPIM_Start\000"
- 1907      52415F53 
- 1907      50494D5F 
- 1907      53746172 
- 1907      7400
- 1908              	.LASF49:
- 1909 0289 53414B55 		.ascii	"SAKURA_SPIM_initVar\000"
- 1909      52415F53 
- 1909      50494D5F 
- 1909      696E6974 
- 1909      56617200 
- 1910              	.LASF50:
- 1911 029d 53414B55 		.ascii	"SAKURA_SPIM_swStatusTx\000"
- 1911      52415F53 
- 1911      50494D5F 
- 1911      73775374 
- 1911      61747573 
- 1912              	.LASF52:
- 1913 02b4 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 1913      74657243 
- 1913      72697469 
- 1913      63616C53 
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 57
+ 1893              	.LASF10:
+ 1894 01e4 646F7562 		.ascii	"double\000"
+ 1894      6C6500
+ 1895              	.LASF25:
+ 1896 01eb 696E7453 		.ascii	"intSrc\000"
+ 1896      726300
+ 1897              	.LASF48:
+ 1898 01f2 53414B55 		.ascii	"SAKURA_SPIM_ReadStatus\000"
+ 1898      52415F53 
+ 1898      50494D5F 
+ 1898      52656164 
+ 1898      53746174 
+ 1899              	.LASF37:
+ 1900 0209 53414B55 		.ascii	"SAKURA_SPIM_ClearTxBuffer\000"
+ 1900      52415F53 
+ 1900      50494D5F 
+ 1900      436C6561 
+ 1900      72547842 
+ 1901              	.LASF28:
+ 1902 0223 53414B55 		.ascii	"SAKURA_SPIM_ReadRxStatus\000"
+ 1902      52415F53 
+ 1902      50494D5F 
+ 1902      52656164 
+ 1902      52785374 
+ 1903              	.LASF44:
+ 1904 023c 53414B55 		.ascii	"SAKURA_SPIM_Start\000"
+ 1904      52415F53 
+ 1904      50494D5F 
+ 1904      53746172 
+ 1904      7400
+ 1905              	.LASF49:
+ 1906 024e 53414B55 		.ascii	"SAKURA_SPIM_initVar\000"
+ 1906      52415F53 
+ 1906      50494D5F 
+ 1906      696E6974 
+ 1906      56617200 
+ 1907              	.LASF50:
+ 1908 0262 53414B55 		.ascii	"SAKURA_SPIM_swStatusTx\000"
+ 1908      52415F53 
+ 1908      50494D5F 
+ 1908      73775374 
+ 1908      61747573 
+ 1909              	.LASF52:
+ 1910 0279 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1910      74657243 
+ 1910      72697469 
+ 1910      63616C53 
+ 1910      65637469 
+ 1911              	.LASF8:
+ 1912 0290 756E7369 		.ascii	"unsigned int\000"
+ 1912      676E6564 
+ 1912      20696E74 
+ 1912      00
+ 1913              	.LASF53:
+ 1914 029d 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1914      69744372 
+ 1914      69746963 
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 57
 
 
- 1913      65637469 
- 1914              	.LASF8:
- 1915 02cb 756E7369 		.ascii	"unsigned int\000"
- 1915      676E6564 
- 1915      20696E74 
- 1915      00
- 1916              	.LASF53:
- 1917 02d8 43794578 		.ascii	"CyExitCriticalSection\000"
- 1917      69744372 
- 1917      69746963 
- 1917      616C5365 
- 1917      6374696F 
+ 1914      616C5365 
+ 1914      6374696F 
+ 1915              	.LASF58:
+ 1916 02b3 433A5C44 		.ascii	"C:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
+ 1916      726F7062 
+ 1916      6F785C50 
+ 1916      75626C69 
+ 1916      635C5053 
+ 1917 02e1 4C6F6767 		.ascii	"Logger.cydsn\000"
+ 1917      65722E63 
+ 1917      7964736E 
+ 1917      00
  1918              	.LASF43:
  1919 02ee 53414B55 		.ascii	"SAKURA_SPIM_Init\000"
  1919      52415F53 
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1933      6C655478 
  1934              	.LASF51:
  1935 038e 53414B55 		.ascii	"SAKURA_SPIM_swStatusRx\000"
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 58
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 58
 
 
  1935      52415F53 
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 1
  1955      7300
  1956              	.LASF14:
  1957 0469 6C6F6E67 		.ascii	"long double\000"
-ARM GAS  C:\Users\cronos\AppData\Local\Temp\cccLPJ9T.s 			page 59
+ARM GAS  C:\Users\crono\AppData\Local\Temp\ccRfEP9B.s 			page 59
 
 
  1957      20646F75 

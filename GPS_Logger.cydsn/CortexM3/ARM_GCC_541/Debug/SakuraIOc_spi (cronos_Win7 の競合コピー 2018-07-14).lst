@@ -1,0 +1,1396 @@
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SakuraIOc_spi.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.delay,"ax",%progbits
+  20              		.align	2
+  21              		.global	delay
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	delay, %function
+  25              	delay:
+  26              	.LFB63:
+  27              		.file 1 "SakuraIO\\SakuraIOc_spi.c"
+   1:SakuraIO/SakuraIOc_spi.c **** #include "SakuraIOc_spi.h"
+   2:SakuraIO/SakuraIOc_spi.c **** #include "spi_interface.h"  //コンパイルできるようにするためのダミーファイル
+   3:SakuraIO/SakuraIOc_spi.c **** #include "project.h"
+   4:SakuraIO/SakuraIOc_spi.c **** 
+   5:SakuraIO/SakuraIOc_spi.c **** #define SAKURA_CSn_IDLE()  SAKURA_CSn_Write(1)
+   6:SakuraIO/SakuraIOc_spi.c **** #define SAKURA_CSn_Active()  SAKURA_CSn_Write(0)
+   7:SakuraIO/SakuraIOc_spi.c **** 
+   8:SakuraIO/SakuraIOc_spi.c **** inline void delay(uint32_t ms){
+  28              		.loc 1 8 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 08B5     		push	{r3, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+   9:SakuraIO/SakuraIOc_spi.c ****     CyDelay(ms);
+  37              		.loc 1 9 0
+  38 0002 FFF7FEFF 		bl	CyDelay
+  39              	.LVL1:
+  40 0006 08BD     		pop	{r3, pc}
+  41              		.cfi_endproc
+  42              	.LFE63:
+  43              		.size	delay, .-delay
+  44              		.section	.text.SakuraIOc_hw_init,"ax",%progbits
+  45              		.align	2
+  46              		.global	SakuraIOc_hw_init
+  47              		.thumb
+  48              		.thumb_func
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 2
+
+
+  49              		.type	SakuraIOc_hw_init, %function
+  50              	SakuraIOc_hw_init:
+  51              	.LFB64:
+  10:SakuraIO/SakuraIOc_spi.c **** }
+  11:SakuraIO/SakuraIOc_spi.c **** 
+  12:SakuraIO/SakuraIOc_spi.c **** void SakuraIOc_hw_init(){
+  52              		.loc 1 12 0
+  53              		.cfi_startproc
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56 0000 08B5     		push	{r3, lr}
+  57              		.cfi_def_cfa_offset 8
+  58              		.cfi_offset 3, -8
+  59              		.cfi_offset 14, -4
+  13:SakuraIO/SakuraIOc_spi.c ****     //元関数のコンストラクタ
+  14:SakuraIO/SakuraIOc_spi.c ****     //SPIの初期化をする
+  15:SakuraIO/SakuraIOc_spi.c ****     SAKURA_SPIM_Init();
+  60              		.loc 1 15 0
+  61 0002 FFF7FEFF 		bl	SAKURA_SPIM_Init
+  62              	.LVL2:
+  16:SakuraIO/SakuraIOc_spi.c ****     SAKURA_SPIM_Enable();
+  63              		.loc 1 16 0
+  64 0006 FFF7FEFF 		bl	SAKURA_SPIM_Enable
+  65              	.LVL3:
+  17:SakuraIO/SakuraIOc_spi.c ****     SAKURA_SPIM_EnableInt();
+  66              		.loc 1 17 0
+  67 000a FFF7FEFF 		bl	SAKURA_SPIM_EnableInt
+  68              	.LVL4:
+  18:SakuraIO/SakuraIOc_spi.c ****     SAKURA_SPIM_Start();
+  69              		.loc 1 18 0
+  70 000e FFF7FEFF 		bl	SAKURA_SPIM_Start
+  71              	.LVL5:
+  72 0012 08BD     		pop	{r3, pc}
+  73              		.cfi_endproc
+  74              	.LFE64:
+  75              		.size	SakuraIOc_hw_init, .-SakuraIOc_hw_init
+  76              		.section	.text.SakuraIOc_hw_begin,"ax",%progbits
+  77              		.align	2
+  78              		.global	SakuraIOc_hw_begin
+  79              		.thumb
+  80              		.thumb_func
+  81              		.type	SakuraIOc_hw_begin, %function
+  82              	SakuraIOc_hw_begin:
+  83              	.LFB65:
+  19:SakuraIO/SakuraIOc_spi.c **** }
+  20:SakuraIO/SakuraIOc_spi.c **** 
+  21:SakuraIO/SakuraIOc_spi.c **** void SakuraIOc_hw_begin(){
+  84              		.loc 1 21 0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88 0000 08B5     		push	{r3, lr}
+  89              		.cfi_def_cfa_offset 8
+  90              		.cfi_offset 3, -8
+  91              		.cfi_offset 14, -4
+  22:SakuraIO/SakuraIOc_spi.c ****     //SPIを転送可能状態にする関数
+  23:SakuraIO/SakuraIOc_spi.c ****     //CSをアサート
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 3
+
+
+  24:SakuraIO/SakuraIOc_spi.c ****     SAKURA_CSn_Active();
+  92              		.loc 1 24 0
+  93 0002 0020     		movs	r0, #0
+  94 0004 FFF7FEFF 		bl	SAKURA_CSn_Write
+  95              	.LVL6:
+  96 0008 08BD     		pop	{r3, pc}
+  97              		.cfi_endproc
+  98              	.LFE65:
+  99              		.size	SakuraIOc_hw_begin, .-SakuraIOc_hw_begin
+ 100 000a 00BF     		.section	.text.SakuraIOc_hw_end,"ax",%progbits
+ 101              		.align	2
+ 102              		.global	SakuraIOc_hw_end
+ 103              		.thumb
+ 104              		.thumb_func
+ 105              		.type	SakuraIOc_hw_end, %function
+ 106              	SakuraIOc_hw_end:
+ 107              	.LFB66:
+  25:SakuraIO/SakuraIOc_spi.c **** }
+  26:SakuraIO/SakuraIOc_spi.c **** 
+  27:SakuraIO/SakuraIOc_spi.c **** void SakuraIOc_hw_end(){
+ 108              		.loc 1 27 0
+ 109              		.cfi_startproc
+ 110              		@ args = 0, pretend = 0, frame = 0
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 112 0000 08B5     		push	{r3, lr}
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 3, -8
+ 115              		.cfi_offset 14, -4
+  28:SakuraIO/SakuraIOc_spi.c ****     //SPIを転送終了状態にする関数
+  29:SakuraIO/SakuraIOc_spi.c ****     //CSをネゲート
+  30:SakuraIO/SakuraIOc_spi.c ****     //元関数では最後に20us待ってる
+  31:SakuraIO/SakuraIOc_spi.c ****     SAKURA_CSn_IDLE();
+ 116              		.loc 1 31 0
+ 117 0002 0120     		movs	r0, #1
+ 118 0004 FFF7FEFF 		bl	SAKURA_CSn_Write
+ 119              	.LVL7:
+  32:SakuraIO/SakuraIOc_spi.c ****     CyDelayUs(20);
+ 120              		.loc 1 32 0
+ 121 0008 1420     		movs	r0, #20
+ 122 000a FFF7FEFF 		bl	CyDelayUs
+ 123              	.LVL8:
+ 124 000e 08BD     		pop	{r3, pc}
+ 125              		.cfi_endproc
+ 126              	.LFE66:
+ 127              		.size	SakuraIOc_hw_end, .-SakuraIOc_hw_end
+ 128              		.section	.text.SakuraIOc_hw_sendByte,"ax",%progbits
+ 129              		.align	2
+ 130              		.global	SakuraIOc_hw_sendByte
+ 131              		.thumb
+ 132              		.thumb_func
+ 133              		.type	SakuraIOc_hw_sendByte, %function
+ 134              	SakuraIOc_hw_sendByte:
+ 135              	.LFB67:
+  33:SakuraIO/SakuraIOc_spi.c **** }
+  34:SakuraIO/SakuraIOc_spi.c **** 
+  35:SakuraIO/SakuraIOc_spi.c **** void SakuraIOc_hw_sendByte(uint8_t data){
+ 136              		.loc 1 35 0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 4
+
+
+ 137              		.cfi_startproc
+ 138              		@ args = 0, pretend = 0, frame = 0
+ 139              		@ frame_needed = 0, uses_anonymous_args = 0
+ 140              	.LVL9:
+ 141 0000 10B5     		push	{r4, lr}
+ 142              		.cfi_def_cfa_offset 8
+ 143              		.cfi_offset 4, -8
+ 144              		.cfi_offset 14, -4
+ 145 0002 0446     		mov	r4, r0
+  36:SakuraIO/SakuraIOc_spi.c ****     //SPIで1byte送る関数
+  37:SakuraIO/SakuraIOc_spi.c ****     //元関数では送る前に20us待ってる
+  38:SakuraIO/SakuraIOc_spi.c ****     CyDelayUs(20);
+ 146              		.loc 1 38 0
+ 147 0004 1420     		movs	r0, #20
+ 148              	.LVL10:
+ 149 0006 FFF7FEFF 		bl	CyDelayUs
+ 150              	.LVL11:
+  39:SakuraIO/SakuraIOc_spi.c ****     SAKURA_SPIM_WriteTxData(data);
+ 151              		.loc 1 39 0
+ 152 000a 2046     		mov	r0, r4
+ 153 000c FFF7FEFF 		bl	SAKURA_SPIM_WriteTxData
+ 154              	.LVL12:
+ 155              	.L10:
+  40:SakuraIO/SakuraIOc_spi.c **** 	while(!(SAKURA_SPIM_ReadTxStatus() & SAKURA_SPIM_STS_SPI_DONE)){};
+ 156              		.loc 1 40 0 discriminator 1
+ 157 0010 FFF7FEFF 		bl	SAKURA_SPIM_ReadTxStatus
+ 158              	.LVL13:
+ 159 0014 10F0010F 		tst	r0, #1
+ 160 0018 FAD0     		beq	.L10
+  41:SakuraIO/SakuraIOc_spi.c **** }
+ 161              		.loc 1 41 0
+ 162 001a 10BD     		pop	{r4, pc}
+ 163              		.cfi_endproc
+ 164              	.LFE67:
+ 165              		.size	SakuraIOc_hw_sendByte, .-SakuraIOc_hw_sendByte
+ 166              		.section	.text.SakuraIOc_hw_startReceive,"ax",%progbits
+ 167              		.align	2
+ 168              		.global	SakuraIOc_hw_startReceive
+ 169              		.thumb
+ 170              		.thumb_func
+ 171              		.type	SakuraIOc_hw_startReceive, %function
+ 172              	SakuraIOc_hw_startReceive:
+ 173              	.LFB68:
+  42:SakuraIO/SakuraIOc_spi.c **** 
+  43:SakuraIO/SakuraIOc_spi.c **** uint8_t SakuraIOc_hw_startReceive(uint8_t length){
+ 174              		.loc 1 43 0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178              		@ link register save eliminated.
+ 179              	.LVL14:
+  44:SakuraIO/SakuraIOc_spi.c ****     //I2C用の関数なのでSPIはダミー動作させる
+  45:SakuraIO/SakuraIOc_spi.c ****     return length;
+  46:SakuraIO/SakuraIOc_spi.c **** }
+ 180              		.loc 1 46 0
+ 181 0000 7047     		bx	lr
+ 182              		.cfi_endproc
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 5
+
+
+ 183              	.LFE68:
+ 184              		.size	SakuraIOc_hw_startReceive, .-SakuraIOc_hw_startReceive
+ 185 0002 00BF     		.section	.text.SakuraIOc_hw_receiveByte,"ax",%progbits
+ 186              		.align	2
+ 187              		.global	SakuraIOc_hw_receiveByte
+ 188              		.thumb
+ 189              		.thumb_func
+ 190              		.type	SakuraIOc_hw_receiveByte, %function
+ 191              	SakuraIOc_hw_receiveByte:
+ 192              	.LFB69:
+  47:SakuraIO/SakuraIOc_spi.c **** 
+  48:SakuraIO/SakuraIOc_spi.c **** uint8_t SakuraIOc_hw_receiveByte(){
+ 193              		.loc 1 48 0
+ 194              		.cfi_startproc
+ 195              		@ args = 0, pretend = 0, frame = 0
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197 0000 08B5     		push	{r3, lr}
+ 198              		.cfi_def_cfa_offset 8
+ 199              		.cfi_offset 3, -8
+ 200              		.cfi_offset 14, -4
+  49:SakuraIO/SakuraIOc_spi.c ****     //SPIから1byte読む関数
+  50:SakuraIO/SakuraIOc_spi.c ****     //元の関数では読む前に20us待ってる
+  51:SakuraIO/SakuraIOc_spi.c ****     //送信ダミーデータは0x00にしてある
+  52:SakuraIO/SakuraIOc_spi.c **** 	SAKURA_SPIM_WriteTxData(0x00);
+ 201              		.loc 1 52 0
+ 202 0002 0020     		movs	r0, #0
+ 203 0004 FFF7FEFF 		bl	SAKURA_SPIM_WriteTxData
+ 204              	.LVL15:
+ 205              	.L14:
+  53:SakuraIO/SakuraIOc_spi.c **** 	while(!(SAKURA_SPIM_ReadTxStatus() & SAKURA_SPIM_STS_SPI_DONE)){};
+ 206              		.loc 1 53 0 discriminator 1
+ 207 0008 FFF7FEFF 		bl	SAKURA_SPIM_ReadTxStatus
+ 208              	.LVL16:
+ 209 000c 10F0010F 		tst	r0, #1
+ 210 0010 FAD0     		beq	.L14
+  54:SakuraIO/SakuraIOc_spi.c **** 
+  55:SakuraIO/SakuraIOc_spi.c ****     return SAKURA_SPIM_ReadRxData();
+ 211              		.loc 1 55 0
+ 212 0012 FFF7FEFF 		bl	SAKURA_SPIM_ReadRxData
+ 213              	.LVL17:
+  56:SakuraIO/SakuraIOc_spi.c **** }
+ 214              		.loc 1 56 0
+ 215 0016 08BD     		pop	{r3, pc}
+ 216              		.cfi_endproc
+ 217              	.LFE69:
+ 218              		.size	SakuraIOc_hw_receiveByte, .-SakuraIOc_hw_receiveByte
+ 219              		.section	.text.SakuraIOc_hw_receiveByte2,"ax",%progbits
+ 220              		.align	2
+ 221              		.global	SakuraIOc_hw_receiveByte2
+ 222              		.thumb
+ 223              		.thumb_func
+ 224              		.type	SakuraIOc_hw_receiveByte2, %function
+ 225              	SakuraIOc_hw_receiveByte2:
+ 226              	.LFB70:
+  57:SakuraIO/SakuraIOc_spi.c **** 
+  58:SakuraIO/SakuraIOc_spi.c **** uint8_t SakuraIOc_hw_receiveByte2(bool stop){
+ 227              		.loc 1 58 0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 6
+
+
+ 228              		.cfi_startproc
+ 229              		@ args = 0, pretend = 0, frame = 0
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231              		@ link register save eliminated.
+ 232              	.LVL18:
+  59:SakuraIO/SakuraIOc_spi.c ****     //元の関数ではstopが使われてない．
+  60:SakuraIO/SakuraIOc_spi.c ****     return 0;
+  61:SakuraIO/SakuraIOc_spi.c **** }
+ 233              		.loc 1 61 0
+ 234 0000 0020     		movs	r0, #0
+ 235              	.LVL19:
+ 236 0002 7047     		bx	lr
+ 237              		.cfi_endproc
+ 238              	.LFE70:
+ 239              		.size	SakuraIOc_hw_receiveByte2, .-SakuraIOc_hw_receiveByte2
+ 240              		.text
+ 241              	.Letext0:
+ 242              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 243              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 244              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 245              		.file 5 "Generated_Source\\PSoC5/CyLib.h"
+ 246              		.file 6 "Generated_Source\\PSoC5/SAKURA_SPIM.h"
+ 247              		.file 7 "Generated_Source\\PSoC5/SAKURA_CSn.h"
+ 248              		.file 8 "Generated_Source\\PSoC5/core_cm3.h"
+ 249              		.section	.debug_info,"",%progbits
+ 250              	.Ldebug_info0:
+ 251 0000 10030000 		.4byte	0x310
+ 252 0004 0400     		.2byte	0x4
+ 253 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 254 000a 04       		.byte	0x4
+ 255 000b 01       		.uleb128 0x1
+ 256 000c E6000000 		.4byte	.LASF43
+ 257 0010 0C       		.byte	0xc
+ 258 0011 7F000000 		.4byte	.LASF44
+ 259 0015 44000000 		.4byte	.LASF45
+ 260 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 261 001d 00000000 		.4byte	0
+ 262 0021 00000000 		.4byte	.Ldebug_line0
+ 263 0025 02       		.uleb128 0x2
+ 264 0026 01       		.byte	0x1
+ 265 0027 06       		.byte	0x6
+ 266 0028 0A030000 		.4byte	.LASF0
+ 267 002c 03       		.uleb128 0x3
+ 268 002d 00000000 		.4byte	.LASF4
+ 269 0031 02       		.byte	0x2
+ 270 0032 1D       		.byte	0x1d
+ 271 0033 37000000 		.4byte	0x37
+ 272 0037 02       		.uleb128 0x2
+ 273 0038 01       		.byte	0x1
+ 274 0039 08       		.byte	0x8
+ 275 003a D8000000 		.4byte	.LASF1
+ 276 003e 02       		.uleb128 0x2
+ 277 003f 02       		.byte	0x2
+ 278 0040 05       		.byte	0x5
+ 279 0041 8E020000 		.4byte	.LASF2
+ 280 0045 02       		.uleb128 0x2
+ 281 0046 02       		.byte	0x2
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 7
+
+
+ 282 0047 07       		.byte	0x7
+ 283 0048 99010000 		.4byte	.LASF3
+ 284 004c 03       		.uleb128 0x3
+ 285 004d 3A000000 		.4byte	.LASF5
+ 286 0051 02       		.byte	0x2
+ 287 0052 3F       		.byte	0x3f
+ 288 0053 57000000 		.4byte	0x57
+ 289 0057 02       		.uleb128 0x2
+ 290 0058 04       		.byte	0x4
+ 291 0059 05       		.byte	0x5
+ 292 005a E3020000 		.4byte	.LASF6
+ 293 005e 03       		.uleb128 0x3
+ 294 005f EB010000 		.4byte	.LASF7
+ 295 0063 02       		.byte	0x2
+ 296 0064 41       		.byte	0x41
+ 297 0065 69000000 		.4byte	0x69
+ 298 0069 02       		.uleb128 0x2
+ 299 006a 04       		.byte	0x4
+ 300 006b 07       		.byte	0x7
+ 301 006c 87010000 		.4byte	.LASF8
+ 302 0070 02       		.uleb128 0x2
+ 303 0071 08       		.byte	0x8
+ 304 0072 05       		.byte	0x5
+ 305 0073 7B020000 		.4byte	.LASF9
+ 306 0077 02       		.uleb128 0x2
+ 307 0078 08       		.byte	0x8
+ 308 0079 07       		.byte	0x7
+ 309 007a 1E020000 		.4byte	.LASF10
+ 310 007e 04       		.uleb128 0x4
+ 311 007f 04       		.byte	0x4
+ 312 0080 05       		.byte	0x5
+ 313 0081 696E7400 		.ascii	"int\000"
+ 314 0085 02       		.uleb128 0x2
+ 315 0086 04       		.byte	0x4
+ 316 0087 07       		.byte	0x7
+ 317 0088 11020000 		.4byte	.LASF11
+ 318 008c 03       		.uleb128 0x3
+ 319 008d 35020000 		.4byte	.LASF12
+ 320 0091 03       		.byte	0x3
+ 321 0092 18       		.byte	0x18
+ 322 0093 2C000000 		.4byte	0x2c
+ 323 0097 03       		.uleb128 0x3
+ 324 0098 98000000 		.4byte	.LASF13
+ 325 009c 03       		.byte	0x3
+ 326 009d 2C       		.byte	0x2c
+ 327 009e 4C000000 		.4byte	0x4c
+ 328 00a2 03       		.uleb128 0x3
+ 329 00a3 AC010000 		.4byte	.LASF14
+ 330 00a7 03       		.byte	0x3
+ 331 00a8 30       		.byte	0x30
+ 332 00a9 5E000000 		.4byte	0x5e
+ 333 00ad 02       		.uleb128 0x2
+ 334 00ae 08       		.byte	0x8
+ 335 00af 04       		.byte	0x4
+ 336 00b0 FE020000 		.4byte	.LASF15
+ 337 00b4 05       		.uleb128 0x5
+ 338 00b5 98020000 		.4byte	.LASF16
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 8
+
+
+ 339 00b9 04       		.byte	0x4
+ 340 00ba E401     		.2byte	0x1e4
+ 341 00bc 37000000 		.4byte	0x37
+ 342 00c0 02       		.uleb128 0x2
+ 343 00c1 04       		.byte	0x4
+ 344 00c2 04       		.byte	0x4
+ 345 00c3 B1000000 		.4byte	.LASF17
+ 346 00c7 02       		.uleb128 0x2
+ 347 00c8 08       		.byte	0x8
+ 348 00c9 04       		.byte	0x4
+ 349 00ca 16030000 		.4byte	.LASF18
+ 350 00ce 02       		.uleb128 0x2
+ 351 00cf 01       		.byte	0x1
+ 352 00d0 08       		.byte	0x8
+ 353 00d1 89020000 		.4byte	.LASF19
+ 354 00d5 02       		.uleb128 0x2
+ 355 00d6 04       		.byte	0x4
+ 356 00d7 07       		.byte	0x7
+ 357 00d8 72020000 		.4byte	.LASF20
+ 358 00dc 06       		.uleb128 0x6
+ 359 00dd BC000000 		.4byte	.LASF24
+ 360 00e1 01       		.byte	0x1
+ 361 00e2 08       		.byte	0x8
+ 362 00e3 00000000 		.4byte	.LFB63
+ 363 00e7 08000000 		.4byte	.LFE63-.LFB63
+ 364 00eb 01       		.uleb128 0x1
+ 365 00ec 9C       		.byte	0x9c
+ 366 00ed 11010000 		.4byte	0x111
+ 367 00f1 07       		.uleb128 0x7
+ 368 00f2 6D7300   		.ascii	"ms\000"
+ 369 00f5 01       		.byte	0x1
+ 370 00f6 08       		.byte	0x8
+ 371 00f7 A2000000 		.4byte	0xa2
+ 372 00fb 00000000 		.4byte	.LLST0
+ 373 00ff 08       		.uleb128 0x8
+ 374 0100 06000000 		.4byte	.LVL1
+ 375 0104 A4020000 		.4byte	0x2a4
+ 376 0108 09       		.uleb128 0x9
+ 377 0109 01       		.uleb128 0x1
+ 378 010a 50       		.byte	0x50
+ 379 010b 03       		.uleb128 0x3
+ 380 010c F3       		.byte	0xf3
+ 381 010d 01       		.uleb128 0x1
+ 382 010e 50       		.byte	0x50
+ 383 010f 00       		.byte	0
+ 384 0110 00       		.byte	0
+ 385 0111 0A       		.uleb128 0xa
+ 386 0112 EC020000 		.4byte	.LASF21
+ 387 0116 01       		.byte	0x1
+ 388 0117 0C       		.byte	0xc
+ 389 0118 00000000 		.4byte	.LFB64
+ 390 011c 14000000 		.4byte	.LFE64-.LFB64
+ 391 0120 01       		.uleb128 0x1
+ 392 0121 9C       		.byte	0x9c
+ 393 0122 4B010000 		.4byte	0x14b
+ 394 0126 0B       		.uleb128 0xb
+ 395 0127 06000000 		.4byte	.LVL2
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 9
+
+
+ 396 012b AF020000 		.4byte	0x2af
+ 397 012f 0B       		.uleb128 0xb
+ 398 0130 0A000000 		.4byte	.LVL3
+ 399 0134 BA020000 		.4byte	0x2ba
+ 400 0138 0B       		.uleb128 0xb
+ 401 0139 0E000000 		.4byte	.LVL4
+ 402 013d C5020000 		.4byte	0x2c5
+ 403 0141 0B       		.uleb128 0xb
+ 404 0142 12000000 		.4byte	.LVL5
+ 405 0146 D1020000 		.4byte	0x2d1
+ 406 014a 00       		.byte	0
+ 407 014b 0A       		.uleb128 0xa
+ 408 014c 74010000 		.4byte	.LASF22
+ 409 0150 01       		.byte	0x1
+ 410 0151 15       		.byte	0x15
+ 411 0152 00000000 		.4byte	.LFB65
+ 412 0156 0A000000 		.4byte	.LFE65-.LFB65
+ 413 015a 01       		.uleb128 0x1
+ 414 015b 9C       		.byte	0x9c
+ 415 015c 70010000 		.4byte	0x170
+ 416 0160 08       		.uleb128 0x8
+ 417 0161 08000000 		.4byte	.LVL6
+ 418 0165 DC020000 		.4byte	0x2dc
+ 419 0169 09       		.uleb128 0x9
+ 420 016a 01       		.uleb128 0x1
+ 421 016b 50       		.byte	0x50
+ 422 016c 01       		.uleb128 0x1
+ 423 016d 30       		.byte	0x30
+ 424 016e 00       		.byte	0
+ 425 016f 00       		.byte	0
+ 426 0170 0A       		.uleb128 0xa
+ 427 0171 A0000000 		.4byte	.LASF23
+ 428 0175 01       		.byte	0x1
+ 429 0176 1B       		.byte	0x1b
+ 430 0177 00000000 		.4byte	.LFB66
+ 431 017b 10000000 		.4byte	.LFE66-.LFB66
+ 432 017f 01       		.uleb128 0x1
+ 433 0180 9C       		.byte	0x9c
+ 434 0181 A8010000 		.4byte	0x1a8
+ 435 0185 0C       		.uleb128 0xc
+ 436 0186 08000000 		.4byte	.LVL7
+ 437 018a DC020000 		.4byte	0x2dc
+ 438 018e 98010000 		.4byte	0x198
+ 439 0192 09       		.uleb128 0x9
+ 440 0193 01       		.uleb128 0x1
+ 441 0194 50       		.byte	0x50
+ 442 0195 01       		.uleb128 0x1
+ 443 0196 31       		.byte	0x31
+ 444 0197 00       		.byte	0
+ 445 0198 08       		.uleb128 0x8
+ 446 0199 0E000000 		.4byte	.LVL8
+ 447 019d E7020000 		.4byte	0x2e7
+ 448 01a1 09       		.uleb128 0x9
+ 449 01a2 01       		.uleb128 0x1
+ 450 01a3 50       		.byte	0x50
+ 451 01a4 01       		.uleb128 0x1
+ 452 01a5 44       		.byte	0x44
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 10
+
+
+ 453 01a6 00       		.byte	0
+ 454 01a7 00       		.byte	0
+ 455 01a8 06       		.uleb128 0x6
+ 456 01a9 0A000000 		.4byte	.LASF25
+ 457 01ad 01       		.byte	0x1
+ 458 01ae 23       		.byte	0x23
+ 459 01af 00000000 		.4byte	.LFB67
+ 460 01b3 1C000000 		.4byte	.LFE67-.LFB67
+ 461 01b7 01       		.uleb128 0x1
+ 462 01b8 9C       		.byte	0x9c
+ 463 01b9 FD010000 		.4byte	0x1fd
+ 464 01bd 0D       		.uleb128 0xd
+ 465 01be B7000000 		.4byte	.LASF26
+ 466 01c2 01       		.byte	0x1
+ 467 01c3 23       		.byte	0x23
+ 468 01c4 8C000000 		.4byte	0x8c
+ 469 01c8 21000000 		.4byte	.LLST1
+ 470 01cc 0C       		.uleb128 0xc
+ 471 01cd 0A000000 		.4byte	.LVL11
+ 472 01d1 E7020000 		.4byte	0x2e7
+ 473 01d5 DF010000 		.4byte	0x1df
+ 474 01d9 09       		.uleb128 0x9
+ 475 01da 01       		.uleb128 0x1
+ 476 01db 50       		.byte	0x50
+ 477 01dc 01       		.uleb128 0x1
+ 478 01dd 44       		.byte	0x44
+ 479 01de 00       		.byte	0
+ 480 01df 0C       		.uleb128 0xc
+ 481 01e0 10000000 		.4byte	.LVL12
+ 482 01e4 F2020000 		.4byte	0x2f2
+ 483 01e8 F3010000 		.4byte	0x1f3
+ 484 01ec 09       		.uleb128 0x9
+ 485 01ed 01       		.uleb128 0x1
+ 486 01ee 50       		.byte	0x50
+ 487 01ef 02       		.uleb128 0x2
+ 488 01f0 74       		.byte	0x74
+ 489 01f1 00       		.sleb128 0
+ 490 01f2 00       		.byte	0
+ 491 01f3 0B       		.uleb128 0xb
+ 492 01f4 14000000 		.4byte	.LVL13
+ 493 01f8 FD020000 		.4byte	0x2fd
+ 494 01fc 00       		.byte	0
+ 495 01fd 0E       		.uleb128 0xe
+ 496 01fe 9E020000 		.4byte	.LASF29
+ 497 0202 01       		.byte	0x1
+ 498 0203 2B       		.byte	0x2b
+ 499 0204 8C000000 		.4byte	0x8c
+ 500 0208 00000000 		.4byte	.LFB68
+ 501 020c 02000000 		.4byte	.LFE68-.LFB68
+ 502 0210 01       		.uleb128 0x1
+ 503 0211 9C       		.byte	0x9c
+ 504 0212 24020000 		.4byte	0x224
+ 505 0216 0F       		.uleb128 0xf
+ 506 0217 23030000 		.4byte	.LASF27
+ 507 021b 01       		.byte	0x1
+ 508 021c 2B       		.byte	0x2b
+ 509 021d 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 11
+
+
+ 510 0221 01       		.uleb128 0x1
+ 511 0222 50       		.byte	0x50
+ 512 0223 00       		.byte	0
+ 513 0224 10       		.uleb128 0x10
+ 514 0225 D2010000 		.4byte	.LASF28
+ 515 0229 01       		.byte	0x1
+ 516 022a 30       		.byte	0x30
+ 517 022b 8C000000 		.4byte	0x8c
+ 518 022f 00000000 		.4byte	.LFB69
+ 519 0233 18000000 		.4byte	.LFE69-.LFB69
+ 520 0237 01       		.uleb128 0x1
+ 521 0238 9C       		.byte	0x9c
+ 522 0239 63020000 		.4byte	0x263
+ 523 023d 0C       		.uleb128 0xc
+ 524 023e 08000000 		.4byte	.LVL15
+ 525 0242 F2020000 		.4byte	0x2f2
+ 526 0246 50020000 		.4byte	0x250
+ 527 024a 09       		.uleb128 0x9
+ 528 024b 01       		.uleb128 0x1
+ 529 024c 50       		.byte	0x50
+ 530 024d 01       		.uleb128 0x1
+ 531 024e 30       		.byte	0x30
+ 532 024f 00       		.byte	0
+ 533 0250 0B       		.uleb128 0xb
+ 534 0251 0C000000 		.4byte	.LVL16
+ 535 0255 FD020000 		.4byte	0x2fd
+ 536 0259 0B       		.uleb128 0xb
+ 537 025a 16000000 		.4byte	.LVL17
+ 538 025e 08030000 		.4byte	0x308
+ 539 0262 00       		.byte	0
+ 540 0263 0E       		.uleb128 0xe
+ 541 0264 20000000 		.4byte	.LASF30
+ 542 0268 01       		.byte	0x1
+ 543 0269 3A       		.byte	0x3a
+ 544 026a 8C000000 		.4byte	0x8c
+ 545 026e 00000000 		.4byte	.LFB70
+ 546 0272 04000000 		.4byte	.LFE70-.LFB70
+ 547 0276 01       		.uleb128 0x1
+ 548 0277 9C       		.byte	0x9c
+ 549 0278 8C020000 		.4byte	0x28c
+ 550 027c 0D       		.uleb128 0xd
+ 551 027d B5010000 		.4byte	.LASF31
+ 552 0281 01       		.byte	0x1
+ 553 0282 3A       		.byte	0x3a
+ 554 0283 8C020000 		.4byte	0x28c
+ 555 0287 42000000 		.4byte	.LLST2
+ 556 028b 00       		.byte	0
+ 557 028c 02       		.uleb128 0x2
+ 558 028d 01       		.byte	0x1
+ 559 028e 02       		.byte	0x2
+ 560 028f 1D030000 		.4byte	.LASF32
+ 561 0293 11       		.uleb128 0x11
+ 562 0294 4E020000 		.4byte	.LASF46
+ 563 0298 08       		.byte	0x8
+ 564 0299 1207     		.2byte	0x712
+ 565 029b 9F020000 		.4byte	0x29f
+ 566 029f 12       		.uleb128 0x12
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 12
+
+
+ 567 02a0 97000000 		.4byte	0x97
+ 568 02a4 13       		.uleb128 0x13
+ 569 02a5 2A030000 		.4byte	.LASF33
+ 570 02a9 2A030000 		.4byte	.LASF33
+ 571 02ad 05       		.byte	0x5
+ 572 02ae 76       		.byte	0x76
+ 573 02af 13       		.uleb128 0x13
+ 574 02b0 3D020000 		.4byte	.LASF34
+ 575 02b4 3D020000 		.4byte	.LASF34
+ 576 02b8 06       		.byte	0x6
+ 577 02b9 4B       		.byte	0x4b
+ 578 02ba 13       		.uleb128 0x13
+ 579 02bb 32030000 		.4byte	.LASF35
+ 580 02bf 32030000 		.4byte	.LASF35
+ 581 02c3 06       		.byte	0x6
+ 582 02c4 4C       		.byte	0x4c
+ 583 02c5 14       		.uleb128 0x14
+ 584 02c6 C2000000 		.4byte	.LASF36
+ 585 02ca C2000000 		.4byte	.LASF36
+ 586 02ce 06       		.byte	0x6
+ 587 02cf 4201     		.2byte	0x142
+ 588 02d1 13       		.uleb128 0x13
+ 589 02d2 B8020000 		.4byte	.LASF37
+ 590 02d6 B8020000 		.4byte	.LASF37
+ 591 02da 06       		.byte	0x6
+ 592 02db 4D       		.byte	0x4d
+ 593 02dc 13       		.uleb128 0x13
+ 594 02dd 00020000 		.4byte	.LASF38
+ 595 02e1 00020000 		.4byte	.LASF38
+ 596 02e5 07       		.byte	0x7
+ 597 02e6 26       		.byte	0x26
+ 598 02e7 13       		.uleb128 0x13
+ 599 02e8 F6010000 		.4byte	.LASF39
+ 600 02ec F6010000 		.4byte	.LASF39
+ 601 02f0 05       		.byte	0x5
+ 602 02f1 77       		.byte	0x77
+ 603 02f2 13       		.uleb128 0x13
+ 604 02f3 BA010000 		.4byte	.LASF40
+ 605 02f7 BA010000 		.4byte	.LASF40
+ 606 02fb 06       		.byte	0x6
+ 607 02fc 5E       		.byte	0x5e
+ 608 02fd 13       		.uleb128 0x13
+ 609 02fe CA020000 		.4byte	.LASF41
+ 610 0302 CA020000 		.4byte	.LASF41
+ 611 0306 06       		.byte	0x6
+ 612 0307 5C       		.byte	0x5c
+ 613 0308 13       		.uleb128 0x13
+ 614 0309 5B020000 		.4byte	.LASF42
+ 615 030d 5B020000 		.4byte	.LASF42
+ 616 0311 06       		.byte	0x6
+ 617 0312 60       		.byte	0x60
+ 618 0313 00       		.byte	0
+ 619              		.section	.debug_abbrev,"",%progbits
+ 620              	.Ldebug_abbrev0:
+ 621 0000 01       		.uleb128 0x1
+ 622 0001 11       		.uleb128 0x11
+ 623 0002 01       		.byte	0x1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 13
+
+
+ 624 0003 25       		.uleb128 0x25
+ 625 0004 0E       		.uleb128 0xe
+ 626 0005 13       		.uleb128 0x13
+ 627 0006 0B       		.uleb128 0xb
+ 628 0007 03       		.uleb128 0x3
+ 629 0008 0E       		.uleb128 0xe
+ 630 0009 1B       		.uleb128 0x1b
+ 631 000a 0E       		.uleb128 0xe
+ 632 000b 55       		.uleb128 0x55
+ 633 000c 17       		.uleb128 0x17
+ 634 000d 11       		.uleb128 0x11
+ 635 000e 01       		.uleb128 0x1
+ 636 000f 10       		.uleb128 0x10
+ 637 0010 17       		.uleb128 0x17
+ 638 0011 00       		.byte	0
+ 639 0012 00       		.byte	0
+ 640 0013 02       		.uleb128 0x2
+ 641 0014 24       		.uleb128 0x24
+ 642 0015 00       		.byte	0
+ 643 0016 0B       		.uleb128 0xb
+ 644 0017 0B       		.uleb128 0xb
+ 645 0018 3E       		.uleb128 0x3e
+ 646 0019 0B       		.uleb128 0xb
+ 647 001a 03       		.uleb128 0x3
+ 648 001b 0E       		.uleb128 0xe
+ 649 001c 00       		.byte	0
+ 650 001d 00       		.byte	0
+ 651 001e 03       		.uleb128 0x3
+ 652 001f 16       		.uleb128 0x16
+ 653 0020 00       		.byte	0
+ 654 0021 03       		.uleb128 0x3
+ 655 0022 0E       		.uleb128 0xe
+ 656 0023 3A       		.uleb128 0x3a
+ 657 0024 0B       		.uleb128 0xb
+ 658 0025 3B       		.uleb128 0x3b
+ 659 0026 0B       		.uleb128 0xb
+ 660 0027 49       		.uleb128 0x49
+ 661 0028 13       		.uleb128 0x13
+ 662 0029 00       		.byte	0
+ 663 002a 00       		.byte	0
+ 664 002b 04       		.uleb128 0x4
+ 665 002c 24       		.uleb128 0x24
+ 666 002d 00       		.byte	0
+ 667 002e 0B       		.uleb128 0xb
+ 668 002f 0B       		.uleb128 0xb
+ 669 0030 3E       		.uleb128 0x3e
+ 670 0031 0B       		.uleb128 0xb
+ 671 0032 03       		.uleb128 0x3
+ 672 0033 08       		.uleb128 0x8
+ 673 0034 00       		.byte	0
+ 674 0035 00       		.byte	0
+ 675 0036 05       		.uleb128 0x5
+ 676 0037 16       		.uleb128 0x16
+ 677 0038 00       		.byte	0
+ 678 0039 03       		.uleb128 0x3
+ 679 003a 0E       		.uleb128 0xe
+ 680 003b 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 14
+
+
+ 681 003c 0B       		.uleb128 0xb
+ 682 003d 3B       		.uleb128 0x3b
+ 683 003e 05       		.uleb128 0x5
+ 684 003f 49       		.uleb128 0x49
+ 685 0040 13       		.uleb128 0x13
+ 686 0041 00       		.byte	0
+ 687 0042 00       		.byte	0
+ 688 0043 06       		.uleb128 0x6
+ 689 0044 2E       		.uleb128 0x2e
+ 690 0045 01       		.byte	0x1
+ 691 0046 3F       		.uleb128 0x3f
+ 692 0047 19       		.uleb128 0x19
+ 693 0048 03       		.uleb128 0x3
+ 694 0049 0E       		.uleb128 0xe
+ 695 004a 3A       		.uleb128 0x3a
+ 696 004b 0B       		.uleb128 0xb
+ 697 004c 3B       		.uleb128 0x3b
+ 698 004d 0B       		.uleb128 0xb
+ 699 004e 27       		.uleb128 0x27
+ 700 004f 19       		.uleb128 0x19
+ 701 0050 11       		.uleb128 0x11
+ 702 0051 01       		.uleb128 0x1
+ 703 0052 12       		.uleb128 0x12
+ 704 0053 06       		.uleb128 0x6
+ 705 0054 40       		.uleb128 0x40
+ 706 0055 18       		.uleb128 0x18
+ 707 0056 9742     		.uleb128 0x2117
+ 708 0058 19       		.uleb128 0x19
+ 709 0059 01       		.uleb128 0x1
+ 710 005a 13       		.uleb128 0x13
+ 711 005b 00       		.byte	0
+ 712 005c 00       		.byte	0
+ 713 005d 07       		.uleb128 0x7
+ 714 005e 05       		.uleb128 0x5
+ 715 005f 00       		.byte	0
+ 716 0060 03       		.uleb128 0x3
+ 717 0061 08       		.uleb128 0x8
+ 718 0062 3A       		.uleb128 0x3a
+ 719 0063 0B       		.uleb128 0xb
+ 720 0064 3B       		.uleb128 0x3b
+ 721 0065 0B       		.uleb128 0xb
+ 722 0066 49       		.uleb128 0x49
+ 723 0067 13       		.uleb128 0x13
+ 724 0068 02       		.uleb128 0x2
+ 725 0069 17       		.uleb128 0x17
+ 726 006a 00       		.byte	0
+ 727 006b 00       		.byte	0
+ 728 006c 08       		.uleb128 0x8
+ 729 006d 898201   		.uleb128 0x4109
+ 730 0070 01       		.byte	0x1
+ 731 0071 11       		.uleb128 0x11
+ 732 0072 01       		.uleb128 0x1
+ 733 0073 31       		.uleb128 0x31
+ 734 0074 13       		.uleb128 0x13
+ 735 0075 00       		.byte	0
+ 736 0076 00       		.byte	0
+ 737 0077 09       		.uleb128 0x9
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 15
+
+
+ 738 0078 8A8201   		.uleb128 0x410a
+ 739 007b 00       		.byte	0
+ 740 007c 02       		.uleb128 0x2
+ 741 007d 18       		.uleb128 0x18
+ 742 007e 9142     		.uleb128 0x2111
+ 743 0080 18       		.uleb128 0x18
+ 744 0081 00       		.byte	0
+ 745 0082 00       		.byte	0
+ 746 0083 0A       		.uleb128 0xa
+ 747 0084 2E       		.uleb128 0x2e
+ 748 0085 01       		.byte	0x1
+ 749 0086 3F       		.uleb128 0x3f
+ 750 0087 19       		.uleb128 0x19
+ 751 0088 03       		.uleb128 0x3
+ 752 0089 0E       		.uleb128 0xe
+ 753 008a 3A       		.uleb128 0x3a
+ 754 008b 0B       		.uleb128 0xb
+ 755 008c 3B       		.uleb128 0x3b
+ 756 008d 0B       		.uleb128 0xb
+ 757 008e 11       		.uleb128 0x11
+ 758 008f 01       		.uleb128 0x1
+ 759 0090 12       		.uleb128 0x12
+ 760 0091 06       		.uleb128 0x6
+ 761 0092 40       		.uleb128 0x40
+ 762 0093 18       		.uleb128 0x18
+ 763 0094 9742     		.uleb128 0x2117
+ 764 0096 19       		.uleb128 0x19
+ 765 0097 01       		.uleb128 0x1
+ 766 0098 13       		.uleb128 0x13
+ 767 0099 00       		.byte	0
+ 768 009a 00       		.byte	0
+ 769 009b 0B       		.uleb128 0xb
+ 770 009c 898201   		.uleb128 0x4109
+ 771 009f 00       		.byte	0
+ 772 00a0 11       		.uleb128 0x11
+ 773 00a1 01       		.uleb128 0x1
+ 774 00a2 31       		.uleb128 0x31
+ 775 00a3 13       		.uleb128 0x13
+ 776 00a4 00       		.byte	0
+ 777 00a5 00       		.byte	0
+ 778 00a6 0C       		.uleb128 0xc
+ 779 00a7 898201   		.uleb128 0x4109
+ 780 00aa 01       		.byte	0x1
+ 781 00ab 11       		.uleb128 0x11
+ 782 00ac 01       		.uleb128 0x1
+ 783 00ad 31       		.uleb128 0x31
+ 784 00ae 13       		.uleb128 0x13
+ 785 00af 01       		.uleb128 0x1
+ 786 00b0 13       		.uleb128 0x13
+ 787 00b1 00       		.byte	0
+ 788 00b2 00       		.byte	0
+ 789 00b3 0D       		.uleb128 0xd
+ 790 00b4 05       		.uleb128 0x5
+ 791 00b5 00       		.byte	0
+ 792 00b6 03       		.uleb128 0x3
+ 793 00b7 0E       		.uleb128 0xe
+ 794 00b8 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 16
+
+
+ 795 00b9 0B       		.uleb128 0xb
+ 796 00ba 3B       		.uleb128 0x3b
+ 797 00bb 0B       		.uleb128 0xb
+ 798 00bc 49       		.uleb128 0x49
+ 799 00bd 13       		.uleb128 0x13
+ 800 00be 02       		.uleb128 0x2
+ 801 00bf 17       		.uleb128 0x17
+ 802 00c0 00       		.byte	0
+ 803 00c1 00       		.byte	0
+ 804 00c2 0E       		.uleb128 0xe
+ 805 00c3 2E       		.uleb128 0x2e
+ 806 00c4 01       		.byte	0x1
+ 807 00c5 3F       		.uleb128 0x3f
+ 808 00c6 19       		.uleb128 0x19
+ 809 00c7 03       		.uleb128 0x3
+ 810 00c8 0E       		.uleb128 0xe
+ 811 00c9 3A       		.uleb128 0x3a
+ 812 00ca 0B       		.uleb128 0xb
+ 813 00cb 3B       		.uleb128 0x3b
+ 814 00cc 0B       		.uleb128 0xb
+ 815 00cd 27       		.uleb128 0x27
+ 816 00ce 19       		.uleb128 0x19
+ 817 00cf 49       		.uleb128 0x49
+ 818 00d0 13       		.uleb128 0x13
+ 819 00d1 11       		.uleb128 0x11
+ 820 00d2 01       		.uleb128 0x1
+ 821 00d3 12       		.uleb128 0x12
+ 822 00d4 06       		.uleb128 0x6
+ 823 00d5 40       		.uleb128 0x40
+ 824 00d6 18       		.uleb128 0x18
+ 825 00d7 9742     		.uleb128 0x2117
+ 826 00d9 19       		.uleb128 0x19
+ 827 00da 01       		.uleb128 0x1
+ 828 00db 13       		.uleb128 0x13
+ 829 00dc 00       		.byte	0
+ 830 00dd 00       		.byte	0
+ 831 00de 0F       		.uleb128 0xf
+ 832 00df 05       		.uleb128 0x5
+ 833 00e0 00       		.byte	0
+ 834 00e1 03       		.uleb128 0x3
+ 835 00e2 0E       		.uleb128 0xe
+ 836 00e3 3A       		.uleb128 0x3a
+ 837 00e4 0B       		.uleb128 0xb
+ 838 00e5 3B       		.uleb128 0x3b
+ 839 00e6 0B       		.uleb128 0xb
+ 840 00e7 49       		.uleb128 0x49
+ 841 00e8 13       		.uleb128 0x13
+ 842 00e9 02       		.uleb128 0x2
+ 843 00ea 18       		.uleb128 0x18
+ 844 00eb 00       		.byte	0
+ 845 00ec 00       		.byte	0
+ 846 00ed 10       		.uleb128 0x10
+ 847 00ee 2E       		.uleb128 0x2e
+ 848 00ef 01       		.byte	0x1
+ 849 00f0 3F       		.uleb128 0x3f
+ 850 00f1 19       		.uleb128 0x19
+ 851 00f2 03       		.uleb128 0x3
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 17
+
+
+ 852 00f3 0E       		.uleb128 0xe
+ 853 00f4 3A       		.uleb128 0x3a
+ 854 00f5 0B       		.uleb128 0xb
+ 855 00f6 3B       		.uleb128 0x3b
+ 856 00f7 0B       		.uleb128 0xb
+ 857 00f8 49       		.uleb128 0x49
+ 858 00f9 13       		.uleb128 0x13
+ 859 00fa 11       		.uleb128 0x11
+ 860 00fb 01       		.uleb128 0x1
+ 861 00fc 12       		.uleb128 0x12
+ 862 00fd 06       		.uleb128 0x6
+ 863 00fe 40       		.uleb128 0x40
+ 864 00ff 18       		.uleb128 0x18
+ 865 0100 9742     		.uleb128 0x2117
+ 866 0102 19       		.uleb128 0x19
+ 867 0103 01       		.uleb128 0x1
+ 868 0104 13       		.uleb128 0x13
+ 869 0105 00       		.byte	0
+ 870 0106 00       		.byte	0
+ 871 0107 11       		.uleb128 0x11
+ 872 0108 34       		.uleb128 0x34
+ 873 0109 00       		.byte	0
+ 874 010a 03       		.uleb128 0x3
+ 875 010b 0E       		.uleb128 0xe
+ 876 010c 3A       		.uleb128 0x3a
+ 877 010d 0B       		.uleb128 0xb
+ 878 010e 3B       		.uleb128 0x3b
+ 879 010f 05       		.uleb128 0x5
+ 880 0110 49       		.uleb128 0x49
+ 881 0111 13       		.uleb128 0x13
+ 882 0112 3F       		.uleb128 0x3f
+ 883 0113 19       		.uleb128 0x19
+ 884 0114 3C       		.uleb128 0x3c
+ 885 0115 19       		.uleb128 0x19
+ 886 0116 00       		.byte	0
+ 887 0117 00       		.byte	0
+ 888 0118 12       		.uleb128 0x12
+ 889 0119 35       		.uleb128 0x35
+ 890 011a 00       		.byte	0
+ 891 011b 49       		.uleb128 0x49
+ 892 011c 13       		.uleb128 0x13
+ 893 011d 00       		.byte	0
+ 894 011e 00       		.byte	0
+ 895 011f 13       		.uleb128 0x13
+ 896 0120 2E       		.uleb128 0x2e
+ 897 0121 00       		.byte	0
+ 898 0122 3F       		.uleb128 0x3f
+ 899 0123 19       		.uleb128 0x19
+ 900 0124 3C       		.uleb128 0x3c
+ 901 0125 19       		.uleb128 0x19
+ 902 0126 6E       		.uleb128 0x6e
+ 903 0127 0E       		.uleb128 0xe
+ 904 0128 03       		.uleb128 0x3
+ 905 0129 0E       		.uleb128 0xe
+ 906 012a 3A       		.uleb128 0x3a
+ 907 012b 0B       		.uleb128 0xb
+ 908 012c 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 18
+
+
+ 909 012d 0B       		.uleb128 0xb
+ 910 012e 00       		.byte	0
+ 911 012f 00       		.byte	0
+ 912 0130 14       		.uleb128 0x14
+ 913 0131 2E       		.uleb128 0x2e
+ 914 0132 00       		.byte	0
+ 915 0133 3F       		.uleb128 0x3f
+ 916 0134 19       		.uleb128 0x19
+ 917 0135 3C       		.uleb128 0x3c
+ 918 0136 19       		.uleb128 0x19
+ 919 0137 6E       		.uleb128 0x6e
+ 920 0138 0E       		.uleb128 0xe
+ 921 0139 03       		.uleb128 0x3
+ 922 013a 0E       		.uleb128 0xe
+ 923 013b 3A       		.uleb128 0x3a
+ 924 013c 0B       		.uleb128 0xb
+ 925 013d 3B       		.uleb128 0x3b
+ 926 013e 05       		.uleb128 0x5
+ 927 013f 00       		.byte	0
+ 928 0140 00       		.byte	0
+ 929 0141 00       		.byte	0
+ 930              		.section	.debug_loc,"",%progbits
+ 931              	.Ldebug_loc0:
+ 932              	.LLST0:
+ 933 0000 00000000 		.4byte	.LVL0
+ 934 0004 05000000 		.4byte	.LVL1-1
+ 935 0008 0100     		.2byte	0x1
+ 936 000a 50       		.byte	0x50
+ 937 000b 05000000 		.4byte	.LVL1-1
+ 938 000f 08000000 		.4byte	.LFE63
+ 939 0013 0400     		.2byte	0x4
+ 940 0015 F3       		.byte	0xf3
+ 941 0016 01       		.uleb128 0x1
+ 942 0017 50       		.byte	0x50
+ 943 0018 9F       		.byte	0x9f
+ 944 0019 00000000 		.4byte	0
+ 945 001d 00000000 		.4byte	0
+ 946              	.LLST1:
+ 947 0021 00000000 		.4byte	.LVL9
+ 948 0025 06000000 		.4byte	.LVL10
+ 949 0029 0100     		.2byte	0x1
+ 950 002b 50       		.byte	0x50
+ 951 002c 06000000 		.4byte	.LVL10
+ 952 0030 1C000000 		.4byte	.LFE67
+ 953 0034 0400     		.2byte	0x4
+ 954 0036 F3       		.byte	0xf3
+ 955 0037 01       		.uleb128 0x1
+ 956 0038 50       		.byte	0x50
+ 957 0039 9F       		.byte	0x9f
+ 958 003a 00000000 		.4byte	0
+ 959 003e 00000000 		.4byte	0
+ 960              	.LLST2:
+ 961 0042 00000000 		.4byte	.LVL18
+ 962 0046 02000000 		.4byte	.LVL19
+ 963 004a 0100     		.2byte	0x1
+ 964 004c 50       		.byte	0x50
+ 965 004d 02000000 		.4byte	.LVL19
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 19
+
+
+ 966 0051 04000000 		.4byte	.LFE70
+ 967 0055 0400     		.2byte	0x4
+ 968 0057 F3       		.byte	0xf3
+ 969 0058 01       		.uleb128 0x1
+ 970 0059 50       		.byte	0x50
+ 971 005a 9F       		.byte	0x9f
+ 972 005b 00000000 		.4byte	0
+ 973 005f 00000000 		.4byte	0
+ 974              		.section	.debug_aranges,"",%progbits
+ 975 0000 54000000 		.4byte	0x54
+ 976 0004 0200     		.2byte	0x2
+ 977 0006 00000000 		.4byte	.Ldebug_info0
+ 978 000a 04       		.byte	0x4
+ 979 000b 00       		.byte	0
+ 980 000c 0000     		.2byte	0
+ 981 000e 0000     		.2byte	0
+ 982 0010 00000000 		.4byte	.LFB63
+ 983 0014 08000000 		.4byte	.LFE63-.LFB63
+ 984 0018 00000000 		.4byte	.LFB64
+ 985 001c 14000000 		.4byte	.LFE64-.LFB64
+ 986 0020 00000000 		.4byte	.LFB65
+ 987 0024 0A000000 		.4byte	.LFE65-.LFB65
+ 988 0028 00000000 		.4byte	.LFB66
+ 989 002c 10000000 		.4byte	.LFE66-.LFB66
+ 990 0030 00000000 		.4byte	.LFB67
+ 991 0034 1C000000 		.4byte	.LFE67-.LFB67
+ 992 0038 00000000 		.4byte	.LFB68
+ 993 003c 02000000 		.4byte	.LFE68-.LFB68
+ 994 0040 00000000 		.4byte	.LFB69
+ 995 0044 18000000 		.4byte	.LFE69-.LFB69
+ 996 0048 00000000 		.4byte	.LFB70
+ 997 004c 04000000 		.4byte	.LFE70-.LFB70
+ 998 0050 00000000 		.4byte	0
+ 999 0054 00000000 		.4byte	0
+ 1000              		.section	.debug_ranges,"",%progbits
+ 1001              	.Ldebug_ranges0:
+ 1002 0000 00000000 		.4byte	.LFB63
+ 1003 0004 08000000 		.4byte	.LFE63
+ 1004 0008 00000000 		.4byte	.LFB64
+ 1005 000c 14000000 		.4byte	.LFE64
+ 1006 0010 00000000 		.4byte	.LFB65
+ 1007 0014 0A000000 		.4byte	.LFE65
+ 1008 0018 00000000 		.4byte	.LFB66
+ 1009 001c 10000000 		.4byte	.LFE66
+ 1010 0020 00000000 		.4byte	.LFB67
+ 1011 0024 1C000000 		.4byte	.LFE67
+ 1012 0028 00000000 		.4byte	.LFB68
+ 1013 002c 02000000 		.4byte	.LFE68
+ 1014 0030 00000000 		.4byte	.LFB69
+ 1015 0034 18000000 		.4byte	.LFE69
+ 1016 0038 00000000 		.4byte	.LFB70
+ 1017 003c 04000000 		.4byte	.LFE70
+ 1018 0040 00000000 		.4byte	0
+ 1019 0044 00000000 		.4byte	0
+ 1020              		.section	.debug_line,"",%progbits
+ 1021              	.Ldebug_line0:
+ 1022 0000 20020000 		.section	.debug_str,"MS",%progbits,1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 20
+
+
+ 1022      02008A01 
+ 1022      00000201 
+ 1022      FB0E0D00 
+ 1022      01010101 
+ 1023              	.LASF4:
+ 1024 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1024      6E74385F 
+ 1024      7400
+ 1025              	.LASF25:
+ 1026 000a 53616B75 		.ascii	"SakuraIOc_hw_sendByte\000"
+ 1026      7261494F 
+ 1026      635F6877 
+ 1026      5F73656E 
+ 1026      64427974 
+ 1027              	.LASF30:
+ 1028 0020 53616B75 		.ascii	"SakuraIOc_hw_receiveByte2\000"
+ 1028      7261494F 
+ 1028      635F6877 
+ 1028      5F726563 
+ 1028      65697665 
+ 1029              	.LASF5:
+ 1030 003a 5F5F696E 		.ascii	"__int32_t\000"
+ 1030      7433325F 
+ 1030      7400
+ 1031              	.LASF45:
+ 1032 0044 443A5C44 		.ascii	"D:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
+ 1032      726F7062 
+ 1032      6F785C50 
+ 1032      75626C69 
+ 1032      635C5053 
+ 1033 0072 4C6F6767 		.ascii	"Logger.cydsn\000"
+ 1033      65722E63 
+ 1033      7964736E 
+ 1033      00
+ 1034              	.LASF44:
+ 1035 007f 53616B75 		.ascii	"SakuraIO\\SakuraIOc_spi.c\000"
+ 1035      7261494F 
+ 1035      5C53616B 
+ 1035      75726149 
+ 1035      4F635F73 
+ 1036              	.LASF13:
+ 1037 0098 696E7433 		.ascii	"int32_t\000"
+ 1037      325F7400 
+ 1038              	.LASF23:
+ 1039 00a0 53616B75 		.ascii	"SakuraIOc_hw_end\000"
+ 1039      7261494F 
+ 1039      635F6877 
+ 1039      5F656E64 
+ 1039      00
+ 1040              	.LASF17:
+ 1041 00b1 666C6F61 		.ascii	"float\000"
+ 1041      7400
+ 1042              	.LASF26:
+ 1043 00b7 64617461 		.ascii	"data\000"
+ 1043      00
+ 1044              	.LASF24:
+ 1045 00bc 64656C61 		.ascii	"delay\000"
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 21
+
+
+ 1045      7900
+ 1046              	.LASF36:
+ 1047 00c2 53414B55 		.ascii	"SAKURA_SPIM_EnableInt\000"
+ 1047      52415F53 
+ 1047      50494D5F 
+ 1047      456E6162 
+ 1047      6C65496E 
+ 1048              	.LASF1:
+ 1049 00d8 756E7369 		.ascii	"unsigned char\000"
+ 1049      676E6564 
+ 1049      20636861 
+ 1049      7200
+ 1050              	.LASF43:
+ 1051 00e6 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1051      43313120 
+ 1051      352E342E 
+ 1051      31203230 
+ 1051      31363036 
+ 1052 0119 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1052      20726576 
+ 1052      6973696F 
+ 1052      6E203233 
+ 1052      37373135 
+ 1053 014c 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1053      66756E63 
+ 1053      74696F6E 
+ 1053      2D736563 
+ 1053      74696F6E 
+ 1054              	.LASF22:
+ 1055 0174 53616B75 		.ascii	"SakuraIOc_hw_begin\000"
+ 1055      7261494F 
+ 1055      635F6877 
+ 1055      5F626567 
+ 1055      696E00
+ 1056              	.LASF8:
+ 1057 0187 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1057      20756E73 
+ 1057      69676E65 
+ 1057      6420696E 
+ 1057      7400
+ 1058              	.LASF3:
+ 1059 0199 73686F72 		.ascii	"short unsigned int\000"
+ 1059      7420756E 
+ 1059      7369676E 
+ 1059      65642069 
+ 1059      6E7400
+ 1060              	.LASF14:
+ 1061 01ac 75696E74 		.ascii	"uint32_t\000"
+ 1061      33325F74 
+ 1061      00
+ 1062              	.LASF31:
+ 1063 01b5 73746F70 		.ascii	"stop\000"
+ 1063      00
+ 1064              	.LASF40:
+ 1065 01ba 53414B55 		.ascii	"SAKURA_SPIM_WriteTxData\000"
+ 1065      52415F53 
+ 1065      50494D5F 
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 22
+
+
+ 1065      57726974 
+ 1065      65547844 
+ 1066              	.LASF28:
+ 1067 01d2 53616B75 		.ascii	"SakuraIOc_hw_receiveByte\000"
+ 1067      7261494F 
+ 1067      635F6877 
+ 1067      5F726563 
+ 1067      65697665 
+ 1068              	.LASF7:
+ 1069 01eb 5F5F7569 		.ascii	"__uint32_t\000"
+ 1069      6E743332 
+ 1069      5F7400
+ 1070              	.LASF39:
+ 1071 01f6 43794465 		.ascii	"CyDelayUs\000"
+ 1071      6C617955 
+ 1071      7300
+ 1072              	.LASF38:
+ 1073 0200 53414B55 		.ascii	"SAKURA_CSn_Write\000"
+ 1073      52415F43 
+ 1073      536E5F57 
+ 1073      72697465 
+ 1073      00
+ 1074              	.LASF11:
+ 1075 0211 756E7369 		.ascii	"unsigned int\000"
+ 1075      676E6564 
+ 1075      20696E74 
+ 1075      00
+ 1076              	.LASF10:
+ 1077 021e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1077      206C6F6E 
+ 1077      6720756E 
+ 1077      7369676E 
+ 1077      65642069 
+ 1078              	.LASF12:
+ 1079 0235 75696E74 		.ascii	"uint8_t\000"
+ 1079      385F7400 
+ 1080              	.LASF34:
+ 1081 023d 53414B55 		.ascii	"SAKURA_SPIM_Init\000"
+ 1081      52415F53 
+ 1081      50494D5F 
+ 1081      496E6974 
+ 1081      00
+ 1082              	.LASF46:
+ 1083 024e 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1083      52784275 
+ 1083      66666572 
+ 1083      00
+ 1084              	.LASF42:
+ 1085 025b 53414B55 		.ascii	"SAKURA_SPIM_ReadRxData\000"
+ 1085      52415F53 
+ 1085      50494D5F 
+ 1085      52656164 
+ 1085      52784461 
+ 1086              	.LASF20:
+ 1087 0272 73697A65 		.ascii	"sizetype\000"
+ 1087      74797065 
+ 1087      00
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 23
+
+
+ 1088              	.LASF9:
+ 1089 027b 6C6F6E67 		.ascii	"long long int\000"
+ 1089      206C6F6E 
+ 1089      6720696E 
+ 1089      7400
+ 1090              	.LASF19:
+ 1091 0289 63686172 		.ascii	"char\000"
+ 1091      00
+ 1092              	.LASF2:
+ 1093 028e 73686F72 		.ascii	"short int\000"
+ 1093      7420696E 
+ 1093      7400
+ 1094              	.LASF16:
+ 1095 0298 75696E74 		.ascii	"uint8\000"
+ 1095      3800
+ 1096              	.LASF29:
+ 1097 029e 53616B75 		.ascii	"SakuraIOc_hw_startReceive\000"
+ 1097      7261494F 
+ 1097      635F6877 
+ 1097      5F737461 
+ 1097      72745265 
+ 1098              	.LASF37:
+ 1099 02b8 53414B55 		.ascii	"SAKURA_SPIM_Start\000"
+ 1099      52415F53 
+ 1099      50494D5F 
+ 1099      53746172 
+ 1099      7400
+ 1100              	.LASF41:
+ 1101 02ca 53414B55 		.ascii	"SAKURA_SPIM_ReadTxStatus\000"
+ 1101      52415F53 
+ 1101      50494D5F 
+ 1101      52656164 
+ 1101      54785374 
+ 1102              	.LASF6:
+ 1103 02e3 6C6F6E67 		.ascii	"long int\000"
+ 1103      20696E74 
+ 1103      00
+ 1104              	.LASF21:
+ 1105 02ec 53616B75 		.ascii	"SakuraIOc_hw_init\000"
+ 1105      7261494F 
+ 1105      635F6877 
+ 1105      5F696E69 
+ 1105      7400
+ 1106              	.LASF15:
+ 1107 02fe 6C6F6E67 		.ascii	"long double\000"
+ 1107      20646F75 
+ 1107      626C6500 
+ 1108              	.LASF0:
+ 1109 030a 7369676E 		.ascii	"signed char\000"
+ 1109      65642063 
+ 1109      68617200 
+ 1110              	.LASF18:
+ 1111 0316 646F7562 		.ascii	"double\000"
+ 1111      6C6500
+ 1112              	.LASF32:
+ 1113 031d 5F426F6F 		.ascii	"_Bool\000"
+ 1113      6C00
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccLE4NE8.s 			page 24
+
+
+ 1114              	.LASF27:
+ 1115 0323 6C656E67 		.ascii	"length\000"
+ 1115      746800
+ 1116              	.LASF33:
+ 1117 032a 43794465 		.ascii	"CyDelay\000"
+ 1117      6C617900 
+ 1118              	.LASF35:
+ 1119 0332 53414B55 		.ascii	"SAKURA_SPIM_Enable\000"
+ 1119      52415F53 
+ 1119      50494D5F 
+ 1119      456E6162 
+ 1119      6C6500
+ 1120              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,4446 @@
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"xprintf.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.xputc,"ax",%progbits
+  20              		.align	2
+  21              		.global	xputc
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	xputc, %function
+  25              	xputc:
+  26              	.LFB0:
+  27              		.file 1 "xprintf.c"
+   1:xprintf.c     **** /*------------------------------------------------------------------------/
+   2:xprintf.c     **** /  Universal string handler for user console interface
+   3:xprintf.c     **** /-------------------------------------------------------------------------/
+   4:xprintf.c     **** /
+   5:xprintf.c     **** /  Copyright (C) 2011, ChaN, all right reserved.
+   6:xprintf.c     **** /
+   7:xprintf.c     **** / * This software is a free software and there is NO WARRANTY.
+   8:xprintf.c     **** / * No restriction on use. You can use, modify and redistribute it for
+   9:xprintf.c     **** /   personal, non-profit or commercial products UNDER YOUR RESPONSIBILITY.
+  10:xprintf.c     **** / * Redistributions of source code must retain the above copyright notice.
+  11:xprintf.c     **** /
+  12:xprintf.c     **** /-------------------------------------------------------------------------*/
+  13:xprintf.c     **** 
+  14:xprintf.c     **** #include "xprintf.h"
+  15:xprintf.c     **** 
+  16:xprintf.c     **** 
+  17:xprintf.c     **** #if _USE_XFUNC_OUT
+  18:xprintf.c     **** #include <stdarg.h>
+  19:xprintf.c     **** void (*xfunc_out)(unsigned char);	/* Pointer to the output stream */
+  20:xprintf.c     **** static char *outptr;
+  21:xprintf.c     **** 
+  22:xprintf.c     **** /*----------------------------------------------*/
+  23:xprintf.c     **** /* Put a character                              */
+  24:xprintf.c     **** /*----------------------------------------------*/
+  25:xprintf.c     **** 
+  26:xprintf.c     **** void xputc (char c)
+  27:xprintf.c     **** {
+  28              		.loc 1 27 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 2
+
+
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 10B5     		push	{r4, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+  37 0002 0446     		mov	r4, r0
+  28:xprintf.c     **** 	if (_CR_CRLF && c == '\n') xputc('\r');		/* CR -> CRLF */
+  38              		.loc 1 28 0
+  39 0004 0A28     		cmp	r0, #10
+  40 0006 02D1     		bne	.L2
+  41              		.loc 1 28 0 is_stmt 0 discriminator 1
+  42 0008 0D20     		movs	r0, #13
+  43              	.LVL1:
+  44 000a FFF7FEFF 		bl	xputc
+  45              	.LVL2:
+  46              	.L2:
+  29:xprintf.c     **** 
+  30:xprintf.c     **** 	if (outptr) {
+  47              		.loc 1 30 0 is_stmt 1
+  48 000e 074B     		ldr	r3, .L6
+  49 0010 1B68     		ldr	r3, [r3]
+  50 0012 23B1     		cbz	r3, .L3
+  31:xprintf.c     **** 		*outptr++ = (unsigned char)c;
+  51              		.loc 1 31 0
+  52 0014 591C     		adds	r1, r3, #1
+  53 0016 054A     		ldr	r2, .L6
+  54 0018 1160     		str	r1, [r2]
+  55 001a 1C70     		strb	r4, [r3]
+  32:xprintf.c     **** 		return;
+  56              		.loc 1 32 0
+  57 001c 10BD     		pop	{r4, pc}
+  58              	.L3:
+  33:xprintf.c     **** 	}
+  34:xprintf.c     **** 
+  35:xprintf.c     **** 	if (xfunc_out) xfunc_out((unsigned char)c);
+  59              		.loc 1 35 0
+  60 001e 044B     		ldr	r3, .L6+4
+  61 0020 1B68     		ldr	r3, [r3]
+  62 0022 0BB1     		cbz	r3, .L1
+  63              		.loc 1 35 0 is_stmt 0 discriminator 1
+  64 0024 2046     		mov	r0, r4
+  65 0026 9847     		blx	r3
+  66              	.LVL3:
+  67              	.L1:
+  68 0028 10BD     		pop	{r4, pc}
+  69              	.L7:
+  70 002a 00BF     		.align	2
+  71              	.L6:
+  72 002c 00000000 		.word	.LANCHOR0
+  73 0030 00000000 		.word	xfunc_out
+  74              		.cfi_endproc
+  75              	.LFE0:
+  76              		.size	xputc, .-xputc
+  77              		.section	.text.xputs,"ax",%progbits
+  78              		.align	2
+  79              		.global	xputs
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 3
+
+
+  80              		.thumb
+  81              		.thumb_func
+  82              		.type	xputs, %function
+  83              	xputs:
+  84              	.LFB1:
+  36:xprintf.c     **** }
+  37:xprintf.c     **** 
+  38:xprintf.c     **** 
+  39:xprintf.c     **** 
+  40:xprintf.c     **** /*----------------------------------------------*/
+  41:xprintf.c     **** /* Put a null-terminated string                 */
+  42:xprintf.c     **** /*----------------------------------------------*/
+  43:xprintf.c     **** 
+  44:xprintf.c     **** void xputs (					/* Put a string to the default device */
+  45:xprintf.c     **** 	const char* str				/* Pointer to the string */
+  46:xprintf.c     **** )
+  47:xprintf.c     **** {
+  85              		.loc 1 47 0 is_stmt 1
+  86              		.cfi_startproc
+  87              		@ args = 0, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              	.LVL4:
+  90 0000 10B5     		push	{r4, lr}
+  91              		.cfi_def_cfa_offset 8
+  92              		.cfi_offset 4, -8
+  93              		.cfi_offset 14, -4
+  94 0002 0446     		mov	r4, r0
+  48:xprintf.c     **** 	while (*str)
+  95              		.loc 1 48 0
+  96 0004 02E0     		b	.L9
+  97              	.LVL5:
+  98              	.L10:
+  49:xprintf.c     **** 		xputc(*str++);
+  99              		.loc 1 49 0
+ 100 0006 0134     		adds	r4, r4, #1
+ 101              	.LVL6:
+ 102 0008 FFF7FEFF 		bl	xputc
+ 103              	.LVL7:
+ 104              	.L9:
+  48:xprintf.c     **** 	while (*str)
+ 105              		.loc 1 48 0
+ 106 000c 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 107 000e 0028     		cmp	r0, #0
+ 108 0010 F9D1     		bne	.L10
+  50:xprintf.c     **** }
+ 109              		.loc 1 50 0
+ 110 0012 10BD     		pop	{r4, pc}
+ 111              		.cfi_endproc
+ 112              	.LFE1:
+ 113              		.size	xputs, .-xputs
+ 114              		.section	.text.xvprintf,"ax",%progbits
+ 115              		.align	2
+ 116              		.thumb
+ 117              		.thumb_func
+ 118              		.type	xvprintf, %function
+ 119              	xvprintf:
+ 120              	.LFB3:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 4
+
+
+  51:xprintf.c     **** 
+  52:xprintf.c     **** 
+  53:xprintf.c     **** void xfputs (					/* Put a string to the specified device */
+  54:xprintf.c     **** 	void(*func)(unsigned char),	/* Pointer to the output function */
+  55:xprintf.c     **** 	const char*	str				/* Pointer to the string */
+  56:xprintf.c     **** )
+  57:xprintf.c     **** {
+  58:xprintf.c     **** 	void (*pf)(unsigned char);
+  59:xprintf.c     **** 
+  60:xprintf.c     **** 
+  61:xprintf.c     **** 	pf = xfunc_out;		/* Save current output device */
+  62:xprintf.c     **** 	xfunc_out = func;	/* Switch output to specified device */
+  63:xprintf.c     **** 	while (*str)		/* Put the string */
+  64:xprintf.c     **** 		xputc(*str++);
+  65:xprintf.c     **** 	xfunc_out = pf;		/* Restore output device */
+  66:xprintf.c     **** }
+  67:xprintf.c     **** 
+  68:xprintf.c     **** 
+  69:xprintf.c     **** 
+  70:xprintf.c     **** /*----------------------------------------------*/
+  71:xprintf.c     **** /* Formatted string output                      */
+  72:xprintf.c     **** /*----------------------------------------------*/
+  73:xprintf.c     **** /*  xprintf("%d", 1234);			"1234"
+  74:xprintf.c     ****     xprintf("%6d,%3d%%", -200, 5);	"  -200,  5%"
+  75:xprintf.c     ****     xprintf("%-6u", 100);			"100   "
+  76:xprintf.c     ****     xprintf("%ld", 12345678L);		"12345678"
+  77:xprintf.c     ****     xprintf("%04x", 0xA3);			"00a3"
+  78:xprintf.c     ****     xprintf("%08LX", 0x123ABC);		"00123ABC"
+  79:xprintf.c     ****     xprintf("%016b", 0x550F);		"0101010100001111"
+  80:xprintf.c     ****     xprintf("%s", "String");		"String"
+  81:xprintf.c     ****     xprintf("%-4s", "abc");			"abc "
+  82:xprintf.c     ****     xprintf("%4s", "abc");			" abc"
+  83:xprintf.c     ****     xprintf("%c", 'a');				"a"
+  84:xprintf.c     ****     xprintf("%f", 10.0);            <xprintf lacks floating point support>
+  85:xprintf.c     **** */
+  86:xprintf.c     **** 
+  87:xprintf.c     **** static
+  88:xprintf.c     **** void xvprintf (
+  89:xprintf.c     **** 	const char*	fmt,	/* Pointer to the format string */
+  90:xprintf.c     **** 	va_list arp			/* Pointer to arguments */
+  91:xprintf.c     **** )
+  92:xprintf.c     **** {
+ 121              		.loc 1 92 0
+ 122              		.cfi_startproc
+ 123              		@ args = 0, pretend = 0, frame = 16
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125              	.LVL8:
+ 126 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 127              		.cfi_def_cfa_offset 36
+ 128              		.cfi_offset 4, -36
+ 129              		.cfi_offset 5, -32
+ 130              		.cfi_offset 6, -28
+ 131              		.cfi_offset 7, -24
+ 132              		.cfi_offset 8, -20
+ 133              		.cfi_offset 9, -16
+ 134              		.cfi_offset 10, -12
+ 135              		.cfi_offset 11, -8
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 5
+
+
+ 136              		.cfi_offset 14, -4
+ 137 0004 85B0     		sub	sp, sp, #20
+ 138              		.cfi_def_cfa_offset 56
+ 139 0006 0646     		mov	r6, r0
+ 140 0008 8846     		mov	r8, r1
+ 141              	.LVL9:
+ 142              	.L13:
+  93:xprintf.c     **** 	unsigned int r, i, j, w, f;
+  94:xprintf.c     **** 	unsigned long v;
+  95:xprintf.c     **** 	char s[16], c, d, *p;
+  96:xprintf.c     **** 
+  97:xprintf.c     **** 
+  98:xprintf.c     **** 	for (;;) {
+  99:xprintf.c     **** 		c = *fmt++;					/* Get a char */
+ 143              		.loc 1 99 0
+ 144 000a 741C     		adds	r4, r6, #1
+ 145              	.LVL10:
+ 146 000c 3078     		ldrb	r0, [r6]	@ zero_extendqisi2
+ 147              	.LVL11:
+ 100:xprintf.c     **** 		if (!c) break;				/* End of format? */
+ 148              		.loc 1 100 0
+ 149 000e 0028     		cmp	r0, #0
+ 150 0010 00F0ED80 		beq	.L12
+ 101:xprintf.c     **** 		if (c != '%') {				/* Pass through it if not a % sequense */
+ 151              		.loc 1 101 0
+ 152 0014 2528     		cmp	r0, #37
+ 153 0016 03D0     		beq	.L15
+ 102:xprintf.c     **** 			xputc(c); continue;
+ 154              		.loc 1 102 0
+ 155 0018 FFF7FEFF 		bl	xputc
+ 156              	.LVL12:
+  99:xprintf.c     **** 		if (!c) break;				/* End of format? */
+ 157              		.loc 1 99 0
+ 158 001c 2646     		mov	r6, r4
+ 159              		.loc 1 102 0
+ 160 001e F4E7     		b	.L13
+ 161              	.LVL13:
+ 162              	.L15:
+ 103:xprintf.c     **** 		}
+ 104:xprintf.c     **** 		f = 0;
+ 105:xprintf.c     **** 		c = *fmt++;					/* Get first char of the sequense */
+ 163              		.loc 1 105 0
+ 164 0020 B31C     		adds	r3, r6, #2
+ 165              	.LVL14:
+ 166 0022 7078     		ldrb	r0, [r6, #1]	@ zero_extendqisi2
+ 167              	.LVL15:
+ 106:xprintf.c     **** 		if (c == '0') {				/* Flag: '0' padded */
+ 168              		.loc 1 106 0
+ 169 0024 3028     		cmp	r0, #48
+ 170 0026 03D1     		bne	.L17
+ 171              	.LVL16:
+ 107:xprintf.c     **** 			f = 1; c = *fmt++;
+ 172              		.loc 1 107 0
+ 173 0028 F31C     		adds	r3, r6, #3
+ 174              	.LVL17:
+ 175 002a B078     		ldrb	r0, [r6, #2]	@ zero_extendqisi2
+ 176              	.LVL18:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 6
+
+
+ 177 002c 0127     		movs	r7, #1
+ 178 002e 06E0     		b	.L18
+ 179              	.LVL19:
+ 180              	.L17:
+ 108:xprintf.c     **** 		} else {
+ 109:xprintf.c     **** 			if (c == '-') {			/* Flag: left justified */
+ 181              		.loc 1 109 0
+ 182 0030 2D28     		cmp	r0, #45
+ 183 0032 03D1     		bne	.L55
+ 184              	.LVL20:
+ 110:xprintf.c     **** 				f = 2; c = *fmt++;
+ 185              		.loc 1 110 0
+ 186 0034 F31C     		adds	r3, r6, #3
+ 187              	.LVL21:
+ 188 0036 B078     		ldrb	r0, [r6, #2]	@ zero_extendqisi2
+ 189              	.LVL22:
+ 190 0038 0227     		movs	r7, #2
+ 191 003a 00E0     		b	.L18
+ 192              	.LVL23:
+ 193              	.L55:
+ 104:xprintf.c     **** 		c = *fmt++;					/* Get first char of the sequense */
+ 194              		.loc 1 104 0
+ 195 003c 0027     		movs	r7, #0
+ 196              	.LVL24:
+ 197              	.L18:
+ 111:xprintf.c     **** 			}
+ 112:xprintf.c     **** 		}
+ 113:xprintf.c     **** 		for (w = 0; c >= '0' && c <= '9'; c = *fmt++)	/* Minimum width */
+ 198              		.loc 1 113 0
+ 199 003e 1E46     		mov	r6, r3
+ 200 0040 0024     		movs	r4, #0
+ 201 0042 06E0     		b	.L19
+ 202              	.LVL25:
+ 203              	.L20:
+ 114:xprintf.c     **** 			w = w * 10 + c - '0';
+ 204              		.loc 1 114 0 discriminator 3
+ 205 0044 04EB8404 		add	r4, r4, r4, lsl #2
+ 206              	.LVL26:
+ 207 0048 6300     		lsls	r3, r4, #1
+ 208 004a C418     		adds	r4, r0, r3
+ 209 004c 303C     		subs	r4, r4, #48
+ 210              	.LVL27:
+ 113:xprintf.c     **** 			w = w * 10 + c - '0';
+ 211              		.loc 1 113 0 discriminator 3
+ 212 004e 3078     		ldrb	r0, [r6]	@ zero_extendqisi2
+ 213              	.LVL28:
+ 214 0050 0136     		adds	r6, r6, #1
+ 215              	.LVL29:
+ 216              	.L19:
+ 113:xprintf.c     **** 			w = w * 10 + c - '0';
+ 217              		.loc 1 113 0 is_stmt 0 discriminator 1
+ 218 0052 A0F13002 		sub	r2, r0, #48
+ 219 0056 D2B2     		uxtb	r2, r2
+ 220 0058 092A     		cmp	r2, #9
+ 221 005a F3D9     		bls	.L20
+ 115:xprintf.c     **** 		if (c == 'l' || c == 'L') {	/* Prefix: Size is long int */
+ 222              		.loc 1 115 0 is_stmt 1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 7
+
+
+ 223 005c 6C28     		cmp	r0, #108
+ 224 005e 01D0     		beq	.L21
+ 225              		.loc 1 115 0 is_stmt 0 discriminator 1
+ 226 0060 4C28     		cmp	r0, #76
+ 227 0062 03D1     		bne	.L22
+ 228              	.L21:
+ 116:xprintf.c     **** 			f |= 4; c = *fmt++;
+ 229              		.loc 1 116 0 is_stmt 1
+ 230 0064 47F00407 		orr	r7, r7, #4
+ 231              	.LVL30:
+ 232 0068 3078     		ldrb	r0, [r6]	@ zero_extendqisi2
+ 233              	.LVL31:
+ 234 006a 0136     		adds	r6, r6, #1
+ 235              	.LVL32:
+ 236              	.L22:
+ 117:xprintf.c     **** 		}
+ 118:xprintf.c     **** 		if (!c) break;				/* End of format? */
+ 237              		.loc 1 118 0
+ 238 006c 0028     		cmp	r0, #0
+ 239 006e 00F0BE80 		beq	.L12
+ 240              	.LVL33:
+ 119:xprintf.c     **** 		d = c;
+ 120:xprintf.c     **** 		if (d >= 'a') d -= 0x20;
+ 241              		.loc 1 120 0
+ 242 0072 6028     		cmp	r0, #96
+ 243 0074 03D9     		bls	.L56
+ 244              		.loc 1 120 0 is_stmt 0 discriminator 1
+ 245 0076 A0F12003 		sub	r3, r0, #32
+ 246 007a DBB2     		uxtb	r3, r3
+ 247              	.LVL34:
+ 248 007c 00E0     		b	.L23
+ 249              	.LVL35:
+ 250              	.L56:
+ 119:xprintf.c     **** 		d = c;
+ 251              		.loc 1 119 0 is_stmt 1
+ 252 007e 0346     		mov	r3, r0
+ 253              	.LVL36:
+ 254              	.L23:
+ 121:xprintf.c     **** 		switch (d) {				/* Type is... */
+ 255              		.loc 1 121 0
+ 256 0080 A3F14202 		sub	r2, r3, #66
+ 257 0084 162A     		cmp	r2, #22
+ 258 0086 3ED8     		bhi	.L24
+ 259 0088 DFE802F0 		tbb	[pc, r2]
+ 260              	.LVL37:
+ 261              	.L26:
+ 262 008c 40       		.byte	(.L25-.L26)/2
+ 263 008d 30       		.byte	(.L27-.L26)/2
+ 264 008e 37       		.byte	(.L28-.L26)/2
+ 265 008f 3D       		.byte	(.L24-.L26)/2
+ 266 0090 3D       		.byte	(.L24-.L26)/2
+ 267 0091 3D       		.byte	(.L24-.L26)/2
+ 268 0092 3D       		.byte	(.L24-.L26)/2
+ 269 0093 3D       		.byte	(.L24-.L26)/2
+ 270 0094 3D       		.byte	(.L24-.L26)/2
+ 271 0095 3D       		.byte	(.L24-.L26)/2
+ 272 0096 3D       		.byte	(.L24-.L26)/2
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 8
+
+
+ 273 0097 3D       		.byte	(.L24-.L26)/2
+ 274 0098 3D       		.byte	(.L24-.L26)/2
+ 275 0099 43       		.byte	(.L57-.L26)/2
+ 276 009a 3D       		.byte	(.L24-.L26)/2
+ 277 009b 3D       		.byte	(.L24-.L26)/2
+ 278 009c 3D       		.byte	(.L24-.L26)/2
+ 279 009d 0C       		.byte	(.L30-.L26)/2
+ 280 009e 3D       		.byte	(.L24-.L26)/2
+ 281 009f 37       		.byte	(.L28-.L26)/2
+ 282 00a0 3D       		.byte	(.L24-.L26)/2
+ 283 00a1 3D       		.byte	(.L24-.L26)/2
+ 284 00a2 3A       		.byte	(.L31-.L26)/2
+ 285 00a3 00       		.p2align 1
+ 286              	.L30:
+ 122:xprintf.c     **** 		case 'S' :					/* String */
+ 123:xprintf.c     **** 			p = va_arg(arp, char*);
+ 287              		.loc 1 123 0
+ 288 00a4 D8F800A0 		ldr	r10, [r8]
+ 289              	.LVL38:
+ 290 00a8 08F10408 		add	r8, r8, #4
+ 291              	.LVL39:
+ 124:xprintf.c     **** 			for (j = 0; p[j]; j++) ;
+ 292              		.loc 1 124 0
+ 293 00ac 0025     		movs	r5, #0
+ 294 00ae 00E0     		b	.L32
+ 295              	.LVL40:
+ 296              	.L33:
+ 297              		.loc 1 124 0 is_stmt 0 discriminator 3
+ 298 00b0 0135     		adds	r5, r5, #1
+ 299              	.LVL41:
+ 300              	.L32:
+ 301              		.loc 1 124 0 discriminator 1
+ 302 00b2 1AF80530 		ldrb	r3, [r10, r5]	@ zero_extendqisi2
+ 303 00b6 002B     		cmp	r3, #0
+ 304 00b8 FAD1     		bne	.L33
+ 305 00ba 03E0     		b	.L34
+ 306              	.LVL42:
+ 307              	.L36:
+ 125:xprintf.c     **** 			while (!(f & 2) && j++ < w) xputc(' ');
+ 308              		.loc 1 125 0 is_stmt 1 discriminator 3
+ 309 00bc 2020     		movs	r0, #32
+ 310 00be FFF7FEFF 		bl	xputc
+ 311              	.LVL43:
+ 312 00c2 4D46     		mov	r5, r9
+ 313              	.LVL44:
+ 314              	.L34:
+ 315              		.loc 1 125 0 is_stmt 0 discriminator 1
+ 316 00c4 17F0020F 		tst	r7, #2
+ 317 00c8 04D1     		bne	.L35
+ 318              		.loc 1 125 0 discriminator 2
+ 319 00ca 05F10109 		add	r9, r5, #1
+ 320              	.LVL45:
+ 321 00ce A542     		cmp	r5, r4
+ 322 00d0 F4D3     		bcc	.L36
+ 323              		.loc 1 125 0
+ 324 00d2 4D46     		mov	r5, r9
+ 325              	.LVL46:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 9
+
+
+ 326              	.L35:
+ 126:xprintf.c     **** 			xputs(p);
+ 327              		.loc 1 126 0 is_stmt 1
+ 328 00d4 5046     		mov	r0, r10
+ 329 00d6 FFF7FEFF 		bl	xputs
+ 330              	.LVL47:
+ 127:xprintf.c     **** 			while (j++ < w) xputc(' ');
+ 331              		.loc 1 127 0
+ 332 00da 03E0     		b	.L37
+ 333              	.LVL48:
+ 334              	.L38:
+ 335              		.loc 1 127 0 is_stmt 0 discriminator 2
+ 336 00dc 2020     		movs	r0, #32
+ 337 00de FFF7FEFF 		bl	xputc
+ 338              	.LVL49:
+ 339 00e2 3D46     		mov	r5, r7
+ 340              	.LVL50:
+ 341              	.L37:
+ 342              		.loc 1 127 0 discriminator 1
+ 343 00e4 6F1C     		adds	r7, r5, #1
+ 344              	.LVL51:
+ 345 00e6 A542     		cmp	r5, r4
+ 346 00e8 F8D3     		bcc	.L38
+ 347 00ea 8EE7     		b	.L13
+ 348              	.LVL52:
+ 349              	.L27:
+ 128:xprintf.c     **** 			continue;
+ 129:xprintf.c     **** 		case 'C' :					/* Character */
+ 130:xprintf.c     **** 			xputc((char)va_arg(arp, int)); continue;
+ 350              		.loc 1 130 0 is_stmt 1
+ 351 00ec 98F80000 		ldrb	r0, [r8]	@ zero_extendqisi2
+ 352              	.LVL53:
+ 353 00f0 08F10408 		add	r8, r8, #4
+ 354              	.LVL54:
+ 355 00f4 FFF7FEFF 		bl	xputc
+ 356              	.LVL55:
+ 357 00f8 87E7     		b	.L13
+ 358              	.LVL56:
+ 359              	.L28:
+ 131:xprintf.c     **** 		case 'B' :					/* Binary */
+ 132:xprintf.c     **** 			r = 2; break;
+ 133:xprintf.c     **** 		case 'O' :					/* Octal */
+ 134:xprintf.c     **** 			r = 8; break;
+ 135:xprintf.c     **** 		case 'D' :					/* Signed decimal */
+ 136:xprintf.c     **** 		case 'U' :					/* Unsigned decimal */
+ 137:xprintf.c     **** 			r = 10; break;
+ 360              		.loc 1 137 0
+ 361 00fa 4FF00A0C 		mov	ip, #10
+ 362 00fe 0AE0     		b	.L29
+ 363              	.LVL57:
+ 364              	.L31:
+ 138:xprintf.c     **** 		case 'X' :					/* Hexdecimal */
+ 139:xprintf.c     **** 			r = 16; break;
+ 365              		.loc 1 139 0
+ 366 0100 4FF0100C 		mov	ip, #16
+ 367 0104 07E0     		b	.L29
+ 368              	.LVL58:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 10
+
+
+ 369              	.L24:
+ 140:xprintf.c     **** 		default:					/* Unknown type (passthrough) */
+ 141:xprintf.c     **** 			xputc(c); continue;
+ 370              		.loc 1 141 0
+ 371 0106 FFF7FEFF 		bl	xputc
+ 372              	.LVL59:
+ 373 010a 7EE7     		b	.L13
+ 374              	.LVL60:
+ 375              	.L25:
+ 132:xprintf.c     **** 		case 'O' :					/* Octal */
+ 376              		.loc 1 132 0
+ 377 010c 4FF0020C 		mov	ip, #2
+ 378 0110 01E0     		b	.L29
+ 379              	.L57:
+ 134:xprintf.c     **** 		case 'D' :					/* Signed decimal */
+ 380              		.loc 1 134 0
+ 381 0112 4FF0080C 		mov	ip, #8
+ 382              	.L29:
+ 383              	.LVL61:
+ 142:xprintf.c     **** 		}
+ 143:xprintf.c     **** 
+ 144:xprintf.c     **** 		/* Get an argument and put it in numeral */
+ 145:xprintf.c     **** 		v = (f & 4) ? va_arg(arp, long) : ((d == 'D') ? (long)va_arg(arp, int) : (long)va_arg(arp, unsign
+ 384              		.loc 1 145 0
+ 385 0116 17F0040F 		tst	r7, #4
+ 386 011a 04D0     		beq	.L39
+ 387              		.loc 1 145 0 is_stmt 0 discriminator 1
+ 388 011c D8F80090 		ldr	r9, [r8]
+ 389              	.LVL62:
+ 390 0120 08F10408 		add	r8, r8, #4
+ 391              	.LVL63:
+ 392 0124 0AE0     		b	.L40
+ 393              	.L39:
+ 394              		.loc 1 145 0 discriminator 2
+ 395 0126 442B     		cmp	r3, #68
+ 396 0128 04D1     		bne	.L41
+ 397              		.loc 1 145 0 discriminator 4
+ 398 012a D8F80090 		ldr	r9, [r8]
+ 399              	.LVL64:
+ 400 012e 08F10408 		add	r8, r8, #4
+ 401              	.LVL65:
+ 402 0132 03E0     		b	.L40
+ 403              	.L41:
+ 404              		.loc 1 145 0 discriminator 5
+ 405 0134 D8F80090 		ldr	r9, [r8]
+ 406              	.LVL66:
+ 407 0138 08F10408 		add	r8, r8, #4
+ 408              	.LVL67:
+ 409              	.L40:
+ 146:xprintf.c     **** 		if (d == 'D' && (v & 0x80000000)) {
+ 410              		.loc 1 146 0 is_stmt 1 discriminator 8
+ 411 013c 442B     		cmp	r3, #68
+ 412 013e 06D1     		bne	.L42
+ 413              		.loc 1 146 0 is_stmt 0 discriminator 1
+ 414 0140 B9F1000F 		cmp	r9, #0
+ 415 0144 03DA     		bge	.L42
+ 147:xprintf.c     **** 			v = 0 - v;
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 11
+
+
+ 416              		.loc 1 147 0 is_stmt 1
+ 417 0146 C9F10009 		rsb	r9, r9, #0
+ 418              	.LVL68:
+ 148:xprintf.c     **** 			f |= 8;
+ 419              		.loc 1 148 0
+ 420 014a 47F00807 		orr	r7, r7, #8
+ 421              	.LVL69:
+ 422              	.L42:
+ 149:xprintf.c     **** 		}
+ 150:xprintf.c     **** 		i = 0;
+ 423              		.loc 1 150 0
+ 424 014e 4FF0000E 		mov	lr, #0
+ 425 0152 00E0     		b	.L46
+ 426              	.LVL70:
+ 427              	.L59:
+ 151:xprintf.c     **** 		do {
+ 152:xprintf.c     **** 			d = (char)(v % r); v /= r;
+ 153:xprintf.c     **** 			if (d > 9) d += (c == 'x') ? 0x27 : 0x07;
+ 154:xprintf.c     **** 			s[i++] = d + '0';
+ 428              		.loc 1 154 0
+ 429 0154 AE46     		mov	lr, r5
+ 430              	.LVL71:
+ 431              	.L46:
+ 152:xprintf.c     **** 			if (d > 9) d += (c == 'x') ? 0x27 : 0x07;
+ 432              		.loc 1 152 0
+ 433 0156 B9FBFCF3 		udiv	r3, r9, ip
+ 434 015a 0CFB1392 		mls	r2, ip, r3, r9
+ 435 015e D2B2     		uxtb	r2, r2
+ 436              	.LVL72:
+ 437 0160 9946     		mov	r9, r3
+ 438              	.LVL73:
+ 153:xprintf.c     **** 			s[i++] = d + '0';
+ 439              		.loc 1 153 0
+ 440 0162 092A     		cmp	r2, #9
+ 441 0164 06D9     		bls	.L43
+ 153:xprintf.c     **** 			s[i++] = d + '0';
+ 442              		.loc 1 153 0 is_stmt 0 discriminator 1
+ 443 0166 7828     		cmp	r0, #120
+ 444 0168 01D1     		bne	.L58
+ 153:xprintf.c     **** 			s[i++] = d + '0';
+ 445              		.loc 1 153 0
+ 446 016a 2721     		movs	r1, #39
+ 447 016c 00E0     		b	.L44
+ 448              	.L58:
+ 449 016e 0721     		movs	r1, #7
+ 450              	.L44:
+ 153:xprintf.c     **** 			s[i++] = d + '0';
+ 451              		.loc 1 153 0 discriminator 5
+ 452 0170 1144     		add	r1, r1, r2
+ 453 0172 CAB2     		uxtb	r2, r1
+ 454              	.LVL74:
+ 455              	.L43:
+ 456              		.loc 1 154 0 is_stmt 1
+ 457 0174 0EF10105 		add	r5, lr, #1
+ 458              	.LVL75:
+ 459 0178 3032     		adds	r2, r2, #48
+ 460              	.LVL76:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 12
+
+
+ 461 017a 04A9     		add	r1, sp, #16
+ 462 017c 7144     		add	r1, r1, lr
+ 463 017e 01F8102C 		strb	r2, [r1, #-16]
+ 155:xprintf.c     **** 		} while (v && i < sizeof(s));
+ 464              		.loc 1 155 0
+ 465 0182 0BB1     		cbz	r3, .L45
+ 466              		.loc 1 155 0 is_stmt 0 discriminator 1
+ 467 0184 0F2D     		cmp	r5, #15
+ 468 0186 E5D9     		bls	.L59
+ 469              	.L45:
+ 156:xprintf.c     **** 		if (f & 8) s[i++] = '-';
+ 470              		.loc 1 156 0 is_stmt 1
+ 471 0188 17F0080F 		tst	r7, #8
+ 472 018c 06D0     		beq	.L47
+ 473              	.LVL77:
+ 474              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 475 018e 04AB     		add	r3, sp, #16
+ 476              	.LVL78:
+ 477 0190 1D44     		add	r5, r5, r3
+ 478 0192 2D23     		movs	r3, #45
+ 479 0194 05F8103C 		strb	r3, [r5, #-16]
+ 480 0198 0EF10205 		add	r5, lr, #2
+ 481              	.LVL79:
+ 482              	.L47:
+ 157:xprintf.c     **** 		j = i; d = (f & 1) ? '0' : ' ';
+ 483              		.loc 1 157 0 is_stmt 1
+ 484 019c 17F0010F 		tst	r7, #1
+ 485 01a0 02D0     		beq	.L60
+ 486 01a2 4FF0300B 		mov	fp, #48
+ 487 01a6 01E0     		b	.L48
+ 488              	.L60:
+ 489 01a8 4FF0200B 		mov	fp, #32
+ 490              	.L48:
+ 491              	.LVL80:
+ 492              		.loc 1 157 0 is_stmt 0 discriminator 4
+ 493 01ac A946     		mov	r9, r5
+ 494              	.LVL81:
+ 158:xprintf.c     **** 		while (!(f & 2) && j++ < w) xputc(d);
+ 495              		.loc 1 158 0 is_stmt 1 discriminator 4
+ 496 01ae 03E0     		b	.L49
+ 497              	.LVL82:
+ 498              	.L51:
+ 499              		.loc 1 158 0 is_stmt 0 discriminator 3
+ 500 01b0 5846     		mov	r0, fp
+ 501 01b2 FFF7FEFF 		bl	xputc
+ 502              	.LVL83:
+ 503 01b6 D146     		mov	r9, r10
+ 504              	.LVL84:
+ 505              	.L49:
+ 506              		.loc 1 158 0 discriminator 1
+ 507 01b8 17F0020F 		tst	r7, #2
+ 508 01bc 04D1     		bne	.L52
+ 509              		.loc 1 158 0 discriminator 2
+ 510 01be 09F1010A 		add	r10, r9, #1
+ 511              	.LVL85:
+ 512 01c2 A145     		cmp	r9, r4
+ 513 01c4 F4D3     		bcc	.L51
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 13
+
+
+ 514              		.loc 1 158 0
+ 515 01c6 D146     		mov	r9, r10
+ 516              	.LVL86:
+ 517              	.L52:
+ 159:xprintf.c     **** 		do xputc(s[--i]); while(i);
+ 518              		.loc 1 159 0 is_stmt 1 discriminator 1
+ 519 01c8 013D     		subs	r5, r5, #1
+ 520              	.LVL87:
+ 521 01ca 04AB     		add	r3, sp, #16
+ 522 01cc 2B44     		add	r3, r3, r5
+ 523 01ce 13F8100C 		ldrb	r0, [r3, #-16]	@ zero_extendqisi2
+ 524 01d2 FFF7FEFF 		bl	xputc
+ 525              	.LVL88:
+ 526 01d6 002D     		cmp	r5, #0
+ 527 01d8 F6D1     		bne	.L52
+ 528 01da 03E0     		b	.L53
+ 529              	.LVL89:
+ 530              	.L54:
+ 160:xprintf.c     **** 		while (j++ < w) xputc(' ');
+ 531              		.loc 1 160 0 discriminator 2
+ 532 01dc 2020     		movs	r0, #32
+ 533 01de FFF7FEFF 		bl	xputc
+ 534              	.LVL90:
+ 535 01e2 A946     		mov	r9, r5
+ 536              	.LVL91:
+ 537              	.L53:
+ 538              		.loc 1 160 0 is_stmt 0 discriminator 1
+ 539 01e4 09F10105 		add	r5, r9, #1
+ 540              	.LVL92:
+ 541 01e8 A145     		cmp	r9, r4
+ 542 01ea F7D3     		bcc	.L54
+ 543 01ec 0DE7     		b	.L13
+ 544              	.LVL93:
+ 545              	.L12:
+ 161:xprintf.c     **** 	}
+ 162:xprintf.c     **** }
+ 546              		.loc 1 162 0 is_stmt 1
+ 547 01ee 05B0     		add	sp, sp, #20
+ 548              		.cfi_def_cfa_offset 36
+ 549              		@ sp needed
+ 550 01f0 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 551              		.cfi_endproc
+ 552              	.LFE3:
+ 553              		.size	xvprintf, .-xvprintf
+ 554              		.section	.text.xfputs,"ax",%progbits
+ 555              		.align	2
+ 556              		.global	xfputs
+ 557              		.thumb
+ 558              		.thumb_func
+ 559              		.type	xfputs, %function
+ 560              	xfputs:
+ 561              	.LFB2:
+  57:xprintf.c     **** 	void (*pf)(unsigned char);
+ 562              		.loc 1 57 0
+ 563              		.cfi_startproc
+ 564              		@ args = 0, pretend = 0, frame = 0
+ 565              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 14
+
+
+ 566              	.LVL94:
+ 567 0000 38B5     		push	{r3, r4, r5, lr}
+ 568              		.cfi_def_cfa_offset 16
+ 569              		.cfi_offset 3, -16
+ 570              		.cfi_offset 4, -12
+ 571              		.cfi_offset 5, -8
+ 572              		.cfi_offset 14, -4
+ 573 0002 0C46     		mov	r4, r1
+  61:xprintf.c     **** 	xfunc_out = func;	/* Switch output to specified device */
+ 574              		.loc 1 61 0
+ 575 0004 064B     		ldr	r3, .L66
+ 576 0006 1D68     		ldr	r5, [r3]
+ 577              	.LVL95:
+  62:xprintf.c     **** 	while (*str)		/* Put the string */
+ 578              		.loc 1 62 0
+ 579 0008 1860     		str	r0, [r3]
+  63:xprintf.c     **** 		xputc(*str++);
+ 580              		.loc 1 63 0
+ 581 000a 02E0     		b	.L63
+ 582              	.LVL96:
+ 583              	.L64:
+  64:xprintf.c     **** 	xfunc_out = pf;		/* Restore output device */
+ 584              		.loc 1 64 0
+ 585 000c 0134     		adds	r4, r4, #1
+ 586              	.LVL97:
+ 587 000e FFF7FEFF 		bl	xputc
+ 588              	.LVL98:
+ 589              	.L63:
+  63:xprintf.c     **** 		xputc(*str++);
+ 590              		.loc 1 63 0
+ 591 0012 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 592 0014 0028     		cmp	r0, #0
+ 593 0016 F9D1     		bne	.L64
+  65:xprintf.c     **** }
+ 594              		.loc 1 65 0
+ 595 0018 014B     		ldr	r3, .L66
+ 596 001a 1D60     		str	r5, [r3]
+ 597 001c 38BD     		pop	{r3, r4, r5, pc}
+ 598              	.LVL99:
+ 599              	.L67:
+ 600 001e 00BF     		.align	2
+ 601              	.L66:
+ 602 0020 00000000 		.word	xfunc_out
+ 603              		.cfi_endproc
+ 604              	.LFE2:
+ 605              		.size	xfputs, .-xfputs
+ 606              		.section	.text.xprintf,"ax",%progbits
+ 607              		.align	2
+ 608              		.global	xprintf
+ 609              		.thumb
+ 610              		.thumb_func
+ 611              		.type	xprintf, %function
+ 612              	xprintf:
+ 613              	.LFB4:
+ 163:xprintf.c     **** 
+ 164:xprintf.c     **** 
+ 165:xprintf.c     **** void xprintf (			/* Put a formatted string to the default device */
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 15
+
+
+ 166:xprintf.c     **** 	const char*	fmt,	/* Pointer to the format string */
+ 167:xprintf.c     **** 	...					/* Optional arguments */
+ 168:xprintf.c     **** )
+ 169:xprintf.c     **** {
+ 614              		.loc 1 169 0
+ 615              		.cfi_startproc
+ 616              		@ args = 4, pretend = 16, frame = 8
+ 617              		@ frame_needed = 0, uses_anonymous_args = 1
+ 618              	.LVL100:
+ 619 0000 0FB4     		push	{r0, r1, r2, r3}
+ 620              		.cfi_def_cfa_offset 16
+ 621              		.cfi_offset 0, -16
+ 622              		.cfi_offset 1, -12
+ 623              		.cfi_offset 2, -8
+ 624              		.cfi_offset 3, -4
+ 625 0002 00B5     		push	{lr}
+ 626              		.cfi_def_cfa_offset 20
+ 627              		.cfi_offset 14, -20
+ 628 0004 83B0     		sub	sp, sp, #12
+ 629              		.cfi_def_cfa_offset 32
+ 630 0006 04A9     		add	r1, sp, #16
+ 631 0008 51F8040B 		ldr	r0, [r1], #4
+ 170:xprintf.c     **** 	va_list arp;
+ 171:xprintf.c     **** 
+ 172:xprintf.c     **** 
+ 173:xprintf.c     **** 	va_start(arp, fmt);
+ 632              		.loc 1 173 0
+ 633 000c 0191     		str	r1, [sp, #4]
+ 174:xprintf.c     **** 	xvprintf(fmt, arp);
+ 634              		.loc 1 174 0
+ 635 000e FFF7FEFF 		bl	xvprintf
+ 636              	.LVL101:
+ 175:xprintf.c     **** 	va_end(arp);
+ 176:xprintf.c     **** }
+ 637              		.loc 1 176 0
+ 638 0012 03B0     		add	sp, sp, #12
+ 639              		.cfi_def_cfa_offset 20
+ 640              		@ sp needed
+ 641 0014 5DF804EB 		ldr	lr, [sp], #4
+ 642              		.cfi_restore 14
+ 643              		.cfi_def_cfa_offset 16
+ 644 0018 04B0     		add	sp, sp, #16
+ 645              		.cfi_restore 3
+ 646              		.cfi_restore 2
+ 647              		.cfi_restore 1
+ 648              		.cfi_restore 0
+ 649              		.cfi_def_cfa_offset 0
+ 650 001a 7047     		bx	lr
+ 651              		.cfi_endproc
+ 652              	.LFE4:
+ 653              		.size	xprintf, .-xprintf
+ 654              		.section	.text.xsprintf,"ax",%progbits
+ 655              		.align	2
+ 656              		.global	xsprintf
+ 657              		.thumb
+ 658              		.thumb_func
+ 659              		.type	xsprintf, %function
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 16
+
+
+ 660              	xsprintf:
+ 661              	.LFB5:
+ 177:xprintf.c     **** 
+ 178:xprintf.c     **** 
+ 179:xprintf.c     **** void xsprintf (			/* Put a formatted string to the memory */
+ 180:xprintf.c     **** 	char* buff,			/* Pointer to the output buffer */
+ 181:xprintf.c     **** 	const char*	fmt,	/* Pointer to the format string */
+ 182:xprintf.c     **** 	...					/* Optional arguments */
+ 183:xprintf.c     **** )
+ 184:xprintf.c     **** {
+ 662              		.loc 1 184 0
+ 663              		.cfi_startproc
+ 664              		@ args = 4, pretend = 12, frame = 8
+ 665              		@ frame_needed = 0, uses_anonymous_args = 1
+ 666              	.LVL102:
+ 667 0000 0EB4     		push	{r1, r2, r3}
+ 668              		.cfi_def_cfa_offset 12
+ 669              		.cfi_offset 1, -12
+ 670              		.cfi_offset 2, -8
+ 671              		.cfi_offset 3, -4
+ 672 0002 10B5     		push	{r4, lr}
+ 673              		.cfi_def_cfa_offset 20
+ 674              		.cfi_offset 4, -20
+ 675              		.cfi_offset 14, -16
+ 676 0004 83B0     		sub	sp, sp, #12
+ 677              		.cfi_def_cfa_offset 32
+ 678 0006 05A9     		add	r1, sp, #20
+ 679 0008 51F8043B 		ldr	r3, [r1], #4
+ 185:xprintf.c     **** 	va_list arp;
+ 186:xprintf.c     **** 
+ 187:xprintf.c     **** 
+ 188:xprintf.c     **** 	outptr = buff;		/* Switch destination for memory */
+ 680              		.loc 1 188 0
+ 681 000c 074C     		ldr	r4, .L72
+ 682 000e 2060     		str	r0, [r4]
+ 189:xprintf.c     **** 
+ 190:xprintf.c     **** 	va_start(arp, fmt);
+ 683              		.loc 1 190 0
+ 684 0010 0191     		str	r1, [sp, #4]
+ 191:xprintf.c     **** 	xvprintf(fmt, arp);
+ 685              		.loc 1 191 0
+ 686 0012 1846     		mov	r0, r3
+ 687              	.LVL103:
+ 688 0014 FFF7FEFF 		bl	xvprintf
+ 689              	.LVL104:
+ 192:xprintf.c     **** 	va_end(arp);
+ 193:xprintf.c     **** 
+ 194:xprintf.c     **** 	*outptr = 0;		/* Terminate output string with a \0 */
+ 690              		.loc 1 194 0
+ 691 0018 2268     		ldr	r2, [r4]
+ 692 001a 0023     		movs	r3, #0
+ 693 001c 1370     		strb	r3, [r2]
+ 195:xprintf.c     **** 	outptr = 0;			/* Switch destination for device */
+ 694              		.loc 1 195 0
+ 695 001e 2360     		str	r3, [r4]
+ 196:xprintf.c     **** }
+ 696              		.loc 1 196 0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 17
+
+
+ 697 0020 03B0     		add	sp, sp, #12
+ 698              		.cfi_def_cfa_offset 20
+ 699              		@ sp needed
+ 700 0022 BDE81040 		pop	{r4, lr}
+ 701              		.cfi_restore 14
+ 702              		.cfi_restore 4
+ 703              		.cfi_def_cfa_offset 12
+ 704 0026 03B0     		add	sp, sp, #12
+ 705              		.cfi_restore 3
+ 706              		.cfi_restore 2
+ 707              		.cfi_restore 1
+ 708              		.cfi_def_cfa_offset 0
+ 709 0028 7047     		bx	lr
+ 710              	.L73:
+ 711 002a 00BF     		.align	2
+ 712              	.L72:
+ 713 002c 00000000 		.word	.LANCHOR0
+ 714              		.cfi_endproc
+ 715              	.LFE5:
+ 716              		.size	xsprintf, .-xsprintf
+ 717              		.section	.text.xfprintf,"ax",%progbits
+ 718              		.align	2
+ 719              		.global	xfprintf
+ 720              		.thumb
+ 721              		.thumb_func
+ 722              		.type	xfprintf, %function
+ 723              	xfprintf:
+ 724              	.LFB6:
+ 197:xprintf.c     **** 
+ 198:xprintf.c     **** 
+ 199:xprintf.c     **** void xfprintf (					/* Put a formatted string to the specified device */
+ 200:xprintf.c     **** 	void(*func)(unsigned char),	/* Pointer to the output function */
+ 201:xprintf.c     **** 	const char*	fmt,			/* Pointer to the format string */
+ 202:xprintf.c     **** 	...							/* Optional arguments */
+ 203:xprintf.c     **** )
+ 204:xprintf.c     **** {
+ 725              		.loc 1 204 0
+ 726              		.cfi_startproc
+ 727              		@ args = 4, pretend = 12, frame = 8
+ 728              		@ frame_needed = 0, uses_anonymous_args = 1
+ 729              	.LVL105:
+ 730 0000 0EB4     		push	{r1, r2, r3}
+ 731              		.cfi_def_cfa_offset 12
+ 732              		.cfi_offset 1, -12
+ 733              		.cfi_offset 2, -8
+ 734              		.cfi_offset 3, -4
+ 735 0002 30B5     		push	{r4, r5, lr}
+ 736              		.cfi_def_cfa_offset 24
+ 737              		.cfi_offset 4, -24
+ 738              		.cfi_offset 5, -20
+ 739              		.cfi_offset 14, -16
+ 740 0004 82B0     		sub	sp, sp, #8
+ 741              		.cfi_def_cfa_offset 32
+ 742 0006 05A9     		add	r1, sp, #20
+ 743 0008 51F8043B 		ldr	r3, [r1], #4
+ 205:xprintf.c     **** 	va_list arp;
+ 206:xprintf.c     **** 	void (*pf)(unsigned char);
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 18
+
+
+ 207:xprintf.c     **** 
+ 208:xprintf.c     **** 
+ 209:xprintf.c     **** 	pf = xfunc_out;		/* Save current output device */
+ 744              		.loc 1 209 0
+ 745 000c 064C     		ldr	r4, .L76
+ 746 000e 2568     		ldr	r5, [r4]
+ 747              	.LVL106:
+ 210:xprintf.c     **** 	xfunc_out = func;	/* Switch output to specified device */
+ 748              		.loc 1 210 0
+ 749 0010 2060     		str	r0, [r4]
+ 211:xprintf.c     **** 
+ 212:xprintf.c     **** 	va_start(arp, fmt);
+ 750              		.loc 1 212 0
+ 751 0012 0191     		str	r1, [sp, #4]
+ 213:xprintf.c     **** 	xvprintf(fmt, arp);
+ 752              		.loc 1 213 0
+ 753 0014 1846     		mov	r0, r3
+ 754              	.LVL107:
+ 755 0016 FFF7FEFF 		bl	xvprintf
+ 756              	.LVL108:
+ 214:xprintf.c     **** 	va_end(arp);
+ 215:xprintf.c     **** 
+ 216:xprintf.c     **** 	xfunc_out = pf;		/* Restore output device */
+ 757              		.loc 1 216 0
+ 758 001a 2560     		str	r5, [r4]
+ 217:xprintf.c     **** }
+ 759              		.loc 1 217 0
+ 760 001c 02B0     		add	sp, sp, #8
+ 761              		.cfi_def_cfa_offset 24
+ 762              		@ sp needed
+ 763 001e BDE83040 		pop	{r4, r5, lr}
+ 764              		.cfi_restore 14
+ 765              		.cfi_restore 5
+ 766              		.cfi_restore 4
+ 767              		.cfi_def_cfa_offset 12
+ 768              	.LVL109:
+ 769 0022 03B0     		add	sp, sp, #12
+ 770              		.cfi_restore 3
+ 771              		.cfi_restore 2
+ 772              		.cfi_restore 1
+ 773              		.cfi_def_cfa_offset 0
+ 774 0024 7047     		bx	lr
+ 775              	.L77:
+ 776 0026 00BF     		.align	2
+ 777              	.L76:
+ 778 0028 00000000 		.word	xfunc_out
+ 779              		.cfi_endproc
+ 780              	.LFE6:
+ 781              		.size	xfprintf, .-xfprintf
+ 782              		.section	.text.put_dump,"ax",%progbits
+ 783              		.align	2
+ 784              		.global	put_dump
+ 785              		.thumb
+ 786              		.thumb_func
+ 787              		.type	put_dump, %function
+ 788              	put_dump:
+ 789              	.LFB7:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 19
+
+
+ 218:xprintf.c     **** 
+ 219:xprintf.c     **** 
+ 220:xprintf.c     **** 
+ 221:xprintf.c     **** /*----------------------------------------------*/
+ 222:xprintf.c     **** /* Dump a line of binary dump                   */
+ 223:xprintf.c     **** /*----------------------------------------------*/
+ 224:xprintf.c     **** 
+ 225:xprintf.c     **** void put_dump (
+ 226:xprintf.c     **** 	const void* buff,		/* Pointer to the array to be dumped */
+ 227:xprintf.c     **** 	unsigned long addr,		/* Heading address value */
+ 228:xprintf.c     **** 	int len,				/* Number of items to be dumped */
+ 229:xprintf.c     **** 	int width				/* Size of the items (DF_CHAR, DF_SHORT, DF_LONG) */
+ 230:xprintf.c     **** )
+ 231:xprintf.c     **** {
+ 790              		.loc 1 231 0
+ 791              		.cfi_startproc
+ 792              		@ args = 0, pretend = 0, frame = 0
+ 793              		@ frame_needed = 0, uses_anonymous_args = 0
+ 794              	.LVL110:
+ 795 0000 70B5     		push	{r4, r5, r6, lr}
+ 796              		.cfi_def_cfa_offset 16
+ 797              		.cfi_offset 4, -16
+ 798              		.cfi_offset 5, -12
+ 799              		.cfi_offset 6, -8
+ 800              		.cfi_offset 14, -4
+ 801 0002 0546     		mov	r5, r0
+ 802 0004 1446     		mov	r4, r2
+ 803 0006 1E46     		mov	r6, r3
+ 232:xprintf.c     **** 	int i;
+ 233:xprintf.c     **** 	const unsigned char *bp;
+ 234:xprintf.c     **** 	const unsigned short *sp;
+ 235:xprintf.c     **** 	const unsigned long *lp;
+ 236:xprintf.c     **** 
+ 237:xprintf.c     **** 
+ 238:xprintf.c     **** 	xprintf("%08lX ", addr);		/* address */
+ 804              		.loc 1 238 0
+ 805 0008 1C48     		ldr	r0, .L90
+ 806              	.LVL111:
+ 807 000a FFF7FEFF 		bl	xprintf
+ 808              	.LVL112:
+ 239:xprintf.c     **** 
+ 240:xprintf.c     **** 	switch (width) {
+ 809              		.loc 1 240 0
+ 810 000e 022E     		cmp	r6, #2
+ 811 0010 1FD0     		beq	.L80
+ 812 0012 042E     		cmp	r6, #4
+ 813 0014 26D0     		beq	.L81
+ 814 0016 012E     		cmp	r6, #1
+ 815 0018 2CD1     		bne	.L79
+ 816 001a 05E0     		b	.L87
+ 817              	.LVL113:
+ 818              	.L83:
+ 241:xprintf.c     **** 	case DW_CHAR:
+ 242:xprintf.c     **** 		bp = buff;
+ 243:xprintf.c     **** 		for (i = 0; i < len; i++)		/* Hexdecimal dump */
+ 244:xprintf.c     **** 			xprintf(" %02X", bp[i]);
+ 819              		.loc 1 244 0 discriminator 3
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 20
+
+
+ 820 001c A95D     		ldrb	r1, [r5, r6]	@ zero_extendqisi2
+ 821 001e 1848     		ldr	r0, .L90+4
+ 822 0020 FFF7FEFF 		bl	xprintf
+ 823              	.LVL114:
+ 243:xprintf.c     **** 			xprintf(" %02X", bp[i]);
+ 824              		.loc 1 243 0 discriminator 3
+ 825 0024 0136     		adds	r6, r6, #1
+ 826              	.LVL115:
+ 827 0026 00E0     		b	.L82
+ 828              	.LVL116:
+ 829              	.L87:
+ 240:xprintf.c     **** 	case DW_CHAR:
+ 830              		.loc 1 240 0
+ 831 0028 0026     		movs	r6, #0
+ 832              	.LVL117:
+ 833              	.L82:
+ 243:xprintf.c     **** 			xprintf(" %02X", bp[i]);
+ 834              		.loc 1 243 0 discriminator 1
+ 835 002a A642     		cmp	r6, r4
+ 836 002c F6DB     		blt	.L83
+ 245:xprintf.c     **** 		xputc(' ');
+ 837              		.loc 1 245 0
+ 838 002e 2020     		movs	r0, #32
+ 839 0030 FFF7FEFF 		bl	xputc
+ 840              	.LVL118:
+ 246:xprintf.c     **** 		for (i = 0; i < len; i++)		/* ASCII dump */
+ 841              		.loc 1 246 0
+ 842 0034 0026     		movs	r6, #0
+ 843 0036 09E0     		b	.L84
+ 844              	.LVL119:
+ 845              	.L86:
+ 247:xprintf.c     **** 			xputc((bp[i] >= ' ' && bp[i] <= '~') ? bp[i] : '.');
+ 846              		.loc 1 247 0
+ 847 0038 A85D     		ldrb	r0, [r5, r6]	@ zero_extendqisi2
+ 848 003a A0F12003 		sub	r3, r0, #32
+ 849 003e DBB2     		uxtb	r3, r3
+ 850 0040 5E2B     		cmp	r3, #94
+ 851 0042 00D9     		bls	.L85
+ 852 0044 2E20     		movs	r0, #46
+ 853              	.L85:
+ 854              		.loc 1 247 0 is_stmt 0 discriminator 4
+ 855 0046 FFF7FEFF 		bl	xputc
+ 856              	.LVL120:
+ 246:xprintf.c     **** 		for (i = 0; i < len; i++)		/* ASCII dump */
+ 857              		.loc 1 246 0 is_stmt 1 discriminator 4
+ 858 004a 0136     		adds	r6, r6, #1
+ 859              	.LVL121:
+ 860              	.L84:
+ 246:xprintf.c     **** 		for (i = 0; i < len; i++)		/* ASCII dump */
+ 861              		.loc 1 246 0 is_stmt 0 discriminator 2
+ 862 004c A642     		cmp	r6, r4
+ 863 004e F3DB     		blt	.L86
+ 864 0050 10E0     		b	.L79
+ 865              	.LVL122:
+ 866              	.L80:
+ 248:xprintf.c     **** 		break;
+ 249:xprintf.c     **** 	case DW_SHORT:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 21
+
+
+ 250:xprintf.c     **** 		sp = buff;
+ 251:xprintf.c     **** 		do								/* Hexdecimal dump */
+ 252:xprintf.c     **** 			xprintf(" %04X", *sp++);
+ 867              		.loc 1 252 0 is_stmt 1 discriminator 1
+ 868 0052 AE1C     		adds	r6, r5, #2
+ 869              	.LVL123:
+ 870 0054 2988     		ldrh	r1, [r5]
+ 871 0056 0B48     		ldr	r0, .L90+8
+ 872 0058 FFF7FEFF 		bl	xprintf
+ 873              	.LVL124:
+ 874 005c 3546     		mov	r5, r6
+ 253:xprintf.c     **** 		while (--len);
+ 875              		.loc 1 253 0 discriminator 1
+ 876 005e 013C     		subs	r4, r4, #1
+ 877              	.LVL125:
+ 878 0060 F7D1     		bne	.L80
+ 879 0062 07E0     		b	.L79
+ 880              	.LVL126:
+ 881              	.L81:
+ 254:xprintf.c     **** 		break;
+ 255:xprintf.c     **** 	case DW_LONG:
+ 256:xprintf.c     **** 		lp = buff;
+ 257:xprintf.c     **** 		do								/* Hexdecimal dump */
+ 258:xprintf.c     **** 			xprintf(" %08LX", *lp++);
+ 882              		.loc 1 258 0 discriminator 1
+ 883 0064 2E1D     		adds	r6, r5, #4
+ 884              	.LVL127:
+ 885 0066 2968     		ldr	r1, [r5]
+ 886 0068 0748     		ldr	r0, .L90+12
+ 887 006a FFF7FEFF 		bl	xprintf
+ 888              	.LVL128:
+ 889 006e 3546     		mov	r5, r6
+ 259:xprintf.c     **** 		while (--len);
+ 890              		.loc 1 259 0 discriminator 1
+ 891 0070 013C     		subs	r4, r4, #1
+ 892              	.LVL129:
+ 893 0072 F7D1     		bne	.L81
+ 894              	.LVL130:
+ 895              	.L79:
+ 260:xprintf.c     **** 		break;
+ 261:xprintf.c     **** 	}
+ 262:xprintf.c     **** 
+ 263:xprintf.c     **** 	xputc('\n');
+ 896              		.loc 1 263 0
+ 897 0074 0A20     		movs	r0, #10
+ 898 0076 FFF7FEFF 		bl	xputc
+ 899              	.LVL131:
+ 900 007a 70BD     		pop	{r4, r5, r6, pc}
+ 901              	.LVL132:
+ 902              	.L91:
+ 903              		.align	2
+ 904              	.L90:
+ 905 007c 00000000 		.word	.LC0
+ 906 0080 08000000 		.word	.LC1
+ 907 0084 10000000 		.word	.LC2
+ 908 0088 18000000 		.word	.LC3
+ 909              		.cfi_endproc
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 22
+
+
+ 910              	.LFE7:
+ 911              		.size	put_dump, .-put_dump
+ 912              		.section	.text.xgets,"ax",%progbits
+ 913              		.align	2
+ 914              		.global	xgets
+ 915              		.thumb
+ 916              		.thumb_func
+ 917              		.type	xgets, %function
+ 918              	xgets:
+ 919              	.LFB8:
+ 264:xprintf.c     **** }
+ 265:xprintf.c     **** 
+ 266:xprintf.c     **** #endif /* _USE_XFUNC_OUT */
+ 267:xprintf.c     **** 
+ 268:xprintf.c     **** 
+ 269:xprintf.c     **** 
+ 270:xprintf.c     **** #if _USE_XFUNC_IN
+ 271:xprintf.c     **** unsigned char (*xfunc_in)(void);	/* Pointer to the input stream */
+ 272:xprintf.c     **** 
+ 273:xprintf.c     **** /*----------------------------------------------*/
+ 274:xprintf.c     **** /* Get a line from the input                    */
+ 275:xprintf.c     **** /*----------------------------------------------*/
+ 276:xprintf.c     **** 
+ 277:xprintf.c     **** int xgets (		/* 0:End of stream, 1:A line arrived */
+ 278:xprintf.c     **** 	char* buff,	/* Pointer to the buffer */
+ 279:xprintf.c     **** 	int len		/* Buffer length */
+ 280:xprintf.c     **** )
+ 281:xprintf.c     **** {
+ 920              		.loc 1 281 0
+ 921              		.cfi_startproc
+ 922              		@ args = 0, pretend = 0, frame = 0
+ 923              		@ frame_needed = 0, uses_anonymous_args = 0
+ 924              	.LVL133:
+ 282:xprintf.c     **** 	int c, i;
+ 283:xprintf.c     **** 
+ 284:xprintf.c     **** 
+ 285:xprintf.c     **** 	if (!xfunc_in) return 0;		/* No input function specified */
+ 925              		.loc 1 285 0
+ 926 0000 114B     		ldr	r3, .L101
+ 927 0002 1B68     		ldr	r3, [r3]
+ 928 0004 DBB1     		cbz	r3, .L98
+ 281:xprintf.c     **** 	int c, i;
+ 929              		.loc 1 281 0
+ 930 0006 70B5     		push	{r4, r5, r6, lr}
+ 931              		.cfi_def_cfa_offset 16
+ 932              		.cfi_offset 4, -16
+ 933              		.cfi_offset 5, -12
+ 934              		.cfi_offset 6, -8
+ 935              		.cfi_offset 14, -4
+ 936 0008 0D46     		mov	r5, r1
+ 937 000a 0646     		mov	r6, r0
+ 938 000c 0024     		movs	r4, #0
+ 939              	.LVL134:
+ 940              	.L94:
+ 286:xprintf.c     **** 
+ 287:xprintf.c     **** 	i = 0;
+ 288:xprintf.c     **** 	for (;;) {
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 23
+
+
+ 289:xprintf.c     **** 		c = xfunc_in();				/* Get a char from the incoming stream */
+ 941              		.loc 1 289 0
+ 942 000e 0E4B     		ldr	r3, .L101
+ 943 0010 1B68     		ldr	r3, [r3]
+ 944 0012 9847     		blx	r3
+ 945              	.LVL135:
+ 290:xprintf.c     **** 		if (!c) return 0;			/* End of stream? */
+ 946              		.loc 1 290 0
+ 947 0014 0346     		mov	r3, r0
+ 948 0016 A0B1     		cbz	r0, .L99
+ 291:xprintf.c     **** 		if (c == '\r') break;		/* End of line? */
+ 949              		.loc 1 291 0
+ 950 0018 0D28     		cmp	r0, #13
+ 951 001a 0CD0     		beq	.L95
+ 292:xprintf.c     **** 		if (c == '\b' && i) {		/* Back space? */
+ 952              		.loc 1 292 0
+ 953 001c 0828     		cmp	r0, #8
+ 954 001e 02D1     		bne	.L96
+ 955              		.loc 1 292 0 is_stmt 0 discriminator 1
+ 956 0020 0CB1     		cbz	r4, .L96
+ 293:xprintf.c     **** 			i--;
+ 957              		.loc 1 293 0 is_stmt 1
+ 958 0022 013C     		subs	r4, r4, #1
+ 959              	.LVL136:
+ 294:xprintf.c     **** 			if (_LINE_ECHO) xputc(c);
+ 295:xprintf.c     **** 			continue;
+ 960              		.loc 1 295 0
+ 961 0024 F3E7     		b	.L94
+ 962              	.L96:
+ 296:xprintf.c     **** 		}
+ 297:xprintf.c     **** 		if (c >= ' ' && i < len - 1) {	/* Visible chars */
+ 963              		.loc 1 297 0
+ 964 0026 1F2B     		cmp	r3, #31
+ 965 0028 F1DD     		ble	.L94
+ 966              		.loc 1 297 0 is_stmt 0 discriminator 1
+ 967 002a 6A1E     		subs	r2, r5, #1
+ 968 002c 9442     		cmp	r4, r2
+ 969 002e EEDA     		bge	.L94
+ 970              	.LVL137:
+ 298:xprintf.c     **** 			buff[i++] = c;
+ 971              		.loc 1 298 0 is_stmt 1
+ 972 0030 3355     		strb	r3, [r6, r4]
+ 973 0032 0134     		adds	r4, r4, #1
+ 974              	.LVL138:
+ 975 0034 EBE7     		b	.L94
+ 976              	.L95:
+ 299:xprintf.c     **** 			if (_LINE_ECHO) xputc(c);
+ 300:xprintf.c     **** 		}
+ 301:xprintf.c     **** 	}
+ 302:xprintf.c     **** 	buff[i] = 0;	/* Terminate with a \0 */
+ 977              		.loc 1 302 0
+ 978 0036 0023     		movs	r3, #0
+ 979 0038 3355     		strb	r3, [r6, r4]
+ 303:xprintf.c     **** 	if (_LINE_ECHO) xputc('\n');
+ 304:xprintf.c     **** 	return 1;
+ 980              		.loc 1 304 0
+ 981 003a 0120     		movs	r0, #1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 24
+
+
+ 982              	.LVL139:
+ 983 003c 70BD     		pop	{r4, r5, r6, pc}
+ 984              	.LVL140:
+ 985              	.L98:
+ 986              		.cfi_def_cfa_offset 0
+ 987              		.cfi_restore 4
+ 988              		.cfi_restore 5
+ 989              		.cfi_restore 6
+ 990              		.cfi_restore 14
+ 285:xprintf.c     **** 
+ 991              		.loc 1 285 0
+ 992 003e 0020     		movs	r0, #0
+ 993              	.LVL141:
+ 305:xprintf.c     **** }
+ 994              		.loc 1 305 0
+ 995 0040 7047     		bx	lr
+ 996              	.LVL142:
+ 997              	.L99:
+ 998              		.cfi_def_cfa_offset 16
+ 999              		.cfi_offset 4, -16
+ 1000              		.cfi_offset 5, -12
+ 1001              		.cfi_offset 6, -8
+ 1002              		.cfi_offset 14, -4
+ 290:xprintf.c     **** 		if (c == '\r') break;		/* End of line? */
+ 1003              		.loc 1 290 0
+ 1004 0042 0020     		movs	r0, #0
+ 1005              	.LVL143:
+ 1006              		.loc 1 305 0
+ 1007 0044 70BD     		pop	{r4, r5, r6, pc}
+ 1008              	.LVL144:
+ 1009              	.L102:
+ 1010 0046 00BF     		.align	2
+ 1011              	.L101:
+ 1012 0048 00000000 		.word	xfunc_in
+ 1013              		.cfi_endproc
+ 1014              	.LFE8:
+ 1015              		.size	xgets, .-xgets
+ 1016              		.section	.text.xfgets,"ax",%progbits
+ 1017              		.align	2
+ 1018              		.global	xfgets
+ 1019              		.thumb
+ 1020              		.thumb_func
+ 1021              		.type	xfgets, %function
+ 1022              	xfgets:
+ 1023              	.LFB9:
+ 306:xprintf.c     **** 
+ 307:xprintf.c     **** 
+ 308:xprintf.c     **** int xfgets (	/* 0:End of stream, 1:A line arrived */
+ 309:xprintf.c     **** 	unsigned char (*func)(void),	/* Pointer to the input stream function */
+ 310:xprintf.c     **** 	char* buff,	/* Pointer to the buffer */
+ 311:xprintf.c     **** 	int len		/* Buffer length */
+ 312:xprintf.c     **** )
+ 313:xprintf.c     **** {
+ 1024              		.loc 1 313 0
+ 1025              		.cfi_startproc
+ 1026              		@ args = 0, pretend = 0, frame = 0
+ 1027              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 25
+
+
+ 1028              	.LVL145:
+ 1029 0000 38B5     		push	{r3, r4, r5, lr}
+ 1030              		.cfi_def_cfa_offset 16
+ 1031              		.cfi_offset 3, -16
+ 1032              		.cfi_offset 4, -12
+ 1033              		.cfi_offset 5, -8
+ 1034              		.cfi_offset 14, -4
+ 1035 0002 0B46     		mov	r3, r1
+ 314:xprintf.c     **** 	unsigned char (*pf)(void);
+ 315:xprintf.c     **** 	int n;
+ 316:xprintf.c     **** 
+ 317:xprintf.c     **** 
+ 318:xprintf.c     **** 	pf = xfunc_in;			/* Save current input device */
+ 1036              		.loc 1 318 0
+ 1037 0004 044C     		ldr	r4, .L105
+ 1038 0006 2568     		ldr	r5, [r4]
+ 1039              	.LVL146:
+ 319:xprintf.c     **** 	xfunc_in = func;		/* Switch input to specified device */
+ 1040              		.loc 1 319 0
+ 1041 0008 2060     		str	r0, [r4]
+ 320:xprintf.c     **** 	n = xgets(buff, len);	/* Get a line */
+ 1042              		.loc 1 320 0
+ 1043 000a 1146     		mov	r1, r2
+ 1044              	.LVL147:
+ 1045 000c 1846     		mov	r0, r3
+ 1046              	.LVL148:
+ 1047 000e FFF7FEFF 		bl	xgets
+ 1048              	.LVL149:
+ 321:xprintf.c     **** 	xfunc_in = pf;			/* Restore input device */
+ 1049              		.loc 1 321 0
+ 1050 0012 2560     		str	r5, [r4]
+ 322:xprintf.c     **** 
+ 323:xprintf.c     **** 	return n;
+ 324:xprintf.c     **** }
+ 1051              		.loc 1 324 0
+ 1052 0014 38BD     		pop	{r3, r4, r5, pc}
+ 1053              	.LVL150:
+ 1054              	.L106:
+ 1055 0016 00BF     		.align	2
+ 1056              	.L105:
+ 1057 0018 00000000 		.word	xfunc_in
+ 1058              		.cfi_endproc
+ 1059              	.LFE9:
+ 1060              		.size	xfgets, .-xfgets
+ 1061              		.section	.text.xatoi,"ax",%progbits
+ 1062              		.align	2
+ 1063              		.global	xatoi
+ 1064              		.thumb
+ 1065              		.thumb_func
+ 1066              		.type	xatoi, %function
+ 1067              	xatoi:
+ 1068              	.LFB10:
+ 325:xprintf.c     **** 
+ 326:xprintf.c     **** 
+ 327:xprintf.c     **** /*----------------------------------------------*/
+ 328:xprintf.c     **** /* Get a value of the string                    */
+ 329:xprintf.c     **** /*----------------------------------------------*/
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 26
+
+
+ 330:xprintf.c     **** /*	"123 -5   0x3ff 0b1111 0377  w "
+ 331:xprintf.c     **** 	    ^                           1st call returns 123 and next ptr
+ 332:xprintf.c     **** 	       ^                        2nd call returns -5 and next ptr
+ 333:xprintf.c     ****                    ^                3rd call returns 1023 and next ptr
+ 334:xprintf.c     ****                           ^         4th call returns 15 and next ptr
+ 335:xprintf.c     ****                                ^    5th call returns 255 and next ptr
+ 336:xprintf.c     ****                                   ^ 6th call fails and returns 0
+ 337:xprintf.c     **** */
+ 338:xprintf.c     **** 
+ 339:xprintf.c     **** int xatoi (			/* 0:Failed, 1:Successful */
+ 340:xprintf.c     **** 	char **str,		/* Pointer to pointer to the string */
+ 341:xprintf.c     **** 	long *res		/* Pointer to the valiable to store the value */
+ 342:xprintf.c     **** )
+ 343:xprintf.c     **** {
+ 1069              		.loc 1 343 0
+ 1070              		.cfi_startproc
+ 1071              		@ args = 0, pretend = 0, frame = 0
+ 1072              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1073              		@ link register save eliminated.
+ 1074              	.LVL151:
+ 344:xprintf.c     **** 	unsigned long val;
+ 345:xprintf.c     **** 	unsigned char c, r, s = 0;
+ 346:xprintf.c     **** 
+ 347:xprintf.c     **** 
+ 348:xprintf.c     **** 	*res = 0;
+ 1075              		.loc 1 348 0
+ 1076 0000 0023     		movs	r3, #0
+ 1077 0002 0B60     		str	r3, [r1]
+ 349:xprintf.c     **** 
+ 350:xprintf.c     **** 	while ((c = **str) == ' ') (*str)++;	/* Skip leading spaces */
+ 1078              		.loc 1 350 0
+ 1079 0004 01E0     		b	.L108
+ 1080              	.LVL152:
+ 1081              	.L109:
+ 1082              		.loc 1 350 0 is_stmt 0 discriminator 2
+ 1083 0006 0132     		adds	r2, r2, #1
+ 1084 0008 0260     		str	r2, [r0]
+ 1085              	.LVL153:
+ 1086              	.L108:
+ 1087              		.loc 1 350 0 discriminator 1
+ 1088 000a 0268     		ldr	r2, [r0]
+ 1089 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1090              	.LVL154:
+ 1091 000e 202B     		cmp	r3, #32
+ 1092 0010 F9D0     		beq	.L109
+ 343:xprintf.c     **** 	unsigned long val;
+ 1093              		.loc 1 343 0 is_stmt 1
+ 1094 0012 70B4     		push	{r4, r5, r6}
+ 1095              		.cfi_def_cfa_offset 12
+ 1096              		.cfi_offset 4, -12
+ 1097              		.cfi_offset 5, -8
+ 1098              		.cfi_offset 6, -4
+ 351:xprintf.c     **** 
+ 352:xprintf.c     **** 	if (c == '-') {		/* negative? */
+ 1099              		.loc 1 352 0
+ 1100 0014 2D2B     		cmp	r3, #45
+ 1101 0016 04D1     		bne	.L122
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 27
+
+
+ 1102              	.LVL155:
+ 353:xprintf.c     **** 		s = 1;
+ 354:xprintf.c     **** 		c = *(++(*str));
+ 1103              		.loc 1 354 0
+ 1104 0018 531C     		adds	r3, r2, #1
+ 1105              	.LVL156:
+ 1106 001a 0360     		str	r3, [r0]
+ 1107              	.LVL157:
+ 1108 001c 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 1109              	.LVL158:
+ 353:xprintf.c     **** 		s = 1;
+ 1110              		.loc 1 353 0
+ 1111 001e 0126     		movs	r6, #1
+ 1112 0020 00E0     		b	.L110
+ 1113              	.LVL159:
+ 1114              	.L122:
+ 345:xprintf.c     **** 
+ 1115              		.loc 1 345 0
+ 1116 0022 0026     		movs	r6, #0
+ 1117              	.LVL160:
+ 1118              	.L110:
+ 355:xprintf.c     **** 	}
+ 356:xprintf.c     **** 
+ 357:xprintf.c     **** 	if (c == '0') {
+ 1119              		.loc 1 357 0
+ 1120 0024 302B     		cmp	r3, #48
+ 1121 0026 1AD1     		bne	.L111
+ 358:xprintf.c     **** 		c = *(++(*str));
+ 1122              		.loc 1 358 0
+ 1123 0028 0368     		ldr	r3, [r0]
+ 1124              	.LVL161:
+ 1125 002a 5A1C     		adds	r2, r3, #1
+ 1126 002c 0260     		str	r2, [r0]
+ 1127 002e 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1128              	.LVL162:
+ 359:xprintf.c     **** 		switch (c) {
+ 1129              		.loc 1 359 0
+ 1130 0030 622B     		cmp	r3, #98
+ 1131 0032 06D0     		beq	.L113
+ 1132 0034 782B     		cmp	r3, #120
+ 1133 0036 09D1     		bne	.L128
+ 1134              	.LVL163:
+ 360:xprintf.c     **** 		case 'x':		/* hexdecimal */
+ 361:xprintf.c     **** 			r = 16; c = *(++(*str));
+ 1135              		.loc 1 361 0
+ 1136 0038 531C     		adds	r3, r2, #1
+ 1137              	.LVL164:
+ 1138 003a 0360     		str	r3, [r0]
+ 1139              	.LVL165:
+ 1140 003c 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 1141              	.LVL166:
+ 1142 003e 1025     		movs	r5, #16
+ 362:xprintf.c     **** 			break;
+ 1143              		.loc 1 362 0
+ 1144 0040 13E0     		b	.L115
+ 1145              	.LVL167:
+ 1146              	.L113:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 28
+
+
+ 363:xprintf.c     **** 		case 'b':		/* binary */
+ 364:xprintf.c     **** 			r = 2; c = *(++(*str));
+ 1147              		.loc 1 364 0
+ 1148 0042 531C     		adds	r3, r2, #1
+ 1149              	.LVL168:
+ 1150 0044 0360     		str	r3, [r0]
+ 1151              	.LVL169:
+ 1152 0046 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 1153              	.LVL170:
+ 1154 0048 0225     		movs	r5, #2
+ 365:xprintf.c     **** 			break;
+ 1155              		.loc 1 365 0
+ 1156 004a 0EE0     		b	.L115
+ 1157              	.LVL171:
+ 1158              	.L128:
+ 366:xprintf.c     **** 		default:
+ 367:xprintf.c     **** 			if (c <= ' ') return 1;	/* single zero */
+ 1159              		.loc 1 367 0
+ 1160 004c 202B     		cmp	r3, #32
+ 1161 004e 2AD9     		bls	.L123
+ 368:xprintf.c     **** 			if (c < '0' || c > '9') return 0;	/* invalid char */
+ 1162              		.loc 1 368 0
+ 1163 0050 A3F13002 		sub	r2, r3, #48
+ 1164 0054 D2B2     		uxtb	r2, r2
+ 1165 0056 092A     		cmp	r2, #9
+ 1166 0058 27D8     		bhi	.L124
+ 369:xprintf.c     **** 			r = 8;		/* octal */
+ 1167              		.loc 1 369 0
+ 1168 005a 0825     		movs	r5, #8
+ 1169 005c 05E0     		b	.L115
+ 1170              	.L111:
+ 370:xprintf.c     **** 		}
+ 371:xprintf.c     **** 	} else {
+ 372:xprintf.c     **** 		if (c < '0' || c > '9') return 0;	/* EOL or invalid char */
+ 1171              		.loc 1 372 0
+ 1172 005e A3F13002 		sub	r2, r3, #48
+ 1173 0062 D2B2     		uxtb	r2, r2
+ 1174 0064 092A     		cmp	r2, #9
+ 1175 0066 22D8     		bhi	.L125
+ 373:xprintf.c     **** 		r = 10;			/* decimal */
+ 1176              		.loc 1 373 0
+ 1177 0068 0A25     		movs	r5, #10
+ 1178              	.L115:
+ 1179              	.LVL172:
+ 374:xprintf.c     **** 	}
+ 375:xprintf.c     **** 
+ 376:xprintf.c     **** 	val = 0;
+ 1180              		.loc 1 376 0
+ 1181 006a 0024     		movs	r4, #0
+ 377:xprintf.c     **** 	while (c > ' ') {
+ 1182              		.loc 1 377 0
+ 1183 006c 14E0     		b	.L117
+ 1184              	.LVL173:
+ 1185              	.L120:
+ 378:xprintf.c     **** 		if (c >= 'a') c -= 0x20;
+ 1186              		.loc 1 378 0
+ 1187 006e 602B     		cmp	r3, #96
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 29
+
+
+ 1188 0070 01D9     		bls	.L118
+ 1189              		.loc 1 378 0 is_stmt 0 discriminator 1
+ 1190 0072 203B     		subs	r3, r3, #32
+ 1191              	.LVL174:
+ 1192 0074 DBB2     		uxtb	r3, r3
+ 1193              	.LVL175:
+ 1194              	.L118:
+ 379:xprintf.c     **** 		c -= '0';
+ 1195              		.loc 1 379 0 is_stmt 1
+ 1196 0076 A3F13002 		sub	r2, r3, #48
+ 1197 007a D2B2     		uxtb	r2, r2
+ 1198              	.LVL176:
+ 380:xprintf.c     **** 		if (c >= 17) {
+ 1199              		.loc 1 380 0
+ 1200 007c 102A     		cmp	r2, #16
+ 1201 007e 03D9     		bls	.L119
+ 381:xprintf.c     **** 			c -= 7;
+ 1202              		.loc 1 381 0
+ 1203 0080 373B     		subs	r3, r3, #55
+ 1204 0082 DAB2     		uxtb	r2, r3
+ 1205              	.LVL177:
+ 382:xprintf.c     **** 			if (c <= 9) return 0;	/* invalid char */
+ 1206              		.loc 1 382 0
+ 1207 0084 092A     		cmp	r2, #9
+ 1208 0086 14D9     		bls	.L126
+ 1209              	.L119:
+ 383:xprintf.c     **** 		}
+ 384:xprintf.c     **** 		if (c >= r) return 0;		/* invalid char for current radix */
+ 1210              		.loc 1 384 0
+ 1211 0088 AA42     		cmp	r2, r5
+ 1212 008a 14D2     		bcs	.L127
+ 385:xprintf.c     **** 		val = val * r + c;
+ 1213              		.loc 1 385 0
+ 1214 008c 04FB0524 		mla	r4, r4, r5, r2
+ 1215              	.LVL178:
+ 386:xprintf.c     **** 		c = *(++(*str));
+ 1216              		.loc 1 386 0
+ 1217 0090 0368     		ldr	r3, [r0]
+ 1218 0092 5A1C     		adds	r2, r3, #1
+ 1219              	.LVL179:
+ 1220 0094 0260     		str	r2, [r0]
+ 1221 0096 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1222              	.LVL180:
+ 1223              	.L117:
+ 377:xprintf.c     **** 		if (c >= 'a') c -= 0x20;
+ 1224              		.loc 1 377 0
+ 1225 0098 202B     		cmp	r3, #32
+ 1226 009a E8D8     		bhi	.L120
+ 387:xprintf.c     **** 	}
+ 388:xprintf.c     **** 	if (s) val = 0 - val;			/* apply sign if needed */
+ 1227              		.loc 1 388 0
+ 1228 009c 06B1     		cbz	r6, .L121
+ 1229              		.loc 1 388 0 is_stmt 0 discriminator 1
+ 1230 009e 6442     		negs	r4, r4
+ 1231              	.LVL181:
+ 1232              	.L121:
+ 389:xprintf.c     **** 
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 30
+
+
+ 390:xprintf.c     **** 	*res = val;
+ 1233              		.loc 1 390 0 is_stmt 1
+ 1234 00a0 0C60     		str	r4, [r1]
+ 391:xprintf.c     **** 	return 1;
+ 1235              		.loc 1 391 0
+ 1236 00a2 0120     		movs	r0, #1
+ 1237              	.LVL182:
+ 1238 00a4 08E0     		b	.L116
+ 1239              	.LVL183:
+ 1240              	.L123:
+ 367:xprintf.c     **** 			if (c < '0' || c > '9') return 0;	/* invalid char */
+ 1241              		.loc 1 367 0
+ 1242 00a6 0120     		movs	r0, #1
+ 1243              	.LVL184:
+ 1244 00a8 06E0     		b	.L116
+ 1245              	.LVL185:
+ 1246              	.L124:
+ 368:xprintf.c     **** 			r = 8;		/* octal */
+ 1247              		.loc 1 368 0
+ 1248 00aa 0020     		movs	r0, #0
+ 1249              	.LVL186:
+ 1250 00ac 04E0     		b	.L116
+ 1251              	.LVL187:
+ 1252              	.L125:
+ 372:xprintf.c     **** 		r = 10;			/* decimal */
+ 1253              		.loc 1 372 0
+ 1254 00ae 0020     		movs	r0, #0
+ 1255              	.LVL188:
+ 1256 00b0 02E0     		b	.L116
+ 1257              	.LVL189:
+ 1258              	.L126:
+ 382:xprintf.c     **** 		}
+ 1259              		.loc 1 382 0
+ 1260 00b2 0020     		movs	r0, #0
+ 1261              	.LVL190:
+ 1262 00b4 00E0     		b	.L116
+ 1263              	.LVL191:
+ 1264              	.L127:
+ 384:xprintf.c     **** 		val = val * r + c;
+ 1265              		.loc 1 384 0
+ 1266 00b6 0020     		movs	r0, #0
+ 1267              	.LVL192:
+ 1268              	.L116:
+ 392:xprintf.c     **** }
+ 1269              		.loc 1 392 0
+ 1270 00b8 70BC     		pop	{r4, r5, r6}
+ 1271              		.cfi_restore 6
+ 1272              		.cfi_restore 5
+ 1273              		.cfi_restore 4
+ 1274              		.cfi_def_cfa_offset 0
+ 1275              	.LVL193:
+ 1276 00ba 7047     		bx	lr
+ 1277              		.cfi_endproc
+ 1278              	.LFE10:
+ 1279              		.size	xatoi, .-xatoi
+ 1280              		.comm	xfunc_in,4,4
+ 1281              		.comm	xfunc_out,4,4
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 31
+
+
+ 1282              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 1283              		.align	2
+ 1284              	.LC0:
+ 1285 0000 2530386C 		.ascii	"%08lX \000"
+ 1285      582000
+ 1286 0007 00       		.space	1
+ 1287              	.LC1:
+ 1288 0008 20253032 		.ascii	" %02X\000"
+ 1288      5800
+ 1289 000e 0000     		.space	2
+ 1290              	.LC2:
+ 1291 0010 20253034 		.ascii	" %04X\000"
+ 1291      5800
+ 1292 0016 0000     		.space	2
+ 1293              	.LC3:
+ 1294 0018 20253038 		.ascii	" %08LX\000"
+ 1294      4C5800
+ 1295              		.bss
+ 1296              		.align	2
+ 1297              		.set	.LANCHOR0,. + 0
+ 1298              		.type	outptr, %object
+ 1299              		.size	outptr, 4
+ 1300              	outptr:
+ 1301 0000 00000000 		.space	4
+ 1302              		.text
+ 1303              	.Letext0:
+ 1304              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1305              		.file 3 "<built-in>"
+ 1306              		.section	.debug_info,"",%progbits
+ 1307              	.Ldebug_info0:
+ 1308 0000 9B060000 		.4byte	0x69b
+ 1309 0004 0400     		.2byte	0x4
+ 1310 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1311 000a 04       		.byte	0x4
+ 1312 000b 01       		.uleb128 0x1
+ 1313 000c 72000000 		.4byte	.LASF26
+ 1314 0010 0C       		.byte	0xc
+ 1315 0011 00000000 		.4byte	.LASF27
+ 1316 0015 13000000 		.4byte	.LASF28
+ 1317 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1318 001d 00000000 		.4byte	0
+ 1319 0021 00000000 		.4byte	.Ldebug_line0
+ 1320 0025 02       		.uleb128 0x2
+ 1321 0026 55000000 		.4byte	.LASF0
+ 1322 002a 02       		.byte	0x2
+ 1323 002b 28       		.byte	0x28
+ 1324 002c 30000000 		.4byte	0x30
+ 1325 0030 03       		.uleb128 0x3
+ 1326 0031 7E010000 		.4byte	.LASF29
+ 1327 0035 04       		.byte	0x4
+ 1328 0036 03       		.byte	0x3
+ 1329 0037 00       		.byte	0
+ 1330 0038 47000000 		.4byte	0x47
+ 1331 003c 04       		.uleb128 0x4
+ 1332 003d 62010000 		.4byte	.LASF30
+ 1333 0041 47000000 		.4byte	0x47
+ 1334 0045 00       		.byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 32
+
+
+ 1335 0046 00       		.byte	0
+ 1336 0047 05       		.uleb128 0x5
+ 1337 0048 04       		.byte	0x4
+ 1338 0049 02       		.uleb128 0x2
+ 1339 004a 12010000 		.4byte	.LASF1
+ 1340 004e 02       		.byte	0x2
+ 1341 004f 62       		.byte	0x62
+ 1342 0050 25000000 		.4byte	0x25
+ 1343 0054 06       		.uleb128 0x6
+ 1344 0055 00010000 		.4byte	.LASF2
+ 1345 0059 01       		.byte	0x1
+ 1346 005a 1A       		.byte	0x1a
+ 1347 005b 00000000 		.4byte	.LFB0
+ 1348 005f 34000000 		.4byte	.LFE0-.LFB0
+ 1349 0063 01       		.uleb128 0x1
+ 1350 0064 9C       		.byte	0x9c
+ 1351 0065 96000000 		.4byte	0x96
+ 1352 0069 07       		.uleb128 0x7
+ 1353 006a 6300     		.ascii	"c\000"
+ 1354 006c 01       		.byte	0x1
+ 1355 006d 1A       		.byte	0x1a
+ 1356 006e 96000000 		.4byte	0x96
+ 1357 0072 00000000 		.4byte	.LLST0
+ 1358 0076 08       		.uleb128 0x8
+ 1359 0077 0E000000 		.4byte	.LVL2
+ 1360 007b 54000000 		.4byte	0x54
+ 1361 007f 89000000 		.4byte	0x89
+ 1362 0083 09       		.uleb128 0x9
+ 1363 0084 01       		.uleb128 0x1
+ 1364 0085 50       		.byte	0x50
+ 1365 0086 01       		.uleb128 0x1
+ 1366 0087 3D       		.byte	0x3d
+ 1367 0088 00       		.byte	0
+ 1368 0089 0A       		.uleb128 0xa
+ 1369 008a 28000000 		.4byte	.LVL3
+ 1370 008e 09       		.uleb128 0x9
+ 1371 008f 01       		.uleb128 0x1
+ 1372 0090 50       		.byte	0x50
+ 1373 0091 02       		.uleb128 0x2
+ 1374 0092 74       		.byte	0x74
+ 1375 0093 00       		.sleb128 0
+ 1376 0094 00       		.byte	0
+ 1377 0095 00       		.byte	0
+ 1378 0096 0B       		.uleb128 0xb
+ 1379 0097 01       		.byte	0x1
+ 1380 0098 08       		.byte	0x8
+ 1381 0099 5D010000 		.4byte	.LASF4
+ 1382 009d 06       		.uleb128 0x6
+ 1383 009e 37010000 		.4byte	.LASF3
+ 1384 00a2 01       		.byte	0x1
+ 1385 00a3 2C       		.byte	0x2c
+ 1386 00a4 00000000 		.4byte	.LFB1
+ 1387 00a8 14000000 		.4byte	.LFE1-.LFB1
+ 1388 00ac 01       		.uleb128 0x1
+ 1389 00ad 9C       		.byte	0x9c
+ 1390 00ae CB000000 		.4byte	0xcb
+ 1391 00b2 07       		.uleb128 0x7
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 33
+
+
+ 1392 00b3 73747200 		.ascii	"str\000"
+ 1393 00b7 01       		.byte	0x1
+ 1394 00b8 2D       		.byte	0x2d
+ 1395 00b9 CB000000 		.4byte	0xcb
+ 1396 00bd 21000000 		.4byte	.LLST1
+ 1397 00c1 0C       		.uleb128 0xc
+ 1398 00c2 0C000000 		.4byte	.LVL7
+ 1399 00c6 54000000 		.4byte	0x54
+ 1400 00ca 00       		.byte	0
+ 1401 00cb 0D       		.uleb128 0xd
+ 1402 00cc 04       		.byte	0x4
+ 1403 00cd D1000000 		.4byte	0xd1
+ 1404 00d1 0E       		.uleb128 0xe
+ 1405 00d2 96000000 		.4byte	0x96
+ 1406 00d6 0F       		.uleb128 0xf
+ 1407 00d7 AF010000 		.4byte	.LASF31
+ 1408 00db 01       		.byte	0x1
+ 1409 00dc 58       		.byte	0x58
+ 1410 00dd 00000000 		.4byte	.LFB3
+ 1411 00e1 F4010000 		.4byte	.LFE3-.LFB3
+ 1412 00e5 01       		.uleb128 0x1
+ 1413 00e6 9C       		.byte	0x9c
+ 1414 00e7 22020000 		.4byte	0x222
+ 1415 00eb 07       		.uleb128 0x7
+ 1416 00ec 666D7400 		.ascii	"fmt\000"
+ 1417 00f0 01       		.byte	0x1
+ 1418 00f1 59       		.byte	0x59
+ 1419 00f2 CB000000 		.4byte	0xcb
+ 1420 00f6 3F000000 		.4byte	.LLST2
+ 1421 00fa 07       		.uleb128 0x7
+ 1422 00fb 61727000 		.ascii	"arp\000"
+ 1423 00ff 01       		.byte	0x1
+ 1424 0100 5A       		.byte	0x5a
+ 1425 0101 49000000 		.4byte	0x49
+ 1426 0105 AE000000 		.4byte	.LLST3
+ 1427 0109 10       		.uleb128 0x10
+ 1428 010a 7200     		.ascii	"r\000"
+ 1429 010c 01       		.byte	0x1
+ 1430 010d 5D       		.byte	0x5d
+ 1431 010e 22020000 		.4byte	0x222
+ 1432 0112 0E010000 		.4byte	.LLST4
+ 1433 0116 10       		.uleb128 0x10
+ 1434 0117 6900     		.ascii	"i\000"
+ 1435 0119 01       		.byte	0x1
+ 1436 011a 5D       		.byte	0x5d
+ 1437 011b 22020000 		.4byte	0x222
+ 1438 011f 39010000 		.4byte	.LLST5
+ 1439 0123 10       		.uleb128 0x10
+ 1440 0124 6A00     		.ascii	"j\000"
+ 1441 0126 01       		.byte	0x1
+ 1442 0127 5D       		.byte	0x5d
+ 1443 0128 22020000 		.4byte	0x222
+ 1444 012c 86010000 		.4byte	.LLST6
+ 1445 0130 10       		.uleb128 0x10
+ 1446 0131 7700     		.ascii	"w\000"
+ 1447 0133 01       		.byte	0x1
+ 1448 0134 5D       		.byte	0x5d
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 34
+
+
+ 1449 0135 22020000 		.4byte	0x222
+ 1450 0139 4A020000 		.4byte	.LLST7
+ 1451 013d 10       		.uleb128 0x10
+ 1452 013e 6600     		.ascii	"f\000"
+ 1453 0140 01       		.byte	0x1
+ 1454 0141 5D       		.byte	0x5d
+ 1455 0142 22020000 		.4byte	0x222
+ 1456 0146 74020000 		.4byte	.LLST8
+ 1457 014a 10       		.uleb128 0x10
+ 1458 014b 7600     		.ascii	"v\000"
+ 1459 014d 01       		.byte	0x1
+ 1460 014e 5E       		.byte	0x5e
+ 1461 014f 29020000 		.4byte	0x229
+ 1462 0153 CE020000 		.4byte	.LLST9
+ 1463 0157 11       		.uleb128 0x11
+ 1464 0158 7300     		.ascii	"s\000"
+ 1465 015a 01       		.byte	0x1
+ 1466 015b 5F       		.byte	0x5f
+ 1467 015c 30020000 		.4byte	0x230
+ 1468 0160 02       		.uleb128 0x2
+ 1469 0161 91       		.byte	0x91
+ 1470 0162 48       		.sleb128 -56
+ 1471 0163 10       		.uleb128 0x10
+ 1472 0164 6300     		.ascii	"c\000"
+ 1473 0166 01       		.byte	0x1
+ 1474 0167 5F       		.byte	0x5f
+ 1475 0168 96000000 		.4byte	0x96
+ 1476 016c 0D030000 		.4byte	.LLST10
+ 1477 0170 10       		.uleb128 0x10
+ 1478 0171 6400     		.ascii	"d\000"
+ 1479 0173 01       		.byte	0x1
+ 1480 0174 5F       		.byte	0x5f
+ 1481 0175 96000000 		.4byte	0x96
+ 1482 0179 57030000 		.4byte	.LLST11
+ 1483 017d 10       		.uleb128 0x10
+ 1484 017e 7000     		.ascii	"p\000"
+ 1485 0180 01       		.byte	0x1
+ 1486 0181 5F       		.byte	0x5f
+ 1487 0182 47020000 		.4byte	0x247
+ 1488 0186 C2030000 		.4byte	.LLST12
+ 1489 018a 0C       		.uleb128 0xc
+ 1490 018b 1C000000 		.4byte	.LVL12
+ 1491 018f 54000000 		.4byte	0x54
+ 1492 0193 08       		.uleb128 0x8
+ 1493 0194 C2000000 		.4byte	.LVL43
+ 1494 0198 54000000 		.4byte	0x54
+ 1495 019c A7010000 		.4byte	0x1a7
+ 1496 01a0 09       		.uleb128 0x9
+ 1497 01a1 01       		.uleb128 0x1
+ 1498 01a2 50       		.byte	0x50
+ 1499 01a3 02       		.uleb128 0x2
+ 1500 01a4 08       		.byte	0x8
+ 1501 01a5 20       		.byte	0x20
+ 1502 01a6 00       		.byte	0
+ 1503 01a7 08       		.uleb128 0x8
+ 1504 01a8 DA000000 		.4byte	.LVL47
+ 1505 01ac 9D000000 		.4byte	0x9d
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 35
+
+
+ 1506 01b0 BB010000 		.4byte	0x1bb
+ 1507 01b4 09       		.uleb128 0x9
+ 1508 01b5 01       		.uleb128 0x1
+ 1509 01b6 50       		.byte	0x50
+ 1510 01b7 02       		.uleb128 0x2
+ 1511 01b8 7A       		.byte	0x7a
+ 1512 01b9 00       		.sleb128 0
+ 1513 01ba 00       		.byte	0
+ 1514 01bb 08       		.uleb128 0x8
+ 1515 01bc E2000000 		.4byte	.LVL49
+ 1516 01c0 54000000 		.4byte	0x54
+ 1517 01c4 CF010000 		.4byte	0x1cf
+ 1518 01c8 09       		.uleb128 0x9
+ 1519 01c9 01       		.uleb128 0x1
+ 1520 01ca 50       		.byte	0x50
+ 1521 01cb 02       		.uleb128 0x2
+ 1522 01cc 08       		.byte	0x8
+ 1523 01cd 20       		.byte	0x20
+ 1524 01ce 00       		.byte	0
+ 1525 01cf 0C       		.uleb128 0xc
+ 1526 01d0 F8000000 		.4byte	.LVL55
+ 1527 01d4 54000000 		.4byte	0x54
+ 1528 01d8 0C       		.uleb128 0xc
+ 1529 01d9 0A010000 		.4byte	.LVL59
+ 1530 01dd 54000000 		.4byte	0x54
+ 1531 01e1 08       		.uleb128 0x8
+ 1532 01e2 B6010000 		.4byte	.LVL83
+ 1533 01e6 54000000 		.4byte	0x54
+ 1534 01ea F5010000 		.4byte	0x1f5
+ 1535 01ee 09       		.uleb128 0x9
+ 1536 01ef 01       		.uleb128 0x1
+ 1537 01f0 50       		.byte	0x50
+ 1538 01f1 02       		.uleb128 0x2
+ 1539 01f2 7B       		.byte	0x7b
+ 1540 01f3 00       		.sleb128 0
+ 1541 01f4 00       		.byte	0
+ 1542 01f5 08       		.uleb128 0x8
+ 1543 01f6 D6010000 		.4byte	.LVL88
+ 1544 01fa 54000000 		.4byte	0x54
+ 1545 01fe 11020000 		.4byte	0x211
+ 1546 0202 09       		.uleb128 0x9
+ 1547 0203 01       		.uleb128 0x1
+ 1548 0204 50       		.byte	0x50
+ 1549 0205 0A       		.uleb128 0xa
+ 1550 0206 91       		.byte	0x91
+ 1551 0207 00       		.sleb128 0
+ 1552 0208 75       		.byte	0x75
+ 1553 0209 00       		.sleb128 0
+ 1554 020a 22       		.byte	0x22
+ 1555 020b 08       		.byte	0x8
+ 1556 020c 38       		.byte	0x38
+ 1557 020d 1C       		.byte	0x1c
+ 1558 020e 94       		.byte	0x94
+ 1559 020f 01       		.byte	0x1
+ 1560 0210 00       		.byte	0
+ 1561 0211 12       		.uleb128 0x12
+ 1562 0212 E2010000 		.4byte	.LVL90
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 36
+
+
+ 1563 0216 54000000 		.4byte	0x54
+ 1564 021a 09       		.uleb128 0x9
+ 1565 021b 01       		.uleb128 0x1
+ 1566 021c 50       		.byte	0x50
+ 1567 021d 02       		.uleb128 0x2
+ 1568 021e 08       		.byte	0x8
+ 1569 021f 20       		.byte	0x20
+ 1570 0220 00       		.byte	0
+ 1571 0221 00       		.byte	0
+ 1572 0222 0B       		.uleb128 0xb
+ 1573 0223 04       		.byte	0x4
+ 1574 0224 07       		.byte	0x7
+ 1575 0225 50010000 		.4byte	.LASF5
+ 1576 0229 0B       		.uleb128 0xb
+ 1577 022a 04       		.byte	0x4
+ 1578 022b 07       		.byte	0x7
+ 1579 022c 25010000 		.4byte	.LASF6
+ 1580 0230 13       		.uleb128 0x13
+ 1581 0231 96000000 		.4byte	0x96
+ 1582 0235 40020000 		.4byte	0x240
+ 1583 0239 14       		.uleb128 0x14
+ 1584 023a 40020000 		.4byte	0x240
+ 1585 023e 0F       		.byte	0xf
+ 1586 023f 00       		.byte	0
+ 1587 0240 0B       		.uleb128 0xb
+ 1588 0241 04       		.byte	0x4
+ 1589 0242 07       		.byte	0x7
+ 1590 0243 75010000 		.4byte	.LASF7
+ 1591 0247 0D       		.uleb128 0xd
+ 1592 0248 04       		.byte	0x4
+ 1593 0249 96000000 		.4byte	0x96
+ 1594 024d 06       		.uleb128 0x6
+ 1595 024e 9F010000 		.4byte	.LASF8
+ 1596 0252 01       		.byte	0x1
+ 1597 0253 35       		.byte	0x35
+ 1598 0254 00000000 		.4byte	.LFB2
+ 1599 0258 24000000 		.4byte	.LFE2-.LFB2
+ 1600 025c 01       		.uleb128 0x1
+ 1601 025d 9C       		.byte	0x9c
+ 1602 025e 98020000 		.4byte	0x298
+ 1603 0262 15       		.uleb128 0x15
+ 1604 0263 70010000 		.4byte	.LASF9
+ 1605 0267 01       		.byte	0x1
+ 1606 0268 36       		.byte	0x36
+ 1607 0269 AA020000 		.4byte	0x2aa
+ 1608 026d D5030000 		.4byte	.LLST13
+ 1609 0271 07       		.uleb128 0x7
+ 1610 0272 73747200 		.ascii	"str\000"
+ 1611 0276 01       		.byte	0x1
+ 1612 0277 37       		.byte	0x37
+ 1613 0278 CB000000 		.4byte	0xcb
+ 1614 027c F6030000 		.4byte	.LLST14
+ 1615 0280 10       		.uleb128 0x10
+ 1616 0281 706600   		.ascii	"pf\000"
+ 1617 0284 01       		.byte	0x1
+ 1618 0285 3A       		.byte	0x3a
+ 1619 0286 AA020000 		.4byte	0x2aa
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 37
+
+
+ 1620 028a 14040000 		.4byte	.LLST15
+ 1621 028e 0C       		.uleb128 0xc
+ 1622 028f 12000000 		.4byte	.LVL98
+ 1623 0293 54000000 		.4byte	0x54
+ 1624 0297 00       		.byte	0
+ 1625 0298 16       		.uleb128 0x16
+ 1626 0299 A3020000 		.4byte	0x2a3
+ 1627 029d 17       		.uleb128 0x17
+ 1628 029e A3020000 		.4byte	0x2a3
+ 1629 02a2 00       		.byte	0
+ 1630 02a3 0B       		.uleb128 0xb
+ 1631 02a4 01       		.byte	0x1
+ 1632 02a5 08       		.byte	0x8
+ 1633 02a6 64000000 		.4byte	.LASF10
+ 1634 02aa 0D       		.uleb128 0xd
+ 1635 02ab 04       		.byte	0x4
+ 1636 02ac 98020000 		.4byte	0x298
+ 1637 02b0 06       		.uleb128 0x6
+ 1638 02b1 88010000 		.4byte	.LASF11
+ 1639 02b5 01       		.byte	0x1
+ 1640 02b6 A5       		.byte	0xa5
+ 1641 02b7 00000000 		.4byte	.LFB4
+ 1642 02bb 1C000000 		.4byte	.LFE4-.LFB4
+ 1643 02bf 01       		.uleb128 0x1
+ 1644 02c0 9C       		.byte	0x9c
+ 1645 02c1 FA020000 		.4byte	0x2fa
+ 1646 02c5 18       		.uleb128 0x18
+ 1647 02c6 666D7400 		.ascii	"fmt\000"
+ 1648 02ca 01       		.byte	0x1
+ 1649 02cb A6       		.byte	0xa6
+ 1650 02cc CB000000 		.4byte	0xcb
+ 1651 02d0 02       		.uleb128 0x2
+ 1652 02d1 91       		.byte	0x91
+ 1653 02d2 70       		.sleb128 -16
+ 1654 02d3 19       		.uleb128 0x19
+ 1655 02d4 11       		.uleb128 0x11
+ 1656 02d5 61727000 		.ascii	"arp\000"
+ 1657 02d9 01       		.byte	0x1
+ 1658 02da AA       		.byte	0xaa
+ 1659 02db 49000000 		.4byte	0x49
+ 1660 02df 02       		.uleb128 0x2
+ 1661 02e0 91       		.byte	0x91
+ 1662 02e1 64       		.sleb128 -28
+ 1663 02e2 12       		.uleb128 0x12
+ 1664 02e3 12000000 		.4byte	.LVL101
+ 1665 02e7 D6000000 		.4byte	0xd6
+ 1666 02eb 09       		.uleb128 0x9
+ 1667 02ec 01       		.uleb128 0x1
+ 1668 02ed 50       		.byte	0x50
+ 1669 02ee 03       		.uleb128 0x3
+ 1670 02ef 91       		.byte	0x91
+ 1671 02f0 50       		.sleb128 -48
+ 1672 02f1 06       		.byte	0x6
+ 1673 02f2 09       		.uleb128 0x9
+ 1674 02f3 01       		.uleb128 0x1
+ 1675 02f4 51       		.byte	0x51
+ 1676 02f5 02       		.uleb128 0x2
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 38
+
+
+ 1677 02f6 91       		.byte	0x91
+ 1678 02f7 54       		.sleb128 -44
+ 1679 02f8 00       		.byte	0
+ 1680 02f9 00       		.byte	0
+ 1681 02fa 06       		.uleb128 0x6
+ 1682 02fb 67010000 		.4byte	.LASF12
+ 1683 02ff 01       		.byte	0x1
+ 1684 0300 B3       		.byte	0xb3
+ 1685 0301 00000000 		.4byte	.LFB5
+ 1686 0305 30000000 		.4byte	.LFE5-.LFB5
+ 1687 0309 01       		.uleb128 0x1
+ 1688 030a 9C       		.byte	0x9c
+ 1689 030b 53030000 		.4byte	0x353
+ 1690 030f 15       		.uleb128 0x15
+ 1691 0310 1A010000 		.4byte	.LASF13
+ 1692 0314 01       		.byte	0x1
+ 1693 0315 B4       		.byte	0xb4
+ 1694 0316 47020000 		.4byte	0x247
+ 1695 031a 36040000 		.4byte	.LLST16
+ 1696 031e 18       		.uleb128 0x18
+ 1697 031f 666D7400 		.ascii	"fmt\000"
+ 1698 0323 01       		.byte	0x1
+ 1699 0324 B5       		.byte	0xb5
+ 1700 0325 CB000000 		.4byte	0xcb
+ 1701 0329 02       		.uleb128 0x2
+ 1702 032a 91       		.byte	0x91
+ 1703 032b 74       		.sleb128 -12
+ 1704 032c 19       		.uleb128 0x19
+ 1705 032d 11       		.uleb128 0x11
+ 1706 032e 61727000 		.ascii	"arp\000"
+ 1707 0332 01       		.byte	0x1
+ 1708 0333 B9       		.byte	0xb9
+ 1709 0334 49000000 		.4byte	0x49
+ 1710 0338 02       		.uleb128 0x2
+ 1711 0339 91       		.byte	0x91
+ 1712 033a 64       		.sleb128 -28
+ 1713 033b 12       		.uleb128 0x12
+ 1714 033c 18000000 		.4byte	.LVL104
+ 1715 0340 D6000000 		.4byte	0xd6
+ 1716 0344 09       		.uleb128 0x9
+ 1717 0345 01       		.uleb128 0x1
+ 1718 0346 50       		.byte	0x50
+ 1719 0347 03       		.uleb128 0x3
+ 1720 0348 91       		.byte	0x91
+ 1721 0349 5C       		.sleb128 -36
+ 1722 034a 06       		.byte	0x6
+ 1723 034b 09       		.uleb128 0x9
+ 1724 034c 01       		.uleb128 0x1
+ 1725 034d 51       		.byte	0x51
+ 1726 034e 02       		.uleb128 0x2
+ 1727 034f 91       		.byte	0x91
+ 1728 0350 60       		.sleb128 -32
+ 1729 0351 00       		.byte	0
+ 1730 0352 00       		.byte	0
+ 1731 0353 06       		.uleb128 0x6
+ 1732 0354 47010000 		.4byte	.LASF14
+ 1733 0358 01       		.byte	0x1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 39
+
+
+ 1734 0359 C7       		.byte	0xc7
+ 1735 035a 00000000 		.4byte	.LFB6
+ 1736 035e 2C000000 		.4byte	.LFE6-.LFB6
+ 1737 0362 01       		.uleb128 0x1
+ 1738 0363 9C       		.byte	0x9c
+ 1739 0364 BA030000 		.4byte	0x3ba
+ 1740 0368 15       		.uleb128 0x15
+ 1741 0369 70010000 		.4byte	.LASF9
+ 1742 036d 01       		.byte	0x1
+ 1743 036e C8       		.byte	0xc8
+ 1744 036f AA020000 		.4byte	0x2aa
+ 1745 0373 66040000 		.4byte	.LLST17
+ 1746 0377 18       		.uleb128 0x18
+ 1747 0378 666D7400 		.ascii	"fmt\000"
+ 1748 037c 01       		.byte	0x1
+ 1749 037d C9       		.byte	0xc9
+ 1750 037e CB000000 		.4byte	0xcb
+ 1751 0382 02       		.uleb128 0x2
+ 1752 0383 91       		.byte	0x91
+ 1753 0384 74       		.sleb128 -12
+ 1754 0385 19       		.uleb128 0x19
+ 1755 0386 11       		.uleb128 0x11
+ 1756 0387 61727000 		.ascii	"arp\000"
+ 1757 038b 01       		.byte	0x1
+ 1758 038c CD       		.byte	0xcd
+ 1759 038d 49000000 		.4byte	0x49
+ 1760 0391 02       		.uleb128 0x2
+ 1761 0392 91       		.byte	0x91
+ 1762 0393 64       		.sleb128 -28
+ 1763 0394 10       		.uleb128 0x10
+ 1764 0395 706600   		.ascii	"pf\000"
+ 1765 0398 01       		.byte	0x1
+ 1766 0399 CE       		.byte	0xce
+ 1767 039a AA020000 		.4byte	0x2aa
+ 1768 039e 96040000 		.4byte	.LLST18
+ 1769 03a2 12       		.uleb128 0x12
+ 1770 03a3 1A000000 		.4byte	.LVL108
+ 1771 03a7 D6000000 		.4byte	0xd6
+ 1772 03ab 09       		.uleb128 0x9
+ 1773 03ac 01       		.uleb128 0x1
+ 1774 03ad 50       		.byte	0x50
+ 1775 03ae 03       		.uleb128 0x3
+ 1776 03af 91       		.byte	0x91
+ 1777 03b0 5C       		.sleb128 -36
+ 1778 03b1 06       		.byte	0x6
+ 1779 03b2 09       		.uleb128 0x9
+ 1780 03b3 01       		.uleb128 0x1
+ 1781 03b4 51       		.byte	0x51
+ 1782 03b5 02       		.uleb128 0x2
+ 1783 03b6 91       		.byte	0x91
+ 1784 03b7 60       		.sleb128 -32
+ 1785 03b8 00       		.byte	0
+ 1786 03b9 00       		.byte	0
+ 1787 03ba 06       		.uleb128 0x6
+ 1788 03bb 0A000000 		.4byte	.LASF15
+ 1789 03bf 01       		.byte	0x1
+ 1790 03c0 E1       		.byte	0xe1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 40
+
+
+ 1791 03c1 00000000 		.4byte	.LFB7
+ 1792 03c5 8C000000 		.4byte	.LFE7-.LFB7
+ 1793 03c9 01       		.uleb128 0x1
+ 1794 03ca 9C       		.byte	0x9c
+ 1795 03cb CE040000 		.4byte	0x4ce
+ 1796 03cf 15       		.uleb128 0x15
+ 1797 03d0 1A010000 		.4byte	.LASF13
+ 1798 03d4 01       		.byte	0x1
+ 1799 03d5 E2       		.byte	0xe2
+ 1800 03d6 CE040000 		.4byte	0x4ce
+ 1801 03da B8040000 		.4byte	.LLST19
+ 1802 03de 15       		.uleb128 0x15
+ 1803 03df 0D010000 		.4byte	.LASF16
+ 1804 03e3 01       		.byte	0x1
+ 1805 03e4 E3       		.byte	0xe3
+ 1806 03e5 29020000 		.4byte	0x229
+ 1807 03e9 E4040000 		.4byte	.LLST20
+ 1808 03ed 07       		.uleb128 0x7
+ 1809 03ee 6C656E00 		.ascii	"len\000"
+ 1810 03f2 01       		.byte	0x1
+ 1811 03f3 E4       		.byte	0xe4
+ 1812 03f4 D5040000 		.4byte	0x4d5
+ 1813 03f8 05050000 		.4byte	.LLST21
+ 1814 03fc 15       		.uleb128 0x15
+ 1815 03fd 90010000 		.4byte	.LASF17
+ 1816 0401 01       		.byte	0x1
+ 1817 0402 E5       		.byte	0xe5
+ 1818 0403 D5040000 		.4byte	0x4d5
+ 1819 0407 53050000 		.4byte	.LLST22
+ 1820 040b 10       		.uleb128 0x10
+ 1821 040c 6900     		.ascii	"i\000"
+ 1822 040e 01       		.byte	0x1
+ 1823 040f E8       		.byte	0xe8
+ 1824 0410 D5040000 		.4byte	0x4d5
+ 1825 0414 98050000 		.4byte	.LLST23
+ 1826 0418 1A       		.uleb128 0x1a
+ 1827 0419 627000   		.ascii	"bp\000"
+ 1828 041c 01       		.byte	0x1
+ 1829 041d E9       		.byte	0xe9
+ 1830 041e DC040000 		.4byte	0x4dc
+ 1831 0422 10       		.uleb128 0x10
+ 1832 0423 737000   		.ascii	"sp\000"
+ 1833 0426 01       		.byte	0x1
+ 1834 0427 EA       		.byte	0xea
+ 1835 0428 E7040000 		.4byte	0x4e7
+ 1836 042c CD050000 		.4byte	.LLST24
+ 1837 0430 10       		.uleb128 0x10
+ 1838 0431 6C7000   		.ascii	"lp\000"
+ 1839 0434 01       		.byte	0x1
+ 1840 0435 EB       		.byte	0xeb
+ 1841 0436 F9040000 		.4byte	0x4f9
+ 1842 043a EB050000 		.4byte	.LLST25
+ 1843 043e 08       		.uleb128 0x8
+ 1844 043f 0E000000 		.4byte	.LVL112
+ 1845 0443 B0020000 		.4byte	0x2b0
+ 1846 0447 5C040000 		.4byte	0x45c
+ 1847 044b 09       		.uleb128 0x9
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 41
+
+
+ 1848 044c 01       		.uleb128 0x1
+ 1849 044d 50       		.byte	0x50
+ 1850 044e 05       		.uleb128 0x5
+ 1851 044f 03       		.byte	0x3
+ 1852 0450 00000000 		.4byte	.LC0
+ 1853 0454 09       		.uleb128 0x9
+ 1854 0455 01       		.uleb128 0x1
+ 1855 0456 51       		.byte	0x51
+ 1856 0457 03       		.uleb128 0x3
+ 1857 0458 F3       		.byte	0xf3
+ 1858 0459 01       		.uleb128 0x1
+ 1859 045a 51       		.byte	0x51
+ 1860 045b 00       		.byte	0
+ 1861 045c 08       		.uleb128 0x8
+ 1862 045d 24000000 		.4byte	.LVL114
+ 1863 0461 B0020000 		.4byte	0x2b0
+ 1864 0465 73040000 		.4byte	0x473
+ 1865 0469 09       		.uleb128 0x9
+ 1866 046a 01       		.uleb128 0x1
+ 1867 046b 50       		.byte	0x50
+ 1868 046c 05       		.uleb128 0x5
+ 1869 046d 03       		.byte	0x3
+ 1870 046e 08000000 		.4byte	.LC1
+ 1871 0472 00       		.byte	0
+ 1872 0473 08       		.uleb128 0x8
+ 1873 0474 34000000 		.4byte	.LVL118
+ 1874 0478 54000000 		.4byte	0x54
+ 1875 047c 87040000 		.4byte	0x487
+ 1876 0480 09       		.uleb128 0x9
+ 1877 0481 01       		.uleb128 0x1
+ 1878 0482 50       		.byte	0x50
+ 1879 0483 02       		.uleb128 0x2
+ 1880 0484 08       		.byte	0x8
+ 1881 0485 20       		.byte	0x20
+ 1882 0486 00       		.byte	0
+ 1883 0487 0C       		.uleb128 0xc
+ 1884 0488 4A000000 		.4byte	.LVL120
+ 1885 048c 54000000 		.4byte	0x54
+ 1886 0490 08       		.uleb128 0x8
+ 1887 0491 5C000000 		.4byte	.LVL124
+ 1888 0495 B0020000 		.4byte	0x2b0
+ 1889 0499 A7040000 		.4byte	0x4a7
+ 1890 049d 09       		.uleb128 0x9
+ 1891 049e 01       		.uleb128 0x1
+ 1892 049f 50       		.byte	0x50
+ 1893 04a0 05       		.uleb128 0x5
+ 1894 04a1 03       		.byte	0x3
+ 1895 04a2 10000000 		.4byte	.LC2
+ 1896 04a6 00       		.byte	0
+ 1897 04a7 08       		.uleb128 0x8
+ 1898 04a8 6E000000 		.4byte	.LVL128
+ 1899 04ac B0020000 		.4byte	0x2b0
+ 1900 04b0 BE040000 		.4byte	0x4be
+ 1901 04b4 09       		.uleb128 0x9
+ 1902 04b5 01       		.uleb128 0x1
+ 1903 04b6 50       		.byte	0x50
+ 1904 04b7 05       		.uleb128 0x5
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 42
+
+
+ 1905 04b8 03       		.byte	0x3
+ 1906 04b9 18000000 		.4byte	.LC3
+ 1907 04bd 00       		.byte	0
+ 1908 04be 12       		.uleb128 0x12
+ 1909 04bf 7A000000 		.4byte	.LVL131
+ 1910 04c3 54000000 		.4byte	0x54
+ 1911 04c7 09       		.uleb128 0x9
+ 1912 04c8 01       		.uleb128 0x1
+ 1913 04c9 50       		.byte	0x50
+ 1914 04ca 01       		.uleb128 0x1
+ 1915 04cb 3A       		.byte	0x3a
+ 1916 04cc 00       		.byte	0
+ 1917 04cd 00       		.byte	0
+ 1918 04ce 0D       		.uleb128 0xd
+ 1919 04cf 04       		.byte	0x4
+ 1920 04d0 D4040000 		.4byte	0x4d4
+ 1921 04d4 1B       		.uleb128 0x1b
+ 1922 04d5 1C       		.uleb128 0x1c
+ 1923 04d6 04       		.byte	0x4
+ 1924 04d7 05       		.byte	0x5
+ 1925 04d8 696E7400 		.ascii	"int\000"
+ 1926 04dc 0D       		.uleb128 0xd
+ 1927 04dd 04       		.byte	0x4
+ 1928 04de E2040000 		.4byte	0x4e2
+ 1929 04e2 0E       		.uleb128 0xe
+ 1930 04e3 A3020000 		.4byte	0x2a3
+ 1931 04e7 0D       		.uleb128 0xd
+ 1932 04e8 04       		.byte	0x4
+ 1933 04e9 F4040000 		.4byte	0x4f4
+ 1934 04ed 0B       		.uleb128 0xb
+ 1935 04ee 02       		.byte	0x2
+ 1936 04ef 07       		.byte	0x7
+ 1937 04f0 B8010000 		.4byte	.LASF18
+ 1938 04f4 0E       		.uleb128 0xe
+ 1939 04f5 ED040000 		.4byte	0x4ed
+ 1940 04f9 0D       		.uleb128 0xd
+ 1941 04fa 04       		.byte	0x4
+ 1942 04fb FF040000 		.4byte	0x4ff
+ 1943 04ff 0E       		.uleb128 0xe
+ 1944 0500 29020000 		.4byte	0x229
+ 1945 0504 1D       		.uleb128 0x1d
+ 1946 0505 1F010000 		.4byte	.LASF19
+ 1947 0509 01       		.byte	0x1
+ 1948 050a 1501     		.2byte	0x115
+ 1949 050c D5040000 		.4byte	0x4d5
+ 1950 0510 00000000 		.4byte	.LFB8
+ 1951 0514 4C000000 		.4byte	.LFE8-.LFB8
+ 1952 0518 01       		.uleb128 0x1
+ 1953 0519 9C       		.byte	0x9c
+ 1954 051a 5B050000 		.4byte	0x55b
+ 1955 051e 1E       		.uleb128 0x1e
+ 1956 051f 1A010000 		.4byte	.LASF13
+ 1957 0523 01       		.byte	0x1
+ 1958 0524 1601     		.2byte	0x116
+ 1959 0526 47020000 		.4byte	0x247
+ 1960 052a 09060000 		.4byte	.LLST26
+ 1961 052e 1F       		.uleb128 0x1f
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 43
+
+
+ 1962 052f 6C656E00 		.ascii	"len\000"
+ 1963 0533 01       		.byte	0x1
+ 1964 0534 1701     		.2byte	0x117
+ 1965 0536 D5040000 		.4byte	0x4d5
+ 1966 053a 59060000 		.4byte	.LLST27
+ 1967 053e 20       		.uleb128 0x20
+ 1968 053f 6300     		.ascii	"c\000"
+ 1969 0541 01       		.byte	0x1
+ 1970 0542 1A01     		.2byte	0x11a
+ 1971 0544 D5040000 		.4byte	0x4d5
+ 1972 0548 9B060000 		.4byte	.LLST28
+ 1973 054c 20       		.uleb128 0x20
+ 1974 054d 6900     		.ascii	"i\000"
+ 1975 054f 01       		.byte	0x1
+ 1976 0550 1A01     		.2byte	0x11a
+ 1977 0552 D5040000 		.4byte	0x4d5
+ 1978 0556 C4060000 		.4byte	.LLST29
+ 1979 055a 00       		.byte	0
+ 1980 055b 21       		.uleb128 0x21
+ 1981 055c 06010000 		.4byte	.LASF20
+ 1982 0560 01       		.byte	0x1
+ 1983 0561 3401     		.2byte	0x134
+ 1984 0563 D5040000 		.4byte	0x4d5
+ 1985 0567 00000000 		.4byte	.LFB9
+ 1986 056b 1C000000 		.4byte	.LFE9-.LFB9
+ 1987 056f 01       		.uleb128 0x1
+ 1988 0570 9C       		.byte	0x9c
+ 1989 0571 D9050000 		.4byte	0x5d9
+ 1990 0575 1E       		.uleb128 0x1e
+ 1991 0576 70010000 		.4byte	.LASF9
+ 1992 057a 01       		.byte	0x1
+ 1993 057b 3501     		.2byte	0x135
+ 1994 057d DE050000 		.4byte	0x5de
+ 1995 0581 FA060000 		.4byte	.LLST30
+ 1996 0585 1E       		.uleb128 0x1e
+ 1997 0586 1A010000 		.4byte	.LASF13
+ 1998 058a 01       		.byte	0x1
+ 1999 058b 3601     		.2byte	0x136
+ 2000 058d 47020000 		.4byte	0x247
+ 2001 0591 2A070000 		.4byte	.LLST31
+ 2002 0595 1F       		.uleb128 0x1f
+ 2003 0596 6C656E00 		.ascii	"len\000"
+ 2004 059a 01       		.byte	0x1
+ 2005 059b 3701     		.2byte	0x137
+ 2006 059d D5040000 		.4byte	0x4d5
+ 2007 05a1 56070000 		.4byte	.LLST32
+ 2008 05a5 20       		.uleb128 0x20
+ 2009 05a6 706600   		.ascii	"pf\000"
+ 2010 05a9 01       		.byte	0x1
+ 2011 05aa 3A01     		.2byte	0x13a
+ 2012 05ac DE050000 		.4byte	0x5de
+ 2013 05b0 77070000 		.4byte	.LLST33
+ 2014 05b4 22       		.uleb128 0x22
+ 2015 05b5 6E00     		.ascii	"n\000"
+ 2016 05b7 01       		.byte	0x1
+ 2017 05b8 3B01     		.2byte	0x13b
+ 2018 05ba D5040000 		.4byte	0x4d5
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 44
+
+
+ 2019 05be 01       		.uleb128 0x1
+ 2020 05bf 50       		.byte	0x50
+ 2021 05c0 12       		.uleb128 0x12
+ 2022 05c1 12000000 		.4byte	.LVL149
+ 2023 05c5 04050000 		.4byte	0x504
+ 2024 05c9 09       		.uleb128 0x9
+ 2025 05ca 01       		.uleb128 0x1
+ 2026 05cb 50       		.byte	0x50
+ 2027 05cc 03       		.uleb128 0x3
+ 2028 05cd F3       		.byte	0xf3
+ 2029 05ce 01       		.uleb128 0x1
+ 2030 05cf 51       		.byte	0x51
+ 2031 05d0 09       		.uleb128 0x9
+ 2032 05d1 01       		.uleb128 0x1
+ 2033 05d2 51       		.byte	0x51
+ 2034 05d3 03       		.uleb128 0x3
+ 2035 05d4 F3       		.byte	0xf3
+ 2036 05d5 01       		.uleb128 0x1
+ 2037 05d6 52       		.byte	0x52
+ 2038 05d7 00       		.byte	0
+ 2039 05d8 00       		.byte	0
+ 2040 05d9 23       		.uleb128 0x23
+ 2041 05da A3020000 		.4byte	0x2a3
+ 2042 05de 0D       		.uleb128 0xd
+ 2043 05df 04       		.byte	0x4
+ 2044 05e0 D9050000 		.4byte	0x5d9
+ 2045 05e4 21       		.uleb128 0x21
+ 2046 05e5 CB010000 		.4byte	.LASF21
+ 2047 05e9 01       		.byte	0x1
+ 2048 05ea 5301     		.2byte	0x153
+ 2049 05ec D5040000 		.4byte	0x4d5
+ 2050 05f0 00000000 		.4byte	.LFB10
+ 2051 05f4 BC000000 		.4byte	.LFE10-.LFB10
+ 2052 05f8 01       		.uleb128 0x1
+ 2053 05f9 9C       		.byte	0x9c
+ 2054 05fa 57060000 		.4byte	0x657
+ 2055 05fe 1F       		.uleb128 0x1f
+ 2056 05ff 73747200 		.ascii	"str\000"
+ 2057 0603 01       		.byte	0x1
+ 2058 0604 5401     		.2byte	0x154
+ 2059 0606 57060000 		.4byte	0x657
+ 2060 060a 99070000 		.4byte	.LLST34
+ 2061 060e 24       		.uleb128 0x24
+ 2062 060f 72657300 		.ascii	"res\000"
+ 2063 0613 01       		.byte	0x1
+ 2064 0614 5501     		.2byte	0x155
+ 2065 0616 5D060000 		.4byte	0x65d
+ 2066 061a 01       		.uleb128 0x1
+ 2067 061b 51       		.byte	0x51
+ 2068 061c 20       		.uleb128 0x20
+ 2069 061d 76616C00 		.ascii	"val\000"
+ 2070 0621 01       		.byte	0x1
+ 2071 0622 5801     		.2byte	0x158
+ 2072 0624 29020000 		.4byte	0x229
+ 2073 0628 37080000 		.4byte	.LLST35
+ 2074 062c 20       		.uleb128 0x20
+ 2075 062d 6300     		.ascii	"c\000"
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 45
+
+
+ 2076 062f 01       		.byte	0x1
+ 2077 0630 5901     		.2byte	0x159
+ 2078 0632 A3020000 		.4byte	0x2a3
+ 2079 0636 61080000 		.4byte	.LLST36
+ 2080 063a 20       		.uleb128 0x20
+ 2081 063b 7200     		.ascii	"r\000"
+ 2082 063d 01       		.byte	0x1
+ 2083 063e 5901     		.2byte	0x159
+ 2084 0640 A3020000 		.4byte	0x2a3
+ 2085 0644 FB080000 		.4byte	.LLST37
+ 2086 0648 20       		.uleb128 0x20
+ 2087 0649 7300     		.ascii	"s\000"
+ 2088 064b 01       		.byte	0x1
+ 2089 064c 5901     		.2byte	0x159
+ 2090 064e A3020000 		.4byte	0x2a3
+ 2091 0652 31090000 		.4byte	.LLST38
+ 2092 0656 00       		.byte	0
+ 2093 0657 0D       		.uleb128 0xd
+ 2094 0658 04       		.byte	0x4
+ 2095 0659 47020000 		.4byte	0x247
+ 2096 065d 0D       		.uleb128 0xd
+ 2097 065e 04       		.byte	0x4
+ 2098 065f 63060000 		.4byte	0x663
+ 2099 0663 0B       		.uleb128 0xb
+ 2100 0664 04       		.byte	0x4
+ 2101 0665 05       		.byte	0x5
+ 2102 0666 A6010000 		.4byte	.LASF22
+ 2103 066a 25       		.uleb128 0x25
+ 2104 066b 4E000000 		.4byte	.LASF23
+ 2105 066f 01       		.byte	0x1
+ 2106 0670 14       		.byte	0x14
+ 2107 0671 47020000 		.4byte	0x247
+ 2108 0675 05       		.uleb128 0x5
+ 2109 0676 03       		.byte	0x3
+ 2110 0677 00000000 		.4byte	outptr
+ 2111 067b 26       		.uleb128 0x26
+ 2112 067c 3D010000 		.4byte	.LASF24
+ 2113 0680 01       		.byte	0x1
+ 2114 0681 13       		.byte	0x13
+ 2115 0682 AA020000 		.4byte	0x2aa
+ 2116 0686 05       		.uleb128 0x5
+ 2117 0687 03       		.byte	0x3
+ 2118 0688 00000000 		.4byte	xfunc_out
+ 2119 068c 27       		.uleb128 0x27
+ 2120 068d 96010000 		.4byte	.LASF25
+ 2121 0691 01       		.byte	0x1
+ 2122 0692 0F01     		.2byte	0x10f
+ 2123 0694 DE050000 		.4byte	0x5de
+ 2124 0698 05       		.uleb128 0x5
+ 2125 0699 03       		.byte	0x3
+ 2126 069a 00000000 		.4byte	xfunc_in
+ 2127 069e 00       		.byte	0
+ 2128              		.section	.debug_abbrev,"",%progbits
+ 2129              	.Ldebug_abbrev0:
+ 2130 0000 01       		.uleb128 0x1
+ 2131 0001 11       		.uleb128 0x11
+ 2132 0002 01       		.byte	0x1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 46
+
+
+ 2133 0003 25       		.uleb128 0x25
+ 2134 0004 0E       		.uleb128 0xe
+ 2135 0005 13       		.uleb128 0x13
+ 2136 0006 0B       		.uleb128 0xb
+ 2137 0007 03       		.uleb128 0x3
+ 2138 0008 0E       		.uleb128 0xe
+ 2139 0009 1B       		.uleb128 0x1b
+ 2140 000a 0E       		.uleb128 0xe
+ 2141 000b 55       		.uleb128 0x55
+ 2142 000c 17       		.uleb128 0x17
+ 2143 000d 11       		.uleb128 0x11
+ 2144 000e 01       		.uleb128 0x1
+ 2145 000f 10       		.uleb128 0x10
+ 2146 0010 17       		.uleb128 0x17
+ 2147 0011 00       		.byte	0
+ 2148 0012 00       		.byte	0
+ 2149 0013 02       		.uleb128 0x2
+ 2150 0014 16       		.uleb128 0x16
+ 2151 0015 00       		.byte	0
+ 2152 0016 03       		.uleb128 0x3
+ 2153 0017 0E       		.uleb128 0xe
+ 2154 0018 3A       		.uleb128 0x3a
+ 2155 0019 0B       		.uleb128 0xb
+ 2156 001a 3B       		.uleb128 0x3b
+ 2157 001b 0B       		.uleb128 0xb
+ 2158 001c 49       		.uleb128 0x49
+ 2159 001d 13       		.uleb128 0x13
+ 2160 001e 00       		.byte	0
+ 2161 001f 00       		.byte	0
+ 2162 0020 03       		.uleb128 0x3
+ 2163 0021 13       		.uleb128 0x13
+ 2164 0022 01       		.byte	0x1
+ 2165 0023 03       		.uleb128 0x3
+ 2166 0024 0E       		.uleb128 0xe
+ 2167 0025 0B       		.uleb128 0xb
+ 2168 0026 0B       		.uleb128 0xb
+ 2169 0027 3A       		.uleb128 0x3a
+ 2170 0028 0B       		.uleb128 0xb
+ 2171 0029 3B       		.uleb128 0x3b
+ 2172 002a 0B       		.uleb128 0xb
+ 2173 002b 01       		.uleb128 0x1
+ 2174 002c 13       		.uleb128 0x13
+ 2175 002d 00       		.byte	0
+ 2176 002e 00       		.byte	0
+ 2177 002f 04       		.uleb128 0x4
+ 2178 0030 0D       		.uleb128 0xd
+ 2179 0031 00       		.byte	0
+ 2180 0032 03       		.uleb128 0x3
+ 2181 0033 0E       		.uleb128 0xe
+ 2182 0034 49       		.uleb128 0x49
+ 2183 0035 13       		.uleb128 0x13
+ 2184 0036 38       		.uleb128 0x38
+ 2185 0037 0B       		.uleb128 0xb
+ 2186 0038 34       		.uleb128 0x34
+ 2187 0039 19       		.uleb128 0x19
+ 2188 003a 00       		.byte	0
+ 2189 003b 00       		.byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 47
+
+
+ 2190 003c 05       		.uleb128 0x5
+ 2191 003d 0F       		.uleb128 0xf
+ 2192 003e 00       		.byte	0
+ 2193 003f 0B       		.uleb128 0xb
+ 2194 0040 0B       		.uleb128 0xb
+ 2195 0041 00       		.byte	0
+ 2196 0042 00       		.byte	0
+ 2197 0043 06       		.uleb128 0x6
+ 2198 0044 2E       		.uleb128 0x2e
+ 2199 0045 01       		.byte	0x1
+ 2200 0046 3F       		.uleb128 0x3f
+ 2201 0047 19       		.uleb128 0x19
+ 2202 0048 03       		.uleb128 0x3
+ 2203 0049 0E       		.uleb128 0xe
+ 2204 004a 3A       		.uleb128 0x3a
+ 2205 004b 0B       		.uleb128 0xb
+ 2206 004c 3B       		.uleb128 0x3b
+ 2207 004d 0B       		.uleb128 0xb
+ 2208 004e 27       		.uleb128 0x27
+ 2209 004f 19       		.uleb128 0x19
+ 2210 0050 11       		.uleb128 0x11
+ 2211 0051 01       		.uleb128 0x1
+ 2212 0052 12       		.uleb128 0x12
+ 2213 0053 06       		.uleb128 0x6
+ 2214 0054 40       		.uleb128 0x40
+ 2215 0055 18       		.uleb128 0x18
+ 2216 0056 9742     		.uleb128 0x2117
+ 2217 0058 19       		.uleb128 0x19
+ 2218 0059 01       		.uleb128 0x1
+ 2219 005a 13       		.uleb128 0x13
+ 2220 005b 00       		.byte	0
+ 2221 005c 00       		.byte	0
+ 2222 005d 07       		.uleb128 0x7
+ 2223 005e 05       		.uleb128 0x5
+ 2224 005f 00       		.byte	0
+ 2225 0060 03       		.uleb128 0x3
+ 2226 0061 08       		.uleb128 0x8
+ 2227 0062 3A       		.uleb128 0x3a
+ 2228 0063 0B       		.uleb128 0xb
+ 2229 0064 3B       		.uleb128 0x3b
+ 2230 0065 0B       		.uleb128 0xb
+ 2231 0066 49       		.uleb128 0x49
+ 2232 0067 13       		.uleb128 0x13
+ 2233 0068 02       		.uleb128 0x2
+ 2234 0069 17       		.uleb128 0x17
+ 2235 006a 00       		.byte	0
+ 2236 006b 00       		.byte	0
+ 2237 006c 08       		.uleb128 0x8
+ 2238 006d 898201   		.uleb128 0x4109
+ 2239 0070 01       		.byte	0x1
+ 2240 0071 11       		.uleb128 0x11
+ 2241 0072 01       		.uleb128 0x1
+ 2242 0073 31       		.uleb128 0x31
+ 2243 0074 13       		.uleb128 0x13
+ 2244 0075 01       		.uleb128 0x1
+ 2245 0076 13       		.uleb128 0x13
+ 2246 0077 00       		.byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 48
+
+
+ 2247 0078 00       		.byte	0
+ 2248 0079 09       		.uleb128 0x9
+ 2249 007a 8A8201   		.uleb128 0x410a
+ 2250 007d 00       		.byte	0
+ 2251 007e 02       		.uleb128 0x2
+ 2252 007f 18       		.uleb128 0x18
+ 2253 0080 9142     		.uleb128 0x2111
+ 2254 0082 18       		.uleb128 0x18
+ 2255 0083 00       		.byte	0
+ 2256 0084 00       		.byte	0
+ 2257 0085 0A       		.uleb128 0xa
+ 2258 0086 898201   		.uleb128 0x4109
+ 2259 0089 01       		.byte	0x1
+ 2260 008a 11       		.uleb128 0x11
+ 2261 008b 01       		.uleb128 0x1
+ 2262 008c 00       		.byte	0
+ 2263 008d 00       		.byte	0
+ 2264 008e 0B       		.uleb128 0xb
+ 2265 008f 24       		.uleb128 0x24
+ 2266 0090 00       		.byte	0
+ 2267 0091 0B       		.uleb128 0xb
+ 2268 0092 0B       		.uleb128 0xb
+ 2269 0093 3E       		.uleb128 0x3e
+ 2270 0094 0B       		.uleb128 0xb
+ 2271 0095 03       		.uleb128 0x3
+ 2272 0096 0E       		.uleb128 0xe
+ 2273 0097 00       		.byte	0
+ 2274 0098 00       		.byte	0
+ 2275 0099 0C       		.uleb128 0xc
+ 2276 009a 898201   		.uleb128 0x4109
+ 2277 009d 00       		.byte	0
+ 2278 009e 11       		.uleb128 0x11
+ 2279 009f 01       		.uleb128 0x1
+ 2280 00a0 31       		.uleb128 0x31
+ 2281 00a1 13       		.uleb128 0x13
+ 2282 00a2 00       		.byte	0
+ 2283 00a3 00       		.byte	0
+ 2284 00a4 0D       		.uleb128 0xd
+ 2285 00a5 0F       		.uleb128 0xf
+ 2286 00a6 00       		.byte	0
+ 2287 00a7 0B       		.uleb128 0xb
+ 2288 00a8 0B       		.uleb128 0xb
+ 2289 00a9 49       		.uleb128 0x49
+ 2290 00aa 13       		.uleb128 0x13
+ 2291 00ab 00       		.byte	0
+ 2292 00ac 00       		.byte	0
+ 2293 00ad 0E       		.uleb128 0xe
+ 2294 00ae 26       		.uleb128 0x26
+ 2295 00af 00       		.byte	0
+ 2296 00b0 49       		.uleb128 0x49
+ 2297 00b1 13       		.uleb128 0x13
+ 2298 00b2 00       		.byte	0
+ 2299 00b3 00       		.byte	0
+ 2300 00b4 0F       		.uleb128 0xf
+ 2301 00b5 2E       		.uleb128 0x2e
+ 2302 00b6 01       		.byte	0x1
+ 2303 00b7 03       		.uleb128 0x3
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 49
+
+
+ 2304 00b8 0E       		.uleb128 0xe
+ 2305 00b9 3A       		.uleb128 0x3a
+ 2306 00ba 0B       		.uleb128 0xb
+ 2307 00bb 3B       		.uleb128 0x3b
+ 2308 00bc 0B       		.uleb128 0xb
+ 2309 00bd 27       		.uleb128 0x27
+ 2310 00be 19       		.uleb128 0x19
+ 2311 00bf 11       		.uleb128 0x11
+ 2312 00c0 01       		.uleb128 0x1
+ 2313 00c1 12       		.uleb128 0x12
+ 2314 00c2 06       		.uleb128 0x6
+ 2315 00c3 40       		.uleb128 0x40
+ 2316 00c4 18       		.uleb128 0x18
+ 2317 00c5 9742     		.uleb128 0x2117
+ 2318 00c7 19       		.uleb128 0x19
+ 2319 00c8 01       		.uleb128 0x1
+ 2320 00c9 13       		.uleb128 0x13
+ 2321 00ca 00       		.byte	0
+ 2322 00cb 00       		.byte	0
+ 2323 00cc 10       		.uleb128 0x10
+ 2324 00cd 34       		.uleb128 0x34
+ 2325 00ce 00       		.byte	0
+ 2326 00cf 03       		.uleb128 0x3
+ 2327 00d0 08       		.uleb128 0x8
+ 2328 00d1 3A       		.uleb128 0x3a
+ 2329 00d2 0B       		.uleb128 0xb
+ 2330 00d3 3B       		.uleb128 0x3b
+ 2331 00d4 0B       		.uleb128 0xb
+ 2332 00d5 49       		.uleb128 0x49
+ 2333 00d6 13       		.uleb128 0x13
+ 2334 00d7 02       		.uleb128 0x2
+ 2335 00d8 17       		.uleb128 0x17
+ 2336 00d9 00       		.byte	0
+ 2337 00da 00       		.byte	0
+ 2338 00db 11       		.uleb128 0x11
+ 2339 00dc 34       		.uleb128 0x34
+ 2340 00dd 00       		.byte	0
+ 2341 00de 03       		.uleb128 0x3
+ 2342 00df 08       		.uleb128 0x8
+ 2343 00e0 3A       		.uleb128 0x3a
+ 2344 00e1 0B       		.uleb128 0xb
+ 2345 00e2 3B       		.uleb128 0x3b
+ 2346 00e3 0B       		.uleb128 0xb
+ 2347 00e4 49       		.uleb128 0x49
+ 2348 00e5 13       		.uleb128 0x13
+ 2349 00e6 02       		.uleb128 0x2
+ 2350 00e7 18       		.uleb128 0x18
+ 2351 00e8 00       		.byte	0
+ 2352 00e9 00       		.byte	0
+ 2353 00ea 12       		.uleb128 0x12
+ 2354 00eb 898201   		.uleb128 0x4109
+ 2355 00ee 01       		.byte	0x1
+ 2356 00ef 11       		.uleb128 0x11
+ 2357 00f0 01       		.uleb128 0x1
+ 2358 00f1 31       		.uleb128 0x31
+ 2359 00f2 13       		.uleb128 0x13
+ 2360 00f3 00       		.byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 50
+
+
+ 2361 00f4 00       		.byte	0
+ 2362 00f5 13       		.uleb128 0x13
+ 2363 00f6 01       		.uleb128 0x1
+ 2364 00f7 01       		.byte	0x1
+ 2365 00f8 49       		.uleb128 0x49
+ 2366 00f9 13       		.uleb128 0x13
+ 2367 00fa 01       		.uleb128 0x1
+ 2368 00fb 13       		.uleb128 0x13
+ 2369 00fc 00       		.byte	0
+ 2370 00fd 00       		.byte	0
+ 2371 00fe 14       		.uleb128 0x14
+ 2372 00ff 21       		.uleb128 0x21
+ 2373 0100 00       		.byte	0
+ 2374 0101 49       		.uleb128 0x49
+ 2375 0102 13       		.uleb128 0x13
+ 2376 0103 2F       		.uleb128 0x2f
+ 2377 0104 0B       		.uleb128 0xb
+ 2378 0105 00       		.byte	0
+ 2379 0106 00       		.byte	0
+ 2380 0107 15       		.uleb128 0x15
+ 2381 0108 05       		.uleb128 0x5
+ 2382 0109 00       		.byte	0
+ 2383 010a 03       		.uleb128 0x3
+ 2384 010b 0E       		.uleb128 0xe
+ 2385 010c 3A       		.uleb128 0x3a
+ 2386 010d 0B       		.uleb128 0xb
+ 2387 010e 3B       		.uleb128 0x3b
+ 2388 010f 0B       		.uleb128 0xb
+ 2389 0110 49       		.uleb128 0x49
+ 2390 0111 13       		.uleb128 0x13
+ 2391 0112 02       		.uleb128 0x2
+ 2392 0113 17       		.uleb128 0x17
+ 2393 0114 00       		.byte	0
+ 2394 0115 00       		.byte	0
+ 2395 0116 16       		.uleb128 0x16
+ 2396 0117 15       		.uleb128 0x15
+ 2397 0118 01       		.byte	0x1
+ 2398 0119 27       		.uleb128 0x27
+ 2399 011a 19       		.uleb128 0x19
+ 2400 011b 01       		.uleb128 0x1
+ 2401 011c 13       		.uleb128 0x13
+ 2402 011d 00       		.byte	0
+ 2403 011e 00       		.byte	0
+ 2404 011f 17       		.uleb128 0x17
+ 2405 0120 05       		.uleb128 0x5
+ 2406 0121 00       		.byte	0
+ 2407 0122 49       		.uleb128 0x49
+ 2408 0123 13       		.uleb128 0x13
+ 2409 0124 00       		.byte	0
+ 2410 0125 00       		.byte	0
+ 2411 0126 18       		.uleb128 0x18
+ 2412 0127 05       		.uleb128 0x5
+ 2413 0128 00       		.byte	0
+ 2414 0129 03       		.uleb128 0x3
+ 2415 012a 08       		.uleb128 0x8
+ 2416 012b 3A       		.uleb128 0x3a
+ 2417 012c 0B       		.uleb128 0xb
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 51
+
+
+ 2418 012d 3B       		.uleb128 0x3b
+ 2419 012e 0B       		.uleb128 0xb
+ 2420 012f 49       		.uleb128 0x49
+ 2421 0130 13       		.uleb128 0x13
+ 2422 0131 02       		.uleb128 0x2
+ 2423 0132 18       		.uleb128 0x18
+ 2424 0133 00       		.byte	0
+ 2425 0134 00       		.byte	0
+ 2426 0135 19       		.uleb128 0x19
+ 2427 0136 18       		.uleb128 0x18
+ 2428 0137 00       		.byte	0
+ 2429 0138 00       		.byte	0
+ 2430 0139 00       		.byte	0
+ 2431 013a 1A       		.uleb128 0x1a
+ 2432 013b 34       		.uleb128 0x34
+ 2433 013c 00       		.byte	0
+ 2434 013d 03       		.uleb128 0x3
+ 2435 013e 08       		.uleb128 0x8
+ 2436 013f 3A       		.uleb128 0x3a
+ 2437 0140 0B       		.uleb128 0xb
+ 2438 0141 3B       		.uleb128 0x3b
+ 2439 0142 0B       		.uleb128 0xb
+ 2440 0143 49       		.uleb128 0x49
+ 2441 0144 13       		.uleb128 0x13
+ 2442 0145 00       		.byte	0
+ 2443 0146 00       		.byte	0
+ 2444 0147 1B       		.uleb128 0x1b
+ 2445 0148 26       		.uleb128 0x26
+ 2446 0149 00       		.byte	0
+ 2447 014a 00       		.byte	0
+ 2448 014b 00       		.byte	0
+ 2449 014c 1C       		.uleb128 0x1c
+ 2450 014d 24       		.uleb128 0x24
+ 2451 014e 00       		.byte	0
+ 2452 014f 0B       		.uleb128 0xb
+ 2453 0150 0B       		.uleb128 0xb
+ 2454 0151 3E       		.uleb128 0x3e
+ 2455 0152 0B       		.uleb128 0xb
+ 2456 0153 03       		.uleb128 0x3
+ 2457 0154 08       		.uleb128 0x8
+ 2458 0155 00       		.byte	0
+ 2459 0156 00       		.byte	0
+ 2460 0157 1D       		.uleb128 0x1d
+ 2461 0158 2E       		.uleb128 0x2e
+ 2462 0159 01       		.byte	0x1
+ 2463 015a 3F       		.uleb128 0x3f
+ 2464 015b 19       		.uleb128 0x19
+ 2465 015c 03       		.uleb128 0x3
+ 2466 015d 0E       		.uleb128 0xe
+ 2467 015e 3A       		.uleb128 0x3a
+ 2468 015f 0B       		.uleb128 0xb
+ 2469 0160 3B       		.uleb128 0x3b
+ 2470 0161 05       		.uleb128 0x5
+ 2471 0162 27       		.uleb128 0x27
+ 2472 0163 19       		.uleb128 0x19
+ 2473 0164 49       		.uleb128 0x49
+ 2474 0165 13       		.uleb128 0x13
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 52
+
+
+ 2475 0166 11       		.uleb128 0x11
+ 2476 0167 01       		.uleb128 0x1
+ 2477 0168 12       		.uleb128 0x12
+ 2478 0169 06       		.uleb128 0x6
+ 2479 016a 40       		.uleb128 0x40
+ 2480 016b 18       		.uleb128 0x18
+ 2481 016c 9642     		.uleb128 0x2116
+ 2482 016e 19       		.uleb128 0x19
+ 2483 016f 01       		.uleb128 0x1
+ 2484 0170 13       		.uleb128 0x13
+ 2485 0171 00       		.byte	0
+ 2486 0172 00       		.byte	0
+ 2487 0173 1E       		.uleb128 0x1e
+ 2488 0174 05       		.uleb128 0x5
+ 2489 0175 00       		.byte	0
+ 2490 0176 03       		.uleb128 0x3
+ 2491 0177 0E       		.uleb128 0xe
+ 2492 0178 3A       		.uleb128 0x3a
+ 2493 0179 0B       		.uleb128 0xb
+ 2494 017a 3B       		.uleb128 0x3b
+ 2495 017b 05       		.uleb128 0x5
+ 2496 017c 49       		.uleb128 0x49
+ 2497 017d 13       		.uleb128 0x13
+ 2498 017e 02       		.uleb128 0x2
+ 2499 017f 17       		.uleb128 0x17
+ 2500 0180 00       		.byte	0
+ 2501 0181 00       		.byte	0
+ 2502 0182 1F       		.uleb128 0x1f
+ 2503 0183 05       		.uleb128 0x5
+ 2504 0184 00       		.byte	0
+ 2505 0185 03       		.uleb128 0x3
+ 2506 0186 08       		.uleb128 0x8
+ 2507 0187 3A       		.uleb128 0x3a
+ 2508 0188 0B       		.uleb128 0xb
+ 2509 0189 3B       		.uleb128 0x3b
+ 2510 018a 05       		.uleb128 0x5
+ 2511 018b 49       		.uleb128 0x49
+ 2512 018c 13       		.uleb128 0x13
+ 2513 018d 02       		.uleb128 0x2
+ 2514 018e 17       		.uleb128 0x17
+ 2515 018f 00       		.byte	0
+ 2516 0190 00       		.byte	0
+ 2517 0191 20       		.uleb128 0x20
+ 2518 0192 34       		.uleb128 0x34
+ 2519 0193 00       		.byte	0
+ 2520 0194 03       		.uleb128 0x3
+ 2521 0195 08       		.uleb128 0x8
+ 2522 0196 3A       		.uleb128 0x3a
+ 2523 0197 0B       		.uleb128 0xb
+ 2524 0198 3B       		.uleb128 0x3b
+ 2525 0199 05       		.uleb128 0x5
+ 2526 019a 49       		.uleb128 0x49
+ 2527 019b 13       		.uleb128 0x13
+ 2528 019c 02       		.uleb128 0x2
+ 2529 019d 17       		.uleb128 0x17
+ 2530 019e 00       		.byte	0
+ 2531 019f 00       		.byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 53
+
+
+ 2532 01a0 21       		.uleb128 0x21
+ 2533 01a1 2E       		.uleb128 0x2e
+ 2534 01a2 01       		.byte	0x1
+ 2535 01a3 3F       		.uleb128 0x3f
+ 2536 01a4 19       		.uleb128 0x19
+ 2537 01a5 03       		.uleb128 0x3
+ 2538 01a6 0E       		.uleb128 0xe
+ 2539 01a7 3A       		.uleb128 0x3a
+ 2540 01a8 0B       		.uleb128 0xb
+ 2541 01a9 3B       		.uleb128 0x3b
+ 2542 01aa 05       		.uleb128 0x5
+ 2543 01ab 27       		.uleb128 0x27
+ 2544 01ac 19       		.uleb128 0x19
+ 2545 01ad 49       		.uleb128 0x49
+ 2546 01ae 13       		.uleb128 0x13
+ 2547 01af 11       		.uleb128 0x11
+ 2548 01b0 01       		.uleb128 0x1
+ 2549 01b1 12       		.uleb128 0x12
+ 2550 01b2 06       		.uleb128 0x6
+ 2551 01b3 40       		.uleb128 0x40
+ 2552 01b4 18       		.uleb128 0x18
+ 2553 01b5 9742     		.uleb128 0x2117
+ 2554 01b7 19       		.uleb128 0x19
+ 2555 01b8 01       		.uleb128 0x1
+ 2556 01b9 13       		.uleb128 0x13
+ 2557 01ba 00       		.byte	0
+ 2558 01bb 00       		.byte	0
+ 2559 01bc 22       		.uleb128 0x22
+ 2560 01bd 34       		.uleb128 0x34
+ 2561 01be 00       		.byte	0
+ 2562 01bf 03       		.uleb128 0x3
+ 2563 01c0 08       		.uleb128 0x8
+ 2564 01c1 3A       		.uleb128 0x3a
+ 2565 01c2 0B       		.uleb128 0xb
+ 2566 01c3 3B       		.uleb128 0x3b
+ 2567 01c4 05       		.uleb128 0x5
+ 2568 01c5 49       		.uleb128 0x49
+ 2569 01c6 13       		.uleb128 0x13
+ 2570 01c7 02       		.uleb128 0x2
+ 2571 01c8 18       		.uleb128 0x18
+ 2572 01c9 00       		.byte	0
+ 2573 01ca 00       		.byte	0
+ 2574 01cb 23       		.uleb128 0x23
+ 2575 01cc 15       		.uleb128 0x15
+ 2576 01cd 00       		.byte	0
+ 2577 01ce 27       		.uleb128 0x27
+ 2578 01cf 19       		.uleb128 0x19
+ 2579 01d0 49       		.uleb128 0x49
+ 2580 01d1 13       		.uleb128 0x13
+ 2581 01d2 00       		.byte	0
+ 2582 01d3 00       		.byte	0
+ 2583 01d4 24       		.uleb128 0x24
+ 2584 01d5 05       		.uleb128 0x5
+ 2585 01d6 00       		.byte	0
+ 2586 01d7 03       		.uleb128 0x3
+ 2587 01d8 08       		.uleb128 0x8
+ 2588 01d9 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 54
+
+
+ 2589 01da 0B       		.uleb128 0xb
+ 2590 01db 3B       		.uleb128 0x3b
+ 2591 01dc 05       		.uleb128 0x5
+ 2592 01dd 49       		.uleb128 0x49
+ 2593 01de 13       		.uleb128 0x13
+ 2594 01df 02       		.uleb128 0x2
+ 2595 01e0 18       		.uleb128 0x18
+ 2596 01e1 00       		.byte	0
+ 2597 01e2 00       		.byte	0
+ 2598 01e3 25       		.uleb128 0x25
+ 2599 01e4 34       		.uleb128 0x34
+ 2600 01e5 00       		.byte	0
+ 2601 01e6 03       		.uleb128 0x3
+ 2602 01e7 0E       		.uleb128 0xe
+ 2603 01e8 3A       		.uleb128 0x3a
+ 2604 01e9 0B       		.uleb128 0xb
+ 2605 01ea 3B       		.uleb128 0x3b
+ 2606 01eb 0B       		.uleb128 0xb
+ 2607 01ec 49       		.uleb128 0x49
+ 2608 01ed 13       		.uleb128 0x13
+ 2609 01ee 02       		.uleb128 0x2
+ 2610 01ef 18       		.uleb128 0x18
+ 2611 01f0 00       		.byte	0
+ 2612 01f1 00       		.byte	0
+ 2613 01f2 26       		.uleb128 0x26
+ 2614 01f3 34       		.uleb128 0x34
+ 2615 01f4 00       		.byte	0
+ 2616 01f5 03       		.uleb128 0x3
+ 2617 01f6 0E       		.uleb128 0xe
+ 2618 01f7 3A       		.uleb128 0x3a
+ 2619 01f8 0B       		.uleb128 0xb
+ 2620 01f9 3B       		.uleb128 0x3b
+ 2621 01fa 0B       		.uleb128 0xb
+ 2622 01fb 49       		.uleb128 0x49
+ 2623 01fc 13       		.uleb128 0x13
+ 2624 01fd 3F       		.uleb128 0x3f
+ 2625 01fe 19       		.uleb128 0x19
+ 2626 01ff 02       		.uleb128 0x2
+ 2627 0200 18       		.uleb128 0x18
+ 2628 0201 00       		.byte	0
+ 2629 0202 00       		.byte	0
+ 2630 0203 27       		.uleb128 0x27
+ 2631 0204 34       		.uleb128 0x34
+ 2632 0205 00       		.byte	0
+ 2633 0206 03       		.uleb128 0x3
+ 2634 0207 0E       		.uleb128 0xe
+ 2635 0208 3A       		.uleb128 0x3a
+ 2636 0209 0B       		.uleb128 0xb
+ 2637 020a 3B       		.uleb128 0x3b
+ 2638 020b 05       		.uleb128 0x5
+ 2639 020c 49       		.uleb128 0x49
+ 2640 020d 13       		.uleb128 0x13
+ 2641 020e 3F       		.uleb128 0x3f
+ 2642 020f 19       		.uleb128 0x19
+ 2643 0210 02       		.uleb128 0x2
+ 2644 0211 18       		.uleb128 0x18
+ 2645 0212 00       		.byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 55
+
+
+ 2646 0213 00       		.byte	0
+ 2647 0214 00       		.byte	0
+ 2648              		.section	.debug_loc,"",%progbits
+ 2649              	.Ldebug_loc0:
+ 2650              	.LLST0:
+ 2651 0000 00000000 		.4byte	.LVL0
+ 2652 0004 0A000000 		.4byte	.LVL1
+ 2653 0008 0100     		.2byte	0x1
+ 2654 000a 50       		.byte	0x50
+ 2655 000b 0A000000 		.4byte	.LVL1
+ 2656 000f 34000000 		.4byte	.LFE0
+ 2657 0013 0400     		.2byte	0x4
+ 2658 0015 F3       		.byte	0xf3
+ 2659 0016 01       		.uleb128 0x1
+ 2660 0017 50       		.byte	0x50
+ 2661 0018 9F       		.byte	0x9f
+ 2662 0019 00000000 		.4byte	0
+ 2663 001d 00000000 		.4byte	0
+ 2664              	.LLST1:
+ 2665 0021 00000000 		.4byte	.LVL4
+ 2666 0025 06000000 		.4byte	.LVL5
+ 2667 0029 0100     		.2byte	0x1
+ 2668 002b 50       		.byte	0x50
+ 2669 002c 06000000 		.4byte	.LVL5
+ 2670 0030 14000000 		.4byte	.LFE1
+ 2671 0034 0100     		.2byte	0x1
+ 2672 0036 54       		.byte	0x54
+ 2673 0037 00000000 		.4byte	0
+ 2674 003b 00000000 		.4byte	0
+ 2675              	.LLST2:
+ 2676 003f 00000000 		.4byte	.LVL8
+ 2677 0043 0A000000 		.4byte	.LVL9
+ 2678 0047 0100     		.2byte	0x1
+ 2679 0049 50       		.byte	0x50
+ 2680 004a 0A000000 		.4byte	.LVL9
+ 2681 004e 0C000000 		.4byte	.LVL10
+ 2682 0052 0100     		.2byte	0x1
+ 2683 0054 56       		.byte	0x56
+ 2684 0055 0C000000 		.4byte	.LVL10
+ 2685 0059 22000000 		.4byte	.LVL14
+ 2686 005d 0100     		.2byte	0x1
+ 2687 005f 54       		.byte	0x54
+ 2688 0060 22000000 		.4byte	.LVL14
+ 2689 0064 44000000 		.4byte	.LVL25
+ 2690 0068 0100     		.2byte	0x1
+ 2691 006a 53       		.byte	0x53
+ 2692 006b 44000000 		.4byte	.LVL25
+ 2693 006f 4E000000 		.4byte	.LVL27
+ 2694 0073 0100     		.2byte	0x1
+ 2695 0075 56       		.byte	0x56
+ 2696 0076 4E000000 		.4byte	.LVL27
+ 2697 007a 52000000 		.4byte	.LVL29
+ 2698 007e 0300     		.2byte	0x3
+ 2699 0080 76       		.byte	0x76
+ 2700 0081 01       		.sleb128 1
+ 2701 0082 9F       		.byte	0x9f
+ 2702 0083 52000000 		.4byte	.LVL29
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 56
+
+
+ 2703 0087 68000000 		.4byte	.LVL30
+ 2704 008b 0100     		.2byte	0x1
+ 2705 008d 56       		.byte	0x56
+ 2706 008e 68000000 		.4byte	.LVL30
+ 2707 0092 6C000000 		.4byte	.LVL32
+ 2708 0096 0300     		.2byte	0x3
+ 2709 0098 76       		.byte	0x76
+ 2710 0099 01       		.sleb128 1
+ 2711 009a 9F       		.byte	0x9f
+ 2712 009b 6C000000 		.4byte	.LVL32
+ 2713 009f EE010000 		.4byte	.LVL93
+ 2714 00a3 0100     		.2byte	0x1
+ 2715 00a5 56       		.byte	0x56
+ 2716 00a6 00000000 		.4byte	0
+ 2717 00aa 00000000 		.4byte	0
+ 2718              	.LLST3:
+ 2719 00ae 00000000 		.4byte	.LVL8
+ 2720 00b2 1B000000 		.4byte	.LVL12-1
+ 2721 00b6 0100     		.2byte	0x1
+ 2722 00b8 51       		.byte	0x51
+ 2723 00b9 20000000 		.4byte	.LVL13
+ 2724 00bd 8C000000 		.4byte	.LVL37
+ 2725 00c1 0100     		.2byte	0x1
+ 2726 00c3 51       		.byte	0x51
+ 2727 00c4 A8000000 		.4byte	.LVL38
+ 2728 00c8 AC000000 		.4byte	.LVL39
+ 2729 00cc 0100     		.2byte	0x1
+ 2730 00ce 58       		.byte	0x58
+ 2731 00cf F0000000 		.4byte	.LVL53
+ 2732 00d3 F4000000 		.4byte	.LVL54
+ 2733 00d7 0100     		.2byte	0x1
+ 2734 00d9 58       		.byte	0x58
+ 2735 00da 20010000 		.4byte	.LVL62
+ 2736 00de 24010000 		.4byte	.LVL63
+ 2737 00e2 0100     		.2byte	0x1
+ 2738 00e4 58       		.byte	0x58
+ 2739 00e5 2E010000 		.4byte	.LVL64
+ 2740 00e9 32010000 		.4byte	.LVL65
+ 2741 00ed 0100     		.2byte	0x1
+ 2742 00ef 58       		.byte	0x58
+ 2743 00f0 38010000 		.4byte	.LVL66
+ 2744 00f4 3C010000 		.4byte	.LVL67
+ 2745 00f8 0100     		.2byte	0x1
+ 2746 00fa 58       		.byte	0x58
+ 2747 00fb EE010000 		.4byte	.LVL93
+ 2748 00ff F4010000 		.4byte	.LFE3
+ 2749 0103 0100     		.2byte	0x1
+ 2750 0105 51       		.byte	0x51
+ 2751 0106 00000000 		.4byte	0
+ 2752 010a 00000000 		.4byte	0
+ 2753              	.LLST4:
+ 2754 010e FA000000 		.4byte	.LVL56
+ 2755 0112 00010000 		.4byte	.LVL57
+ 2756 0116 0200     		.2byte	0x2
+ 2757 0118 3A       		.byte	0x3a
+ 2758 0119 9F       		.byte	0x9f
+ 2759 011a 00010000 		.4byte	.LVL57
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 57
+
+
+ 2760 011e 06010000 		.4byte	.LVL58
+ 2761 0122 0200     		.2byte	0x2
+ 2762 0124 40       		.byte	0x40
+ 2763 0125 9F       		.byte	0x9f
+ 2764 0126 16010000 		.4byte	.LVL61
+ 2765 012a B0010000 		.4byte	.LVL82
+ 2766 012e 0100     		.2byte	0x1
+ 2767 0130 5C       		.byte	0x5c
+ 2768 0131 00000000 		.4byte	0
+ 2769 0135 00000000 		.4byte	0
+ 2770              	.LLST5:
+ 2771 0139 4E010000 		.4byte	.LVL69
+ 2772 013d 54010000 		.4byte	.LVL70
+ 2773 0141 0200     		.2byte	0x2
+ 2774 0143 30       		.byte	0x30
+ 2775 0144 9F       		.byte	0x9f
+ 2776 0145 54010000 		.4byte	.LVL70
+ 2777 0149 56010000 		.4byte	.LVL71
+ 2778 014d 0100     		.2byte	0x1
+ 2779 014f 55       		.byte	0x55
+ 2780 0150 56010000 		.4byte	.LVL71
+ 2781 0154 78010000 		.4byte	.LVL75
+ 2782 0158 0100     		.2byte	0x1
+ 2783 015a 5E       		.byte	0x5e
+ 2784 015b 78010000 		.4byte	.LVL75
+ 2785 015f 8E010000 		.4byte	.LVL77
+ 2786 0163 0100     		.2byte	0x1
+ 2787 0165 55       		.byte	0x55
+ 2788 0166 8E010000 		.4byte	.LVL77
+ 2789 016a 9C010000 		.4byte	.LVL79
+ 2790 016e 0300     		.2byte	0x3
+ 2791 0170 7E       		.byte	0x7e
+ 2792 0171 02       		.sleb128 2
+ 2793 0172 9F       		.byte	0x9f
+ 2794 0173 9C010000 		.4byte	.LVL79
+ 2795 0177 DC010000 		.4byte	.LVL89
+ 2796 017b 0100     		.2byte	0x1
+ 2797 017d 55       		.byte	0x55
+ 2798 017e 00000000 		.4byte	0
+ 2799 0182 00000000 		.4byte	0
+ 2800              	.LLST6:
+ 2801 0186 AC000000 		.4byte	.LVL39
+ 2802 018a B0000000 		.4byte	.LVL40
+ 2803 018e 0200     		.2byte	0x2
+ 2804 0190 30       		.byte	0x30
+ 2805 0191 9F       		.byte	0x9f
+ 2806 0192 B0000000 		.4byte	.LVL40
+ 2807 0196 BC000000 		.4byte	.LVL42
+ 2808 019a 0100     		.2byte	0x1
+ 2809 019c 55       		.byte	0x55
+ 2810 019d BC000000 		.4byte	.LVL42
+ 2811 01a1 C4000000 		.4byte	.LVL44
+ 2812 01a5 0100     		.2byte	0x1
+ 2813 01a7 59       		.byte	0x59
+ 2814 01a8 C4000000 		.4byte	.LVL44
+ 2815 01ac CE000000 		.4byte	.LVL45
+ 2816 01b0 0100     		.2byte	0x1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 58
+
+
+ 2817 01b2 55       		.byte	0x55
+ 2818 01b3 CE000000 		.4byte	.LVL45
+ 2819 01b7 D4000000 		.4byte	.LVL46
+ 2820 01bb 0100     		.2byte	0x1
+ 2821 01bd 59       		.byte	0x59
+ 2822 01be D4000000 		.4byte	.LVL46
+ 2823 01c2 DC000000 		.4byte	.LVL48
+ 2824 01c6 0100     		.2byte	0x1
+ 2825 01c8 55       		.byte	0x55
+ 2826 01c9 DC000000 		.4byte	.LVL48
+ 2827 01cd E4000000 		.4byte	.LVL50
+ 2828 01d1 0100     		.2byte	0x1
+ 2829 01d3 57       		.byte	0x57
+ 2830 01d4 E4000000 		.4byte	.LVL50
+ 2831 01d8 E6000000 		.4byte	.LVL51
+ 2832 01dc 0100     		.2byte	0x1
+ 2833 01de 55       		.byte	0x55
+ 2834 01df E6000000 		.4byte	.LVL51
+ 2835 01e3 EC000000 		.4byte	.LVL52
+ 2836 01e7 0100     		.2byte	0x1
+ 2837 01e9 57       		.byte	0x57
+ 2838 01ea 9C010000 		.4byte	.LVL79
+ 2839 01ee B0010000 		.4byte	.LVL82
+ 2840 01f2 0100     		.2byte	0x1
+ 2841 01f4 55       		.byte	0x55
+ 2842 01f5 B0010000 		.4byte	.LVL82
+ 2843 01f9 B8010000 		.4byte	.LVL84
+ 2844 01fd 0100     		.2byte	0x1
+ 2845 01ff 5A       		.byte	0x5a
+ 2846 0200 B8010000 		.4byte	.LVL84
+ 2847 0204 C2010000 		.4byte	.LVL85
+ 2848 0208 0100     		.2byte	0x1
+ 2849 020a 59       		.byte	0x59
+ 2850 020b C2010000 		.4byte	.LVL85
+ 2851 020f C8010000 		.4byte	.LVL86
+ 2852 0213 0100     		.2byte	0x1
+ 2853 0215 5A       		.byte	0x5a
+ 2854 0216 C8010000 		.4byte	.LVL86
+ 2855 021a DC010000 		.4byte	.LVL89
+ 2856 021e 0100     		.2byte	0x1
+ 2857 0220 59       		.byte	0x59
+ 2858 0221 DC010000 		.4byte	.LVL89
+ 2859 0225 E4010000 		.4byte	.LVL91
+ 2860 0229 0100     		.2byte	0x1
+ 2861 022b 55       		.byte	0x55
+ 2862 022c E4010000 		.4byte	.LVL91
+ 2863 0230 E8010000 		.4byte	.LVL92
+ 2864 0234 0100     		.2byte	0x1
+ 2865 0236 59       		.byte	0x59
+ 2866 0237 E8010000 		.4byte	.LVL92
+ 2867 023b EE010000 		.4byte	.LVL93
+ 2868 023f 0100     		.2byte	0x1
+ 2869 0241 55       		.byte	0x55
+ 2870 0242 00000000 		.4byte	0
+ 2871 0246 00000000 		.4byte	0
+ 2872              	.LLST7:
+ 2873 024a 3E000000 		.4byte	.LVL24
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 59
+
+
+ 2874 024e 44000000 		.4byte	.LVL25
+ 2875 0252 0200     		.2byte	0x2
+ 2876 0254 30       		.byte	0x30
+ 2877 0255 9F       		.byte	0x9f
+ 2878 0256 44000000 		.4byte	.LVL25
+ 2879 025a 48000000 		.4byte	.LVL26
+ 2880 025e 0100     		.2byte	0x1
+ 2881 0260 54       		.byte	0x54
+ 2882 0261 4E000000 		.4byte	.LVL27
+ 2883 0265 EE010000 		.4byte	.LVL93
+ 2884 0269 0100     		.2byte	0x1
+ 2885 026b 54       		.byte	0x54
+ 2886 026c 00000000 		.4byte	0
+ 2887 0270 00000000 		.4byte	0
+ 2888              	.LLST8:
+ 2889 0274 20000000 		.4byte	.LVL13
+ 2890 0278 28000000 		.4byte	.LVL16
+ 2891 027c 0200     		.2byte	0x2
+ 2892 027e 30       		.byte	0x30
+ 2893 027f 9F       		.byte	0x9f
+ 2894 0280 28000000 		.4byte	.LVL16
+ 2895 0284 30000000 		.4byte	.LVL19
+ 2896 0288 0200     		.2byte	0x2
+ 2897 028a 31       		.byte	0x31
+ 2898 028b 9F       		.byte	0x9f
+ 2899 028c 30000000 		.4byte	.LVL19
+ 2900 0290 34000000 		.4byte	.LVL20
+ 2901 0294 0200     		.2byte	0x2
+ 2902 0296 30       		.byte	0x30
+ 2903 0297 9F       		.byte	0x9f
+ 2904 0298 34000000 		.4byte	.LVL20
+ 2905 029c 3C000000 		.4byte	.LVL23
+ 2906 02a0 0200     		.2byte	0x2
+ 2907 02a2 32       		.byte	0x32
+ 2908 02a3 9F       		.byte	0x9f
+ 2909 02a4 3C000000 		.4byte	.LVL23
+ 2910 02a8 3E000000 		.4byte	.LVL24
+ 2911 02ac 0200     		.2byte	0x2
+ 2912 02ae 30       		.byte	0x30
+ 2913 02af 9F       		.byte	0x9f
+ 2914 02b0 3E000000 		.4byte	.LVL24
+ 2915 02b4 DC000000 		.4byte	.LVL48
+ 2916 02b8 0100     		.2byte	0x1
+ 2917 02ba 57       		.byte	0x57
+ 2918 02bb EC000000 		.4byte	.LVL52
+ 2919 02bf EE010000 		.4byte	.LVL93
+ 2920 02c3 0100     		.2byte	0x1
+ 2921 02c5 57       		.byte	0x57
+ 2922 02c6 00000000 		.4byte	0
+ 2923 02ca 00000000 		.4byte	0
+ 2924              	.LLST9:
+ 2925 02ce 3C010000 		.4byte	.LVL67
+ 2926 02d2 54010000 		.4byte	.LVL70
+ 2927 02d6 0100     		.2byte	0x1
+ 2928 02d8 59       		.byte	0x59
+ 2929 02d9 54010000 		.4byte	.LVL70
+ 2930 02dd 56010000 		.4byte	.LVL71
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 60
+
+
+ 2931 02e1 0100     		.2byte	0x1
+ 2932 02e3 53       		.byte	0x53
+ 2933 02e4 56010000 		.4byte	.LVL71
+ 2934 02e8 62010000 		.4byte	.LVL73
+ 2935 02ec 0100     		.2byte	0x1
+ 2936 02ee 59       		.byte	0x59
+ 2937 02ef 62010000 		.4byte	.LVL73
+ 2938 02f3 90010000 		.4byte	.LVL78
+ 2939 02f7 0100     		.2byte	0x1
+ 2940 02f9 53       		.byte	0x53
+ 2941 02fa 90010000 		.4byte	.LVL78
+ 2942 02fe AE010000 		.4byte	.LVL81
+ 2943 0302 0100     		.2byte	0x1
+ 2944 0304 59       		.byte	0x59
+ 2945 0305 00000000 		.4byte	0
+ 2946 0309 00000000 		.4byte	0
+ 2947              	.LLST10:
+ 2948 030d 0E000000 		.4byte	.LVL11
+ 2949 0311 1B000000 		.4byte	.LVL12-1
+ 2950 0315 0100     		.2byte	0x1
+ 2951 0317 50       		.byte	0x50
+ 2952 0318 20000000 		.4byte	.LVL13
+ 2953 031c BC000000 		.4byte	.LVL42
+ 2954 0320 0100     		.2byte	0x1
+ 2955 0322 50       		.byte	0x50
+ 2956 0323 EC000000 		.4byte	.LVL52
+ 2957 0327 F0000000 		.4byte	.LVL53
+ 2958 032b 0100     		.2byte	0x1
+ 2959 032d 50       		.byte	0x50
+ 2960 032e FA000000 		.4byte	.LVL56
+ 2961 0332 09010000 		.4byte	.LVL59-1
+ 2962 0336 0100     		.2byte	0x1
+ 2963 0338 50       		.byte	0x50
+ 2964 0339 0C010000 		.4byte	.LVL60
+ 2965 033d B0010000 		.4byte	.LVL82
+ 2966 0341 0100     		.2byte	0x1
+ 2967 0343 50       		.byte	0x50
+ 2968 0344 EE010000 		.4byte	.LVL93
+ 2969 0348 F4010000 		.4byte	.LFE3
+ 2970 034c 0100     		.2byte	0x1
+ 2971 034e 50       		.byte	0x50
+ 2972 034f 00000000 		.4byte	0
+ 2973 0353 00000000 		.4byte	0
+ 2974              	.LLST11:
+ 2975 0357 72000000 		.4byte	.LVL33
+ 2976 035b 7C000000 		.4byte	.LVL34
+ 2977 035f 0100     		.2byte	0x1
+ 2978 0361 50       		.byte	0x50
+ 2979 0362 7C000000 		.4byte	.LVL34
+ 2980 0366 7E000000 		.4byte	.LVL35
+ 2981 036a 0100     		.2byte	0x1
+ 2982 036c 53       		.byte	0x53
+ 2983 036d 7E000000 		.4byte	.LVL35
+ 2984 0371 80000000 		.4byte	.LVL36
+ 2985 0375 0100     		.2byte	0x1
+ 2986 0377 50       		.byte	0x50
+ 2987 0378 80000000 		.4byte	.LVL36
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 61
+
+
+ 2988 037c B0000000 		.4byte	.LVL40
+ 2989 0380 0100     		.2byte	0x1
+ 2990 0382 53       		.byte	0x53
+ 2991 0383 EC000000 		.4byte	.LVL52
+ 2992 0387 F7000000 		.4byte	.LVL55-1
+ 2993 038b 0100     		.2byte	0x1
+ 2994 038d 53       		.byte	0x53
+ 2995 038e FA000000 		.4byte	.LVL56
+ 2996 0392 09010000 		.4byte	.LVL59-1
+ 2997 0396 0100     		.2byte	0x1
+ 2998 0398 53       		.byte	0x53
+ 2999 0399 0C010000 		.4byte	.LVL60
+ 3000 039d 54010000 		.4byte	.LVL70
+ 3001 03a1 0100     		.2byte	0x1
+ 3002 03a3 53       		.byte	0x53
+ 3003 03a4 60010000 		.4byte	.LVL72
+ 3004 03a8 7A010000 		.4byte	.LVL76
+ 3005 03ac 0100     		.2byte	0x1
+ 3006 03ae 52       		.byte	0x52
+ 3007 03af AC010000 		.4byte	.LVL80
+ 3008 03b3 EE010000 		.4byte	.LVL93
+ 3009 03b7 0100     		.2byte	0x1
+ 3010 03b9 5B       		.byte	0x5b
+ 3011 03ba 00000000 		.4byte	0
+ 3012 03be 00000000 		.4byte	0
+ 3013              	.LLST12:
+ 3014 03c2 AC000000 		.4byte	.LVL39
+ 3015 03c6 EC000000 		.4byte	.LVL52
+ 3016 03ca 0100     		.2byte	0x1
+ 3017 03cc 5A       		.byte	0x5a
+ 3018 03cd 00000000 		.4byte	0
+ 3019 03d1 00000000 		.4byte	0
+ 3020              	.LLST13:
+ 3021 03d5 00000000 		.4byte	.LVL94
+ 3022 03d9 0C000000 		.4byte	.LVL96
+ 3023 03dd 0100     		.2byte	0x1
+ 3024 03df 50       		.byte	0x50
+ 3025 03e0 0C000000 		.4byte	.LVL96
+ 3026 03e4 24000000 		.4byte	.LFE2
+ 3027 03e8 0400     		.2byte	0x4
+ 3028 03ea F3       		.byte	0xf3
+ 3029 03eb 01       		.uleb128 0x1
+ 3030 03ec 50       		.byte	0x50
+ 3031 03ed 9F       		.byte	0x9f
+ 3032 03ee 00000000 		.4byte	0
+ 3033 03f2 00000000 		.4byte	0
+ 3034              	.LLST14:
+ 3035 03f6 00000000 		.4byte	.LVL94
+ 3036 03fa 0C000000 		.4byte	.LVL96
+ 3037 03fe 0100     		.2byte	0x1
+ 3038 0400 51       		.byte	0x51
+ 3039 0401 0C000000 		.4byte	.LVL96
+ 3040 0405 1E000000 		.4byte	.LVL99
+ 3041 0409 0100     		.2byte	0x1
+ 3042 040b 54       		.byte	0x54
+ 3043 040c 00000000 		.4byte	0
+ 3044 0410 00000000 		.4byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 62
+
+
+ 3045              	.LLST15:
+ 3046 0414 08000000 		.4byte	.LVL95
+ 3047 0418 1E000000 		.4byte	.LVL99
+ 3048 041c 0100     		.2byte	0x1
+ 3049 041e 55       		.byte	0x55
+ 3050 041f 1E000000 		.4byte	.LVL99
+ 3051 0423 24000000 		.4byte	.LFE2
+ 3052 0427 0500     		.2byte	0x5
+ 3053 0429 03       		.byte	0x3
+ 3054 042a 00000000 		.4byte	xfunc_out
+ 3055 042e 00000000 		.4byte	0
+ 3056 0432 00000000 		.4byte	0
+ 3057              	.LLST16:
+ 3058 0436 00000000 		.4byte	.LVL102
+ 3059 043a 14000000 		.4byte	.LVL103
+ 3060 043e 0100     		.2byte	0x1
+ 3061 0440 50       		.byte	0x50
+ 3062 0441 14000000 		.4byte	.LVL103
+ 3063 0445 17000000 		.4byte	.LVL104-1
+ 3064 0449 0500     		.2byte	0x5
+ 3065 044b 03       		.byte	0x3
+ 3066 044c 00000000 		.4byte	outptr
+ 3067 0450 17000000 		.4byte	.LVL104-1
+ 3068 0454 30000000 		.4byte	.LFE5
+ 3069 0458 0400     		.2byte	0x4
+ 3070 045a F3       		.byte	0xf3
+ 3071 045b 01       		.uleb128 0x1
+ 3072 045c 50       		.byte	0x50
+ 3073 045d 9F       		.byte	0x9f
+ 3074 045e 00000000 		.4byte	0
+ 3075 0462 00000000 		.4byte	0
+ 3076              	.LLST17:
+ 3077 0466 00000000 		.4byte	.LVL105
+ 3078 046a 16000000 		.4byte	.LVL107
+ 3079 046e 0100     		.2byte	0x1
+ 3080 0470 50       		.byte	0x50
+ 3081 0471 16000000 		.4byte	.LVL107
+ 3082 0475 19000000 		.4byte	.LVL108-1
+ 3083 0479 0500     		.2byte	0x5
+ 3084 047b 03       		.byte	0x3
+ 3085 047c 00000000 		.4byte	xfunc_out
+ 3086 0480 19000000 		.4byte	.LVL108-1
+ 3087 0484 2C000000 		.4byte	.LFE6
+ 3088 0488 0400     		.2byte	0x4
+ 3089 048a F3       		.byte	0xf3
+ 3090 048b 01       		.uleb128 0x1
+ 3091 048c 50       		.byte	0x50
+ 3092 048d 9F       		.byte	0x9f
+ 3093 048e 00000000 		.4byte	0
+ 3094 0492 00000000 		.4byte	0
+ 3095              	.LLST18:
+ 3096 0496 10000000 		.4byte	.LVL106
+ 3097 049a 22000000 		.4byte	.LVL109
+ 3098 049e 0100     		.2byte	0x1
+ 3099 04a0 55       		.byte	0x55
+ 3100 04a1 22000000 		.4byte	.LVL109
+ 3101 04a5 2C000000 		.4byte	.LFE6
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 63
+
+
+ 3102 04a9 0500     		.2byte	0x5
+ 3103 04ab 03       		.byte	0x3
+ 3104 04ac 00000000 		.4byte	xfunc_out
+ 3105 04b0 00000000 		.4byte	0
+ 3106 04b4 00000000 		.4byte	0
+ 3107              	.LLST19:
+ 3108 04b8 00000000 		.4byte	.LVL110
+ 3109 04bc 0A000000 		.4byte	.LVL111
+ 3110 04c0 0100     		.2byte	0x1
+ 3111 04c2 50       		.byte	0x50
+ 3112 04c3 0A000000 		.4byte	.LVL111
+ 3113 04c7 52000000 		.4byte	.LVL122
+ 3114 04cb 0100     		.2byte	0x1
+ 3115 04cd 55       		.byte	0x55
+ 3116 04ce 52000000 		.4byte	.LVL122
+ 3117 04d2 8C000000 		.4byte	.LFE7
+ 3118 04d6 0400     		.2byte	0x4
+ 3119 04d8 F3       		.byte	0xf3
+ 3120 04d9 01       		.uleb128 0x1
+ 3121 04da 50       		.byte	0x50
+ 3122 04db 9F       		.byte	0x9f
+ 3123 04dc 00000000 		.4byte	0
+ 3124 04e0 00000000 		.4byte	0
+ 3125              	.LLST20:
+ 3126 04e4 00000000 		.4byte	.LVL110
+ 3127 04e8 0D000000 		.4byte	.LVL112-1
+ 3128 04ec 0100     		.2byte	0x1
+ 3129 04ee 51       		.byte	0x51
+ 3130 04ef 0D000000 		.4byte	.LVL112-1
+ 3131 04f3 8C000000 		.4byte	.LFE7
+ 3132 04f7 0400     		.2byte	0x4
+ 3133 04f9 F3       		.byte	0xf3
+ 3134 04fa 01       		.uleb128 0x1
+ 3135 04fb 51       		.byte	0x51
+ 3136 04fc 9F       		.byte	0x9f
+ 3137 04fd 00000000 		.4byte	0
+ 3138 0501 00000000 		.4byte	0
+ 3139              	.LLST21:
+ 3140 0505 00000000 		.4byte	.LVL110
+ 3141 0509 0D000000 		.4byte	.LVL112-1
+ 3142 050d 0100     		.2byte	0x1
+ 3143 050f 52       		.byte	0x52
+ 3144 0510 0D000000 		.4byte	.LVL112-1
+ 3145 0514 5C000000 		.4byte	.LVL124
+ 3146 0518 0100     		.2byte	0x1
+ 3147 051a 54       		.byte	0x54
+ 3148 051b 5C000000 		.4byte	.LVL124
+ 3149 051f 60000000 		.4byte	.LVL125
+ 3150 0523 0300     		.2byte	0x3
+ 3151 0525 74       		.byte	0x74
+ 3152 0526 7F       		.sleb128 -1
+ 3153 0527 9F       		.byte	0x9f
+ 3154 0528 60000000 		.4byte	.LVL125
+ 3155 052c 6E000000 		.4byte	.LVL128
+ 3156 0530 0100     		.2byte	0x1
+ 3157 0532 54       		.byte	0x54
+ 3158 0533 6E000000 		.4byte	.LVL128
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 64
+
+
+ 3159 0537 72000000 		.4byte	.LVL129
+ 3160 053b 0300     		.2byte	0x3
+ 3161 053d 74       		.byte	0x74
+ 3162 053e 7F       		.sleb128 -1
+ 3163 053f 9F       		.byte	0x9f
+ 3164 0540 72000000 		.4byte	.LVL129
+ 3165 0544 7C000000 		.4byte	.LVL132
+ 3166 0548 0100     		.2byte	0x1
+ 3167 054a 54       		.byte	0x54
+ 3168 054b 00000000 		.4byte	0
+ 3169 054f 00000000 		.4byte	0
+ 3170              	.LLST22:
+ 3171 0553 00000000 		.4byte	.LVL110
+ 3172 0557 0D000000 		.4byte	.LVL112-1
+ 3173 055b 0100     		.2byte	0x1
+ 3174 055d 53       		.byte	0x53
+ 3175 055e 0D000000 		.4byte	.LVL112-1
+ 3176 0562 1C000000 		.4byte	.LVL113
+ 3177 0566 0100     		.2byte	0x1
+ 3178 0568 56       		.byte	0x56
+ 3179 0569 1C000000 		.4byte	.LVL113
+ 3180 056d 28000000 		.4byte	.LVL116
+ 3181 0571 0400     		.2byte	0x4
+ 3182 0573 F3       		.byte	0xf3
+ 3183 0574 01       		.uleb128 0x1
+ 3184 0575 53       		.byte	0x53
+ 3185 0576 9F       		.byte	0x9f
+ 3186 0577 28000000 		.4byte	.LVL116
+ 3187 057b 2A000000 		.4byte	.LVL117
+ 3188 057f 0100     		.2byte	0x1
+ 3189 0581 56       		.byte	0x56
+ 3190 0582 2A000000 		.4byte	.LVL117
+ 3191 0586 8C000000 		.4byte	.LFE7
+ 3192 058a 0400     		.2byte	0x4
+ 3193 058c F3       		.byte	0xf3
+ 3194 058d 01       		.uleb128 0x1
+ 3195 058e 53       		.byte	0x53
+ 3196 058f 9F       		.byte	0x9f
+ 3197 0590 00000000 		.4byte	0
+ 3198 0594 00000000 		.4byte	0
+ 3199              	.LLST23:
+ 3200 0598 1C000000 		.4byte	.LVL113
+ 3201 059c 28000000 		.4byte	.LVL116
+ 3202 05a0 0100     		.2byte	0x1
+ 3203 05a2 56       		.byte	0x56
+ 3204 05a3 2A000000 		.4byte	.LVL117
+ 3205 05a7 34000000 		.4byte	.LVL118
+ 3206 05ab 0100     		.2byte	0x1
+ 3207 05ad 56       		.byte	0x56
+ 3208 05ae 34000000 		.4byte	.LVL118
+ 3209 05b2 38000000 		.4byte	.LVL119
+ 3210 05b6 0200     		.2byte	0x2
+ 3211 05b8 30       		.byte	0x30
+ 3212 05b9 9F       		.byte	0x9f
+ 3213 05ba 38000000 		.4byte	.LVL119
+ 3214 05be 52000000 		.4byte	.LVL122
+ 3215 05c2 0100     		.2byte	0x1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 65
+
+
+ 3216 05c4 56       		.byte	0x56
+ 3217 05c5 00000000 		.4byte	0
+ 3218 05c9 00000000 		.4byte	0
+ 3219              	.LLST24:
+ 3220 05cd 52000000 		.4byte	.LVL122
+ 3221 05d1 54000000 		.4byte	.LVL123
+ 3222 05d5 0100     		.2byte	0x1
+ 3223 05d7 55       		.byte	0x55
+ 3224 05d8 54000000 		.4byte	.LVL123
+ 3225 05dc 64000000 		.4byte	.LVL126
+ 3226 05e0 0100     		.2byte	0x1
+ 3227 05e2 56       		.byte	0x56
+ 3228 05e3 00000000 		.4byte	0
+ 3229 05e7 00000000 		.4byte	0
+ 3230              	.LLST25:
+ 3231 05eb 64000000 		.4byte	.LVL126
+ 3232 05ef 66000000 		.4byte	.LVL127
+ 3233 05f3 0100     		.2byte	0x1
+ 3234 05f5 55       		.byte	0x55
+ 3235 05f6 66000000 		.4byte	.LVL127
+ 3236 05fa 74000000 		.4byte	.LVL130
+ 3237 05fe 0100     		.2byte	0x1
+ 3238 0600 56       		.byte	0x56
+ 3239 0601 00000000 		.4byte	0
+ 3240 0605 00000000 		.4byte	0
+ 3241              	.LLST26:
+ 3242 0609 00000000 		.4byte	.LVL133
+ 3243 060d 0E000000 		.4byte	.LVL134
+ 3244 0611 0100     		.2byte	0x1
+ 3245 0613 50       		.byte	0x50
+ 3246 0614 0E000000 		.4byte	.LVL134
+ 3247 0618 3E000000 		.4byte	.LVL140
+ 3248 061c 0100     		.2byte	0x1
+ 3249 061e 56       		.byte	0x56
+ 3250 061f 3E000000 		.4byte	.LVL140
+ 3251 0623 40000000 		.4byte	.LVL141
+ 3252 0627 0100     		.2byte	0x1
+ 3253 0629 50       		.byte	0x50
+ 3254 062a 40000000 		.4byte	.LVL141
+ 3255 062e 42000000 		.4byte	.LVL142
+ 3256 0632 0400     		.2byte	0x4
+ 3257 0634 F3       		.byte	0xf3
+ 3258 0635 01       		.uleb128 0x1
+ 3259 0636 50       		.byte	0x50
+ 3260 0637 9F       		.byte	0x9f
+ 3261 0638 42000000 		.4byte	.LVL142
+ 3262 063c 46000000 		.4byte	.LVL144
+ 3263 0640 0100     		.2byte	0x1
+ 3264 0642 56       		.byte	0x56
+ 3265 0643 46000000 		.4byte	.LVL144
+ 3266 0647 4C000000 		.4byte	.LFE8
+ 3267 064b 0400     		.2byte	0x4
+ 3268 064d F3       		.byte	0xf3
+ 3269 064e 01       		.uleb128 0x1
+ 3270 064f 50       		.byte	0x50
+ 3271 0650 9F       		.byte	0x9f
+ 3272 0651 00000000 		.4byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 66
+
+
+ 3273 0655 00000000 		.4byte	0
+ 3274              	.LLST27:
+ 3275 0659 00000000 		.4byte	.LVL133
+ 3276 065d 0E000000 		.4byte	.LVL134
+ 3277 0661 0100     		.2byte	0x1
+ 3278 0663 51       		.byte	0x51
+ 3279 0664 0E000000 		.4byte	.LVL134
+ 3280 0668 3E000000 		.4byte	.LVL140
+ 3281 066c 0100     		.2byte	0x1
+ 3282 066e 55       		.byte	0x55
+ 3283 066f 3E000000 		.4byte	.LVL140
+ 3284 0673 42000000 		.4byte	.LVL142
+ 3285 0677 0100     		.2byte	0x1
+ 3286 0679 51       		.byte	0x51
+ 3287 067a 42000000 		.4byte	.LVL142
+ 3288 067e 46000000 		.4byte	.LVL144
+ 3289 0682 0100     		.2byte	0x1
+ 3290 0684 55       		.byte	0x55
+ 3291 0685 46000000 		.4byte	.LVL144
+ 3292 0689 4C000000 		.4byte	.LFE8
+ 3293 068d 0400     		.2byte	0x4
+ 3294 068f F3       		.byte	0xf3
+ 3295 0690 01       		.uleb128 0x1
+ 3296 0691 51       		.byte	0x51
+ 3297 0692 9F       		.byte	0x9f
+ 3298 0693 00000000 		.4byte	0
+ 3299 0697 00000000 		.4byte	0
+ 3300              	.LLST28:
+ 3301 069b 14000000 		.4byte	.LVL135
+ 3302 069f 3C000000 		.4byte	.LVL139
+ 3303 06a3 0100     		.2byte	0x1
+ 3304 06a5 50       		.byte	0x50
+ 3305 06a6 42000000 		.4byte	.LVL142
+ 3306 06aa 44000000 		.4byte	.LVL143
+ 3307 06ae 0100     		.2byte	0x1
+ 3308 06b0 50       		.byte	0x50
+ 3309 06b1 44000000 		.4byte	.LVL143
+ 3310 06b5 4C000000 		.4byte	.LFE8
+ 3311 06b9 0100     		.2byte	0x1
+ 3312 06bb 53       		.byte	0x53
+ 3313 06bc 00000000 		.4byte	0
+ 3314 06c0 00000000 		.4byte	0
+ 3315              	.LLST29:
+ 3316 06c4 0E000000 		.4byte	.LVL134
+ 3317 06c8 30000000 		.4byte	.LVL137
+ 3318 06cc 0100     		.2byte	0x1
+ 3319 06ce 54       		.byte	0x54
+ 3320 06cf 30000000 		.4byte	.LVL137
+ 3321 06d3 34000000 		.4byte	.LVL138
+ 3322 06d7 0300     		.2byte	0x3
+ 3323 06d9 74       		.byte	0x74
+ 3324 06da 01       		.sleb128 1
+ 3325 06db 9F       		.byte	0x9f
+ 3326 06dc 34000000 		.4byte	.LVL138
+ 3327 06e0 3E000000 		.4byte	.LVL140
+ 3328 06e4 0100     		.2byte	0x1
+ 3329 06e6 54       		.byte	0x54
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 67
+
+
+ 3330 06e7 42000000 		.4byte	.LVL142
+ 3331 06eb 46000000 		.4byte	.LVL144
+ 3332 06ef 0100     		.2byte	0x1
+ 3333 06f1 54       		.byte	0x54
+ 3334 06f2 00000000 		.4byte	0
+ 3335 06f6 00000000 		.4byte	0
+ 3336              	.LLST30:
+ 3337 06fa 00000000 		.4byte	.LVL145
+ 3338 06fe 0E000000 		.4byte	.LVL148
+ 3339 0702 0100     		.2byte	0x1
+ 3340 0704 50       		.byte	0x50
+ 3341 0705 0E000000 		.4byte	.LVL148
+ 3342 0709 11000000 		.4byte	.LVL149-1
+ 3343 070d 0500     		.2byte	0x5
+ 3344 070f 03       		.byte	0x3
+ 3345 0710 00000000 		.4byte	xfunc_in
+ 3346 0714 11000000 		.4byte	.LVL149-1
+ 3347 0718 1C000000 		.4byte	.LFE9
+ 3348 071c 0400     		.2byte	0x4
+ 3349 071e F3       		.byte	0xf3
+ 3350 071f 01       		.uleb128 0x1
+ 3351 0720 50       		.byte	0x50
+ 3352 0721 9F       		.byte	0x9f
+ 3353 0722 00000000 		.4byte	0
+ 3354 0726 00000000 		.4byte	0
+ 3355              	.LLST31:
+ 3356 072a 00000000 		.4byte	.LVL145
+ 3357 072e 0C000000 		.4byte	.LVL147
+ 3358 0732 0100     		.2byte	0x1
+ 3359 0734 51       		.byte	0x51
+ 3360 0735 0C000000 		.4byte	.LVL147
+ 3361 0739 11000000 		.4byte	.LVL149-1
+ 3362 073d 0100     		.2byte	0x1
+ 3363 073f 53       		.byte	0x53
+ 3364 0740 11000000 		.4byte	.LVL149-1
+ 3365 0744 1C000000 		.4byte	.LFE9
+ 3366 0748 0400     		.2byte	0x4
+ 3367 074a F3       		.byte	0xf3
+ 3368 074b 01       		.uleb128 0x1
+ 3369 074c 51       		.byte	0x51
+ 3370 074d 9F       		.byte	0x9f
+ 3371 074e 00000000 		.4byte	0
+ 3372 0752 00000000 		.4byte	0
+ 3373              	.LLST32:
+ 3374 0756 00000000 		.4byte	.LVL145
+ 3375 075a 11000000 		.4byte	.LVL149-1
+ 3376 075e 0100     		.2byte	0x1
+ 3377 0760 52       		.byte	0x52
+ 3378 0761 11000000 		.4byte	.LVL149-1
+ 3379 0765 1C000000 		.4byte	.LFE9
+ 3380 0769 0400     		.2byte	0x4
+ 3381 076b F3       		.byte	0xf3
+ 3382 076c 01       		.uleb128 0x1
+ 3383 076d 52       		.byte	0x52
+ 3384 076e 9F       		.byte	0x9f
+ 3385 076f 00000000 		.4byte	0
+ 3386 0773 00000000 		.4byte	0
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 68
+
+
+ 3387              	.LLST33:
+ 3388 0777 08000000 		.4byte	.LVL146
+ 3389 077b 16000000 		.4byte	.LVL150
+ 3390 077f 0100     		.2byte	0x1
+ 3391 0781 55       		.byte	0x55
+ 3392 0782 16000000 		.4byte	.LVL150
+ 3393 0786 1C000000 		.4byte	.LFE9
+ 3394 078a 0500     		.2byte	0x5
+ 3395 078c 03       		.byte	0x3
+ 3396 078d 00000000 		.4byte	xfunc_in
+ 3397 0791 00000000 		.4byte	0
+ 3398 0795 00000000 		.4byte	0
+ 3399              	.LLST34:
+ 3400 0799 00000000 		.4byte	.LVL151
+ 3401 079d A4000000 		.4byte	.LVL182
+ 3402 07a1 0100     		.2byte	0x1
+ 3403 07a3 50       		.byte	0x50
+ 3404 07a4 A4000000 		.4byte	.LVL182
+ 3405 07a8 A6000000 		.4byte	.LVL183
+ 3406 07ac 0400     		.2byte	0x4
+ 3407 07ae F3       		.byte	0xf3
+ 3408 07af 01       		.uleb128 0x1
+ 3409 07b0 50       		.byte	0x50
+ 3410 07b1 9F       		.byte	0x9f
+ 3411 07b2 A6000000 		.4byte	.LVL183
+ 3412 07b6 A8000000 		.4byte	.LVL184
+ 3413 07ba 0100     		.2byte	0x1
+ 3414 07bc 50       		.byte	0x50
+ 3415 07bd A8000000 		.4byte	.LVL184
+ 3416 07c1 AA000000 		.4byte	.LVL185
+ 3417 07c5 0400     		.2byte	0x4
+ 3418 07c7 F3       		.byte	0xf3
+ 3419 07c8 01       		.uleb128 0x1
+ 3420 07c9 50       		.byte	0x50
+ 3421 07ca 9F       		.byte	0x9f
+ 3422 07cb AA000000 		.4byte	.LVL185
+ 3423 07cf AC000000 		.4byte	.LVL186
+ 3424 07d3 0100     		.2byte	0x1
+ 3425 07d5 50       		.byte	0x50
+ 3426 07d6 AC000000 		.4byte	.LVL186
+ 3427 07da AE000000 		.4byte	.LVL187
+ 3428 07de 0400     		.2byte	0x4
+ 3429 07e0 F3       		.byte	0xf3
+ 3430 07e1 01       		.uleb128 0x1
+ 3431 07e2 50       		.byte	0x50
+ 3432 07e3 9F       		.byte	0x9f
+ 3433 07e4 AE000000 		.4byte	.LVL187
+ 3434 07e8 B0000000 		.4byte	.LVL188
+ 3435 07ec 0100     		.2byte	0x1
+ 3436 07ee 50       		.byte	0x50
+ 3437 07ef B0000000 		.4byte	.LVL188
+ 3438 07f3 B2000000 		.4byte	.LVL189
+ 3439 07f7 0400     		.2byte	0x4
+ 3440 07f9 F3       		.byte	0xf3
+ 3441 07fa 01       		.uleb128 0x1
+ 3442 07fb 50       		.byte	0x50
+ 3443 07fc 9F       		.byte	0x9f
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 69
+
+
+ 3444 07fd B2000000 		.4byte	.LVL189
+ 3445 0801 B4000000 		.4byte	.LVL190
+ 3446 0805 0100     		.2byte	0x1
+ 3447 0807 50       		.byte	0x50
+ 3448 0808 B4000000 		.4byte	.LVL190
+ 3449 080c B6000000 		.4byte	.LVL191
+ 3450 0810 0400     		.2byte	0x4
+ 3451 0812 F3       		.byte	0xf3
+ 3452 0813 01       		.uleb128 0x1
+ 3453 0814 50       		.byte	0x50
+ 3454 0815 9F       		.byte	0x9f
+ 3455 0816 B6000000 		.4byte	.LVL191
+ 3456 081a B8000000 		.4byte	.LVL192
+ 3457 081e 0100     		.2byte	0x1
+ 3458 0820 50       		.byte	0x50
+ 3459 0821 B8000000 		.4byte	.LVL192
+ 3460 0825 BC000000 		.4byte	.LFE10
+ 3461 0829 0400     		.2byte	0x4
+ 3462 082b F3       		.byte	0xf3
+ 3463 082c 01       		.uleb128 0x1
+ 3464 082d 50       		.byte	0x50
+ 3465 082e 9F       		.byte	0x9f
+ 3466 082f 00000000 		.4byte	0
+ 3467 0833 00000000 		.4byte	0
+ 3468              	.LLST35:
+ 3469 0837 6A000000 		.4byte	.LVL172
+ 3470 083b 6E000000 		.4byte	.LVL173
+ 3471 083f 0200     		.2byte	0x2
+ 3472 0841 30       		.byte	0x30
+ 3473 0842 9F       		.byte	0x9f
+ 3474 0843 6E000000 		.4byte	.LVL173
+ 3475 0847 A6000000 		.4byte	.LVL183
+ 3476 084b 0100     		.2byte	0x1
+ 3477 084d 54       		.byte	0x54
+ 3478 084e B2000000 		.4byte	.LVL189
+ 3479 0852 B8000000 		.4byte	.LVL192
+ 3480 0856 0100     		.2byte	0x1
+ 3481 0858 54       		.byte	0x54
+ 3482 0859 00000000 		.4byte	0
+ 3483 085d 00000000 		.4byte	0
+ 3484              	.LLST36:
+ 3485 0861 06000000 		.4byte	.LVL152
+ 3486 0865 0A000000 		.4byte	.LVL153
+ 3487 0869 0100     		.2byte	0x1
+ 3488 086b 53       		.byte	0x53
+ 3489 086c 0E000000 		.4byte	.LVL154
+ 3490 0870 1A000000 		.4byte	.LVL156
+ 3491 0874 0100     		.2byte	0x1
+ 3492 0876 53       		.byte	0x53
+ 3493 0877 1A000000 		.4byte	.LVL156
+ 3494 087b 1C000000 		.4byte	.LVL157
+ 3495 087f 0200     		.2byte	0x2
+ 3496 0881 72       		.byte	0x72
+ 3497 0882 00       		.sleb128 0
+ 3498 0883 1E000000 		.4byte	.LVL158
+ 3499 0887 2A000000 		.4byte	.LVL161
+ 3500 088b 0100     		.2byte	0x1
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 70
+
+
+ 3501 088d 53       		.byte	0x53
+ 3502 088e 30000000 		.4byte	.LVL162
+ 3503 0892 3A000000 		.4byte	.LVL164
+ 3504 0896 0100     		.2byte	0x1
+ 3505 0898 53       		.byte	0x53
+ 3506 0899 3A000000 		.4byte	.LVL164
+ 3507 089d 3C000000 		.4byte	.LVL165
+ 3508 08a1 0200     		.2byte	0x2
+ 3509 08a3 72       		.byte	0x72
+ 3510 08a4 00       		.sleb128 0
+ 3511 08a5 3E000000 		.4byte	.LVL166
+ 3512 08a9 44000000 		.4byte	.LVL168
+ 3513 08ad 0100     		.2byte	0x1
+ 3514 08af 53       		.byte	0x53
+ 3515 08b0 44000000 		.4byte	.LVL168
+ 3516 08b4 46000000 		.4byte	.LVL169
+ 3517 08b8 0200     		.2byte	0x2
+ 3518 08ba 72       		.byte	0x72
+ 3519 08bb 00       		.sleb128 0
+ 3520 08bc 48000000 		.4byte	.LVL170
+ 3521 08c0 74000000 		.4byte	.LVL174
+ 3522 08c4 0100     		.2byte	0x1
+ 3523 08c6 53       		.byte	0x53
+ 3524 08c7 76000000 		.4byte	.LVL175
+ 3525 08cb 7C000000 		.4byte	.LVL176
+ 3526 08cf 0100     		.2byte	0x1
+ 3527 08d1 53       		.byte	0x53
+ 3528 08d2 7C000000 		.4byte	.LVL176
+ 3529 08d6 94000000 		.4byte	.LVL179
+ 3530 08da 0100     		.2byte	0x1
+ 3531 08dc 52       		.byte	0x52
+ 3532 08dd 98000000 		.4byte	.LVL180
+ 3533 08e1 B2000000 		.4byte	.LVL189
+ 3534 08e5 0100     		.2byte	0x1
+ 3535 08e7 53       		.byte	0x53
+ 3536 08e8 B2000000 		.4byte	.LVL189
+ 3537 08ec B8000000 		.4byte	.LVL192
+ 3538 08f0 0100     		.2byte	0x1
+ 3539 08f2 52       		.byte	0x52
+ 3540 08f3 00000000 		.4byte	0
+ 3541 08f7 00000000 		.4byte	0
+ 3542              	.LLST37:
+ 3543 08fb 38000000 		.4byte	.LVL163
+ 3544 08ff 42000000 		.4byte	.LVL167
+ 3545 0903 0200     		.2byte	0x2
+ 3546 0905 40       		.byte	0x40
+ 3547 0906 9F       		.byte	0x9f
+ 3548 0907 42000000 		.4byte	.LVL167
+ 3549 090b 4C000000 		.4byte	.LVL171
+ 3550 090f 0200     		.2byte	0x2
+ 3551 0911 32       		.byte	0x32
+ 3552 0912 9F       		.byte	0x9f
+ 3553 0913 6A000000 		.4byte	.LVL172
+ 3554 0917 A6000000 		.4byte	.LVL183
+ 3555 091b 0100     		.2byte	0x1
+ 3556 091d 55       		.byte	0x55
+ 3557 091e B2000000 		.4byte	.LVL189
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 71
+
+
+ 3558 0922 B8000000 		.4byte	.LVL192
+ 3559 0926 0100     		.2byte	0x1
+ 3560 0928 55       		.byte	0x55
+ 3561 0929 00000000 		.4byte	0
+ 3562 092d 00000000 		.4byte	0
+ 3563              	.LLST38:
+ 3564 0931 00000000 		.4byte	.LVL151
+ 3565 0935 18000000 		.4byte	.LVL155
+ 3566 0939 0200     		.2byte	0x2
+ 3567 093b 30       		.byte	0x30
+ 3568 093c 9F       		.byte	0x9f
+ 3569 093d 18000000 		.4byte	.LVL155
+ 3570 0941 22000000 		.4byte	.LVL159
+ 3571 0945 0200     		.2byte	0x2
+ 3572 0947 31       		.byte	0x31
+ 3573 0948 9F       		.byte	0x9f
+ 3574 0949 22000000 		.4byte	.LVL159
+ 3575 094d 24000000 		.4byte	.LVL160
+ 3576 0951 0200     		.2byte	0x2
+ 3577 0953 30       		.byte	0x30
+ 3578 0954 9F       		.byte	0x9f
+ 3579 0955 24000000 		.4byte	.LVL160
+ 3580 0959 BA000000 		.4byte	.LVL193
+ 3581 095d 0100     		.2byte	0x1
+ 3582 095f 56       		.byte	0x56
+ 3583 0960 00000000 		.4byte	0
+ 3584 0964 00000000 		.4byte	0
+ 3585              		.section	.debug_aranges,"",%progbits
+ 3586 0000 6C000000 		.4byte	0x6c
+ 3587 0004 0200     		.2byte	0x2
+ 3588 0006 00000000 		.4byte	.Ldebug_info0
+ 3589 000a 04       		.byte	0x4
+ 3590 000b 00       		.byte	0
+ 3591 000c 0000     		.2byte	0
+ 3592 000e 0000     		.2byte	0
+ 3593 0010 00000000 		.4byte	.LFB0
+ 3594 0014 34000000 		.4byte	.LFE0-.LFB0
+ 3595 0018 00000000 		.4byte	.LFB1
+ 3596 001c 14000000 		.4byte	.LFE1-.LFB1
+ 3597 0020 00000000 		.4byte	.LFB3
+ 3598 0024 F4010000 		.4byte	.LFE3-.LFB3
+ 3599 0028 00000000 		.4byte	.LFB2
+ 3600 002c 24000000 		.4byte	.LFE2-.LFB2
+ 3601 0030 00000000 		.4byte	.LFB4
+ 3602 0034 1C000000 		.4byte	.LFE4-.LFB4
+ 3603 0038 00000000 		.4byte	.LFB5
+ 3604 003c 30000000 		.4byte	.LFE5-.LFB5
+ 3605 0040 00000000 		.4byte	.LFB6
+ 3606 0044 2C000000 		.4byte	.LFE6-.LFB6
+ 3607 0048 00000000 		.4byte	.LFB7
+ 3608 004c 8C000000 		.4byte	.LFE7-.LFB7
+ 3609 0050 00000000 		.4byte	.LFB8
+ 3610 0054 4C000000 		.4byte	.LFE8-.LFB8
+ 3611 0058 00000000 		.4byte	.LFB9
+ 3612 005c 1C000000 		.4byte	.LFE9-.LFB9
+ 3613 0060 00000000 		.4byte	.LFB10
+ 3614 0064 BC000000 		.4byte	.LFE10-.LFB10
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 72
+
+
+ 3615 0068 00000000 		.4byte	0
+ 3616 006c 00000000 		.4byte	0
+ 3617              		.section	.debug_ranges,"",%progbits
+ 3618              	.Ldebug_ranges0:
+ 3619 0000 00000000 		.4byte	.LFB0
+ 3620 0004 34000000 		.4byte	.LFE0
+ 3621 0008 00000000 		.4byte	.LFB1
+ 3622 000c 14000000 		.4byte	.LFE1
+ 3623 0010 00000000 		.4byte	.LFB3
+ 3624 0014 F4010000 		.4byte	.LFE3
+ 3625 0018 00000000 		.4byte	.LFB2
+ 3626 001c 24000000 		.4byte	.LFE2
+ 3627 0020 00000000 		.4byte	.LFB4
+ 3628 0024 1C000000 		.4byte	.LFE4
+ 3629 0028 00000000 		.4byte	.LFB5
+ 3630 002c 30000000 		.4byte	.LFE5
+ 3631 0030 00000000 		.4byte	.LFB6
+ 3632 0034 2C000000 		.4byte	.LFE6
+ 3633 0038 00000000 		.4byte	.LFB7
+ 3634 003c 8C000000 		.4byte	.LFE7
+ 3635 0040 00000000 		.4byte	.LFB8
+ 3636 0044 4C000000 		.4byte	.LFE8
+ 3637 0048 00000000 		.4byte	.LFB9
+ 3638 004c 1C000000 		.4byte	.LFE9
+ 3639 0050 00000000 		.4byte	.LFB10
+ 3640 0054 BC000000 		.4byte	.LFE10
+ 3641 0058 00000000 		.4byte	0
+ 3642 005c 00000000 		.4byte	0
+ 3643              		.section	.debug_line,"",%progbits
+ 3644              	.Ldebug_line0:
+ 3645 0000 2E030000 		.section	.debug_str,"MS",%progbits,1
+ 3645      0200B000 
+ 3645      00000201 
+ 3645      FB0E0D00 
+ 3645      01010101 
+ 3646              	.LASF27:
+ 3647 0000 78707269 		.ascii	"xprintf.c\000"
+ 3647      6E74662E 
+ 3647      6300
+ 3648              	.LASF15:
+ 3649 000a 7075745F 		.ascii	"put_dump\000"
+ 3649      64756D70 
+ 3649      00
+ 3650              	.LASF28:
+ 3651 0013 443A5C44 		.ascii	"D:\\Dropbox\\Public\\PSoC_Creator\\GPS_Logger\\GPS_"
+ 3651      726F7062 
+ 3651      6F785C50 
+ 3651      75626C69 
+ 3651      635C5053 
+ 3652 0041 4C6F6767 		.ascii	"Logger.cydsn\000"
+ 3652      65722E63 
+ 3652      7964736E 
+ 3652      00
+ 3653              	.LASF23:
+ 3654 004e 6F757470 		.ascii	"outptr\000"
+ 3654      747200
+ 3655              	.LASF0:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 73
+
+
+ 3656 0055 5F5F676E 		.ascii	"__gnuc_va_list\000"
+ 3656      75635F76 
+ 3656      615F6C69 
+ 3656      737400
+ 3657              	.LASF10:
+ 3658 0064 756E7369 		.ascii	"unsigned char\000"
+ 3658      676E6564 
+ 3658      20636861 
+ 3658      7200
+ 3659              	.LASF26:
+ 3660 0072 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 3660      43313120 
+ 3660      352E342E 
+ 3660      31203230 
+ 3660      31363036 
+ 3661 00a5 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 3661      20726576 
+ 3661      6973696F 
+ 3661      6E203233 
+ 3661      37373135 
+ 3662 00d8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 3662      66756E63 
+ 3662      74696F6E 
+ 3662      2D736563 
+ 3662      74696F6E 
+ 3663              	.LASF2:
+ 3664 0100 78707574 		.ascii	"xputc\000"
+ 3664      6300
+ 3665              	.LASF20:
+ 3666 0106 78666765 		.ascii	"xfgets\000"
+ 3666      747300
+ 3667              	.LASF16:
+ 3668 010d 61646472 		.ascii	"addr\000"
+ 3668      00
+ 3669              	.LASF1:
+ 3670 0112 76615F6C 		.ascii	"va_list\000"
+ 3670      69737400 
+ 3671              	.LASF13:
+ 3672 011a 62756666 		.ascii	"buff\000"
+ 3672      00
+ 3673              	.LASF19:
+ 3674 011f 78676574 		.ascii	"xgets\000"
+ 3674      7300
+ 3675              	.LASF6:
+ 3676 0125 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3676      20756E73 
+ 3676      69676E65 
+ 3676      6420696E 
+ 3676      7400
+ 3677              	.LASF3:
+ 3678 0137 78707574 		.ascii	"xputs\000"
+ 3678      7300
+ 3679              	.LASF24:
+ 3680 013d 7866756E 		.ascii	"xfunc_out\000"
+ 3680      635F6F75 
+ 3680      7400
+ 3681              	.LASF14:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 74
+
+
+ 3682 0147 78667072 		.ascii	"xfprintf\000"
+ 3682      696E7466 
+ 3682      00
+ 3683              	.LASF5:
+ 3684 0150 756E7369 		.ascii	"unsigned int\000"
+ 3684      676E6564 
+ 3684      20696E74 
+ 3684      00
+ 3685              	.LASF4:
+ 3686 015d 63686172 		.ascii	"char\000"
+ 3686      00
+ 3687              	.LASF30:
+ 3688 0162 5F5F6170 		.ascii	"__ap\000"
+ 3688      00
+ 3689              	.LASF12:
+ 3690 0167 78737072 		.ascii	"xsprintf\000"
+ 3690      696E7466 
+ 3690      00
+ 3691              	.LASF9:
+ 3692 0170 66756E63 		.ascii	"func\000"
+ 3692      00
+ 3693              	.LASF7:
+ 3694 0175 73697A65 		.ascii	"sizetype\000"
+ 3694      74797065 
+ 3694      00
+ 3695              	.LASF29:
+ 3696 017e 5F5F7661 		.ascii	"__va_list\000"
+ 3696      5F6C6973 
+ 3696      7400
+ 3697              	.LASF11:
+ 3698 0188 78707269 		.ascii	"xprintf\000"
+ 3698      6E746600 
+ 3699              	.LASF17:
+ 3700 0190 77696474 		.ascii	"width\000"
+ 3700      6800
+ 3701              	.LASF25:
+ 3702 0196 7866756E 		.ascii	"xfunc_in\000"
+ 3702      635F696E 
+ 3702      00
+ 3703              	.LASF8:
+ 3704 019f 78667075 		.ascii	"xfputs\000"
+ 3704      747300
+ 3705              	.LASF22:
+ 3706 01a6 6C6F6E67 		.ascii	"long int\000"
+ 3706      20696E74 
+ 3706      00
+ 3707              	.LASF31:
+ 3708 01af 78767072 		.ascii	"xvprintf\000"
+ 3708      696E7466 
+ 3708      00
+ 3709              	.LASF18:
+ 3710 01b8 73686F72 		.ascii	"short unsigned int\000"
+ 3710      7420756E 
+ 3710      7369676E 
+ 3710      65642069 
+ 3710      6E7400
+ 3711              	.LASF21:
+ARM GAS  C:\Users\cronos\AppData\Local\Temp\ccqH5Z7B.s 			page 75
+
+
+ 3712 01cb 7861746F 		.ascii	"xatoi\000"
+ 3712      6900
+ 3713              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,6 +1,7 @@
 #include "SakuraIOc.h"
 #include "SakuraIOc_spi.h"
 #include "commands.h"
+#include "xprintf.h"
 
 static uint8_t executeCommand(uint8_t cmd,uint8_t requestLength, uint8_t *request, uint8_t *responseLength, uint8_t *response)
 {

@@ -481,6 +481,7 @@
       <Data key="d98ce3c4-2661-49e1-8635-9803d863265f" value="GPS_Tx" />
       <Data key="e0f84d15-bfbe-41b3-98f9-5a7bd5ebf84e" value="LED0" />
       <Data key="e437ce52-ffc0-49bd-9109-a4905b578497" value="SAKURA_SPI_MISO" />
+      <Data key="e627c1e0-6338-414e-8ebe-7ad5d20e4494" value="ACC_Sleep" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="BME280_CSn" />
       <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="SPI_MOSI" />
       <Data key="eea24861-9211-489a-84a9-53a5aafe3a3c" value="SAKURA_SPI_SCLK" />
@@ -3704,6 +3705,11 @@
     <Group key="e437ce52-ffc0-49bd-9109-a4905b578497">
       <Group key="0">
         <Data key="Port Format" value="3,5" />
+      </Group>
+    </Group>
+    <Group key="e627c1e0-6338-414e-8ebe-7ad5d20e4494">
+      <Group key="0">
+        <Data key="Port Format" value="0,0" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
